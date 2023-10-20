@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>cycquery.eicu.EICUQuerier &mdash; cyclops-query  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/cyclops.css?v=fc0e58c9" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=ccdb6887"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="cycquery.omop" href="cycquery.omop.html" />
+    <link rel="prev" title="cycquery.eicu" href="cycquery.eicu.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #efeeed" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            cyclops-query
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../intro.html"># cyclops-query</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../intro.html#getting-started">🐣 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../intro.html#developing">🧑🏿‍💻 Developing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../intro.html#documentation">📚 Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../intro.html#citation">🎓 Citation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing to cyclops-query</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../api.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../cycquery.html">cycquery</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="cycquery.interface.html">cycquery.interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cycquery.ops.html">cycquery.ops</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cycquery.base.html">cycquery.base</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../cycquery.html#dataset-apis">dataset APIs</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="cycquery.mimiciii.html">cycquery.mimiciii</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cycquery.mimiciv.html">cycquery.mimiciv</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="cycquery.eicu.html">cycquery.eicu</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cycquery.omop.html">cycquery.omop</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cycquery.gemini.html">cycquery.gemini</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #efeeed" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">cyclops-query</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../api.html">API Reference</a></li>
+          <li class="breadcrumb-item"><a href="../cycquery.html">cycquery</a></li>
+          <li class="breadcrumb-item"><a href="cycquery.eicu.html">cycquery.eicu</a></li>
+      <li class="breadcrumb-item active">cycquery.eicu.EICUQuerier</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/reference/api/_autosummary/cycquery.eicu.EICUQuerier.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="cycquery-eicu-eicuquerier">
+<h1>cycquery.eicu.EICUQuerier<a class="headerlink" href="#cycquery-eicu-eicuquerier" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="cycquery.eicu.EICUQuerier">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">EICUQuerier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">database</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dbms</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'postgresql'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">host</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'localhost'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5432</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/cycquery/eicu.html#EICUQuerier"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cycquery.eicu.EICUQuerier" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="cycquery.base.DatasetQuerier.html#cycquery.base.DatasetQuerier" title="cycquery.base.DatasetQuerier"><code class="xref py py-class docutils literal notranslate"><span class="pre">DatasetQuerier</span></code></a></p>
+<p>EICU dataset querier.</p>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cycquery.eicu.EICUQuerier.get_table" title="cycquery.eicu.EICUQuerier.get_table"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_table</span></code></a></p></td>
+<td><p>Get a table and possibly map columns to have standard names.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#cycquery.eicu.EICUQuerier.list_columns" title="cycquery.eicu.EICUQuerier.list_columns"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list_columns</span></code></a></p></td>
+<td><p>List columns in a table.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cycquery.eicu.EICUQuerier.list_custom_tables" title="cycquery.eicu.EICUQuerier.list_custom_tables"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list_custom_tables</span></code></a></p></td>
+<td><p>List custom tables methods provided by the dataset API.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#cycquery.eicu.EICUQuerier.list_schemas" title="cycquery.eicu.EICUQuerier.list_schemas"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list_schemas</span></code></a></p></td>
+<td><p>List schemas in the database to query.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cycquery.eicu.EICUQuerier.list_tables" title="cycquery.eicu.EICUQuerier.list_tables"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list_tables</span></code></a></p></td>
+<td><p>List table methods that can be queried using the database.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="cycquery.eicu.EICUQuerier.get_table">
+<span class="sig-name descname"><span class="pre">get_table</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">schema_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">table_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cast_timestamp_cols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cycquery.eicu.EICUQuerier.get_table" title="Link to this definition"></a></dt>
+<dd><p>Get a table and possibly map columns to have standard names.</p>
+<p>Standardizing column names allows for columns to be
+recognized in downstream processing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>schema_name</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Name of schema in the database.</p></li>
+<li><p><strong>table_name</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Name of table in the database.</p></li>
+<li><p><strong>cast_timestamp_cols</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#bool" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) – Whether to cast timestamp columns to datetime.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Table with mapped columns.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.sqlalchemy.org/en/20/core/selectable.html#sqlalchemy.sql.expression.Subquery" title="(in SQLAlchemy v2.0)">sqlalchemy.sql.selectable.Subquery</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cycquery.eicu.EICUQuerier.list_columns">
+<span class="sig-name descname"><span class="pre">list_columns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">schema_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">table_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cycquery.eicu.EICUQuerier.list_columns" title="Link to this definition"></a></dt>
+<dd><p>List columns in a table.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>schema_name</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Name of schema in the database.</p></li>
+<li><p><strong>table_name</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Name of table in the database.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of column names.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cycquery.eicu.EICUQuerier.list_custom_tables">
+<span class="sig-name descname"><span class="pre">list_custom_tables</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cycquery.eicu.EICUQuerier.list_custom_tables" title="Link to this definition"></a></dt>
+<dd><p>List custom tables methods provided by the dataset API.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List of custom table names.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List[<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cycquery.eicu.EICUQuerier.list_schemas">
+<span class="sig-name descname"><span class="pre">list_schemas</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cycquery.eicu.EICUQuerier.list_schemas" title="Link to this definition"></a></dt>
+<dd><p>List schemas in the database to query.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List of schema names.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List[<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cycquery.eicu.EICUQuerier.list_tables">
+<span class="sig-name descname"><span class="pre">list_tables</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">schema_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cycquery.eicu.EICUQuerier.list_tables" title="Link to this definition"></a></dt>
+<dd><p>List table methods that can be queried using the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>schema_name</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/typing.html#typing.Optional" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]) – Name of schema in the database.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of table names.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="cycquery.eicu.html" class="btn btn-neutral float-left" title="cycquery.eicu" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cycquery.omop.html" class="btn btn-neutral float-right" title="cycquery.omop" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Vector AI Engineering.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

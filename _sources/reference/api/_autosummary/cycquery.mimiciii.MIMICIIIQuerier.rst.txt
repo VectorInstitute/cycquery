@@ -1,0 +1,32 @@
+cycquery.mimiciii.MIMICIIIQuerier
+=================================
+
+.. currentmodule:: cycquery.mimiciii
+
+.. autoclass:: MIMICIIIQuerier
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~MIMICIIIQuerier.chartevents
+      ~MIMICIIIQuerier.diagnoses
+      ~MIMICIIIQuerier.get_table
+      ~MIMICIIIQuerier.labevents
+      ~MIMICIIIQuerier.list_columns
+      ~MIMICIIIQuerier.list_custom_tables
+      ~MIMICIIIQuerier.list_schemas
+      ~MIMICIIIQuerier.list_tables
+   
+   
+
+   
+   
+   

@@ -1,0 +1,32 @@
+﻿cycquery.gemini
+===============
+
+.. automodule:: cycquery.gemini
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+      :nosignatures:
+   
+      GEMINIQuerier
+   
+   
+
+   
+   
+   
+
+
+

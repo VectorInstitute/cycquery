@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title># cyclops-query &mdash; cyclops-query  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="_static/css/cyclops.css?v=fc0e58c9" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="_static/copybutton.js?v=ccdb6887"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Contributing to cyclops-query" href="contributing.html" />
+    <link rel="prev" title="Welcome to cyclops-query’s documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #efeeed" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            cyclops-query
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#"># cyclops-query</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#getting-started">🐣 Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installing-cyclops-query-using-pip">Installing cyclops-query using pip</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#developing">🧑🏿‍💻 Developing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#using-poetry">Using poetry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#contributing">Contributing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#documentation">📚 Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#citation">🎓 Citation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to cyclops-query</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #efeeed" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">cyclops-query</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"># cyclops-query</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/intro.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="cyclops-query">
+<h1># cyclops-query<a class="headerlink" href="#cyclops-query" title="Link to this heading"></a></h1>
+<p><a class="reference external" href="https://pypi.org/project/cycquery"><img alt="PyPI" src="https://img.shields.io/pypi/v/cycquery" /></a> <a class="reference external" href="https://github.com/VectorInstitute/cyclops-query/actions/workflows/code_checks.yml"><img alt="code checks" src="https://github.com/VectorInstitute/cyclops-query/actions/workflows/code_checks.yml/badge.svg" /></a> <a class="reference external" href="https://github.com/VectorInstitute/cyclops-query/actions/workflows/integration_tests.yml"><img alt="integration tests" src="https://github.com/VectorInstitute/cyclops-query/actions/workflows/integration_tests.yml/badge.svg" /></a> <a class="reference external" href="https://github.com/VectorInstitute/cyclops-query/actions/workflows/docs_deploy.yml"><img alt="docs" src="https://github.com/VectorInstitute/cyclops-query/actions/workflows/docs_deploy.yml/badge.svg" /></a> <a class="reference external" href="https://codecov.io/gh/VectorInstitute/cyclops-query"><img alt="codecov" src="https://codecov.io/gh/VectorInstitute/cyclops-query/branch/main/graph/badge.svg" /></a> <a class="reference external" href="https://github.com/VectorInstitute/cyclops-query/blob/main/LICENSE"><img alt="license" src="https://img.shields.io/github/license/VectorInstitute/cyclops-query.svg" /></a></p>
+<p><code class="docutils literal notranslate"><span class="pre">cyclops-query</span></code> is a tool for querying EHR databases.</p>
+</section>
+<section id="getting-started">
+<h1>🐣 Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading"></a></h1>
+<section id="installing-cyclops-query-using-pip">
+<h2>Installing cyclops-query using pip<a class="headerlink" href="#installing-cyclops-query-using-pip" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>cycquery
+</pre></div>
+</div>
+</section>
+</section>
+<section id="developing">
+<h1>🧑🏿‍💻 Developing<a class="headerlink" href="#developing" title="Link to this heading"></a></h1>
+<section id="using-poetry">
+<h2>Using poetry<a class="headerlink" href="#using-poetry" title="Link to this heading"></a></h2>
+<p>The development environment can be set up using
+<a class="reference external" href="https://python-poetry.org/docs/#installation">poetry</a>. Hence, make
+sure it is installed and then run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>poetry<span class="w"> </span>install
+<span class="nb">source</span><span class="w"> </span><span class="k">$(</span>poetry<span class="w"> </span>env<span class="w"> </span>info<span class="w"> </span>--path<span class="k">)</span>/bin/activate
+</pre></div>
+</div>
+<p>API documentation is built using
+<a class="reference external" href="https://www.sphinx-doc.org/en/master/">Sphinx</a> and can be locally
+built by:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>docs
+make<span class="w"> </span>html<span class="w"> </span><span class="nv">SPHINXOPTS</span><span class="o">=</span><span class="s2">&quot;-D nbsphinx_allow_errors=True&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="contributing">
+<h2>Contributing<a class="headerlink" href="#contributing" title="Link to this heading"></a></h2>
+<p>Contributing to <code class="docutils literal notranslate"><span class="pre">cyclops-query</span></code> is welcomed. See
+<a class="reference external" href="https://vectorinstitute.github.io/cyclops-query/api/contributing.html">Contributing</a>
+for guidelines.</p>
+</section>
+</section>
+<section id="documentation">
+<h1>📚 <a class="reference external" href="https://vectorinstitute.github.io/cyclops-query/">Documentation</a><a class="headerlink" href="#documentation" title="Link to this heading"></a></h1>
+</section>
+<section id="citation">
+<h1>🎓 Citation<a class="headerlink" href="#citation" title="Link to this heading"></a></h1>
+<p>Reference to cite when you use <code class="docutils literal notranslate"><span class="pre">cyclops-query</span></code> in a project or a
+research paper:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@article</span> <span class="p">{</span><span class="n">Krishnan2022</span><span class="mf">.12.02.22283021</span><span class="p">,</span>
+    <span class="n">author</span> <span class="o">=</span> <span class="p">{</span><span class="n">Krishnan</span><span class="p">,</span> <span class="n">Amrit</span> <span class="ow">and</span> <span class="n">Subasri</span><span class="p">,</span> <span class="n">Vallijah</span> <span class="ow">and</span> <span class="n">McKeen</span><span class="p">,</span> <span class="n">Kaden</span> <span class="ow">and</span> <span class="n">Kore</span><span class="p">,</span> <span class="n">Ali</span> <span class="ow">and</span> <span class="n">Ogidi</span><span class="p">,</span> <span class="n">Franklin</span> <span class="ow">and</span> <span class="n">Alinoori</span><span class="p">,</span> <span class="n">Mahshid</span> <span class="ow">and</span> <span class="n">Lalani</span><span class="p">,</span> <span class="n">Nadim</span> <span class="ow">and</span> <span class="n">Dhalla</span><span class="p">,</span> <span class="n">Azra</span> <span class="ow">and</span> <span class="n">Verma</span><span class="p">,</span> <span class="n">Amol</span> <span class="ow">and</span> <span class="n">Razak</span><span class="p">,</span> <span class="n">Fahad</span> <span class="ow">and</span> <span class="n">Pandya</span><span class="p">,</span> <span class="n">Deval</span> <span class="ow">and</span> <span class="n">Dolatabadi</span><span class="p">,</span> <span class="n">Elham</span><span class="p">},</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="p">{</span><span class="n">CyclOps</span><span class="p">:</span> <span class="n">Cyclical</span> <span class="n">development</span> <span class="n">towards</span> <span class="n">operationalizing</span> <span class="n">ML</span> <span class="n">models</span> <span class="k">for</span> <span class="n">health</span><span class="p">},</span>
+    <span class="n">elocation</span><span class="o">-</span><span class="nb">id</span> <span class="o">=</span> <span class="p">{</span><span class="mf">2022.12.02.22283021</span><span class="p">},</span>
+    <span class="n">year</span> <span class="o">=</span> <span class="p">{</span><span class="mi">2022</span><span class="p">},</span>
+    <span class="n">doi</span> <span class="o">=</span> <span class="p">{</span><span class="mf">10.1101</span><span class="o">/</span><span class="mf">2022.12.02.22283021</span><span class="p">},</span>
+    <span class="n">publisher</span> <span class="o">=</span> <span class="p">{</span><span class="n">Cold</span> <span class="n">Spring</span> <span class="n">Harbor</span> <span class="n">Laboratory</span> <span class="n">Press</span><span class="p">},</span>
+    <span class="n">URL</span> <span class="o">=</span> <span class="p">{</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">medrxiv</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">content</span><span class="o">/</span><span class="n">early</span><span class="o">/</span><span class="mi">2022</span><span class="o">/</span><span class="mi">12</span><span class="o">/</span><span class="mi">08</span><span class="o">/</span><span class="mf">2022.12.02.22283021</span><span class="p">},</span>
+    <span class="n">journal</span> <span class="o">=</span> <span class="p">{</span><span class="n">medRxiv</span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to cyclops-query’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="contributing.html" class="btn btn-neutral float-right" title="Contributing to cyclops-query" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Vector AI Engineering.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+cycquery.base.DatasetQuerier
+============================
+
+.. currentmodule:: cycquery.base
+
+.. autoclass:: DatasetQuerier
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~DatasetQuerier.get_table
+      ~DatasetQuerier.list_columns
+      ~DatasetQuerier.list_custom_tables
+      ~DatasetQuerier.list_schemas
+      ~DatasetQuerier.list_tables
+   
+   
+
+   
+   
+   
