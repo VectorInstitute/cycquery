@@ -1,5 +1,5 @@
-# cyclops-query
-===============
+cyclops-query
+=============
 
 |PyPI| |code checks| |integration tests| |docs| |codecov| |license|
 
