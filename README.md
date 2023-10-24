@@ -1,4 +1,4 @@
-# cyclops-query
+cyclops-query
 --------------------------------------------------------------------------------
 
 [![PyPI](https://img.shields.io/pypi/v/cycquery)](https://pypi.org/project/cycquery)
