@@ -8,7 +8,9 @@ cyclops-query
 [![codecov](https://codecov.io/gh/VectorInstitute/cyclops-query/branch/main/graph/badge.svg)](https://codecov.io/gh/VectorInstitute/cyclops-query)
 [![license](https://img.shields.io/github/license/VectorInstitute/cyclops-query.svg)](https://github.com/VectorInstitute/cyclops-query/blob/main/LICENSE)
 
-``cyclops-query`` is a tool for querying EHR databases.
+``cyclops-query`` is a tool for querying relational databases using a simple Python API. It is specifically developed to query
+Electronic Health Record (EHR) databases. The tool is a wrapper around [SQLAlchemy](https://www.sqlalchemy.org/) and can be used
+to write SQL-like queries in Python, including joins, conditions, groupby aggregation and many more.
 
 ## 🐣 Getting Started
 
@@ -16,6 +18,42 @@ cyclops-query
 
 ```bash
 python3 -m pip install cycquery
+```
+
+### Query postgresql database
+
+```python
+from cycquery import DatasetQuerier
+import cycquery.ops as qo
+
+
+querier = DatasetQuerier(
+    dbms="postgresql",
+    port=5432,
+    host="localhost",
+    database="dbname",
+    user="usename",
+    password="password",
+)
+# List all tables.
+querier.list_tables()
+
+# Get some table.
+table = querier.schema.sometable()
+# Filter based on some condition (e.g. substring match).
+table = table.ops(qo.ConditionSubstring("col1", "substr"))
+# Run query to get data as a pandas dataframe.
+df = table.run()
+
+# Create a sequential list of operations to perform on the query.
+ops = qo.Sequential(
+	qo.ConditionIn("col2", [1, 2]),
+	qo.DropNulls("col3"),
+	qo.Distinct("col1")
+)
+table = table.ops(ops)
+# Run query to get data as a pandas dataframe.
+df = table.run()
 ```
 
 ## 🧑🏿‍💻 Developing
