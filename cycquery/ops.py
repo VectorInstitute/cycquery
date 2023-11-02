@@ -3260,3 +3260,43 @@ class Distinct(QueryOp):
         table = _process_checks(table, cols=cols)
 
         return select(table).distinct(*get_columns(table, cols)).subquery()
+
+
+class Count(QueryOp):
+    """Count the number of rows.
+
+    Parameters
+    ----------
+    col
+        Column to count.
+
+    Examples
+    --------
+    >>> Count("person_id")(table)
+
+    """
+
+    def __init__(self, col: str):
+        super().__init__()
+        self.col = col
+
+    def __call__(self, table: TableTypes) -> Subquery:
+        """Process the table.
+
+        Parameters
+        ----------
+        table
+            Table on which to perform the operation.
+        col
+            Column to count.
+
+        Returns
+        -------
+        sqlalchemy.sql.selectable.Subquery
+            Processed table.
+
+        """
+        table = _process_checks(table, cols=self.col)
+        count = func.count(get_column(table, self.col))
+
+        return select(count).subquery()

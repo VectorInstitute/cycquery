@@ -1,9 +1,8 @@
 """A query interface class to wrap database objects and queries."""
 
 import logging
-from typing import List, Literal, Optional, Tuple, Union
+from typing import Generator, List, Literal, Optional, Tuple, Union
 
-import dask.dataframe as dd
 import pandas as pd
 from sqlalchemy.sql.elements import BinaryExpression
 
@@ -46,7 +45,7 @@ class QueryInterface:
         self._data = None
 
     @property
-    def data(self) -> Optional[Union[pd.DataFrame, dd.core.DataFrame]]:
+    def data(self) -> Union[pd.DataFrame, None]:
         """Get data."""
         return self._data
 
@@ -176,10 +175,10 @@ class QueryInterface:
     def run(
         self,
         limit: Optional[int] = None,
-        backend: Literal["pandas", "dask", "datasets"] = "pandas",
         index_col: Optional[str] = None,
-        n_partitions: Optional[int] = None,
-    ) -> Union[pd.DataFrame, dd.core.DataFrame]:
+        batch_mode: bool = False,
+        batch_size: int = 1000000,
+    ) -> Union[pd.DataFrame, Generator[pd.DataFrame, None, None]]:
         """Run the query, and fetch data.
 
         Parameters
@@ -191,22 +190,29 @@ class QueryInterface:
         index_col
             Column which becomes the index, and defines the partitioning.
             Should be a indexed column in the SQL server, and any orderable type.
-        n_partitions
-            Number of partitions. Check dask documentation for additional details.
+        batch_mode
+            Whether to run the query in batch mode. A generator is returned if True.
+        batch_size
+            Batch size for the query, default 1 million rows.
 
         Returns
         -------
-        pandas.DataFrame or dask.DataFrame or datasets.Dataset
+        pandas.DataFrame or Generator[pandas.DataFrame, None, None]
             Query result.
 
         """
-        self._data = self.database.run_query(
-            self.query,
-            limit=limit,
-            backend=backend,
-            index_col=index_col,
-            n_partitions=n_partitions,
-        )
+        if not batch_mode:
+            self._data = self.database.run_query(
+                self.query,
+                limit=limit,
+                index_col=index_col,
+            )
+        else:
+            self._data = self.database.run_query_batch(
+                self.query,
+                index_col=index_col,
+                batch_size=batch_size,
+            )
 
         return self._data
 
@@ -232,8 +238,11 @@ class QueryInterface:
         """
         # If the query was already run.
         if self._data is not None:
-            return save_dataframe(self._data, path, file_format=file_format)
-
+            if isinstance(self._data, pd.DataFrame):
+                return save_dataframe(self._data, path, file_format=file_format)
+            if isinstance(self._data, Generator):
+                for i, df in enumerate(self._data):
+                    save_dataframe(df, f"{path}/batch-{i:03d}", file_format=file_format)
         # Save without running.
         if file_format == "csv":
             path = self.database.save_query_to_csv(self.query, path)
