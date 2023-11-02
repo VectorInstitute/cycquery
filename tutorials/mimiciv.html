@@ -11,9 +11,9 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MIMIC-IV tutorial &mdash; cyclops-query  documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
-    <link rel="stylesheet" type="text/css" href="../_static/css/cyclops.css?v=fc0e58c9" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/cyclops.css?v=fc0e58c9" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
 
   
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
@@ -138,7 +138,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#Example-4.-Get-routine-vital-signs-for-patients-from-year-2015.">Example 4. Get routine vital signs for patients from year 2015.</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#Example-5.-Get-hemoglobin-lab-tests-for-patients-from-year-2009.">Example 5. Get hemoglobin lab tests for patients from year 2009.</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#Example-6.-Get-radiology-reports-and-filter-on-keywords-lymphadenopathy-and-infectious-occurring-together-from-year-2009.">Example 6. Get radiology reports and filter on keywords <code class="docutils literal notranslate"><span class="pre">lymphadenopathy</span></code> and <code class="docutils literal notranslate"><span class="pre">infectious</span></code> occurring together from year 2009.</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Example-7.-Get-all-female-patient-encounters-from-year-2015,-and-return-as-dask-dataframe-(lazy-evaluation)-with-4-partitions-(batches)-aggregated-based-on-subject_id.">Example 7. Get all female patient encounters from year 2015, and return as dask dataframe (lazy evaluation) with 4 partitions (batches) aggregated based on <code class="docutils literal notranslate"><span class="pre">subject_id</span></code>.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Example-7.-Get-all-female-patient-encounters-from-year-2015,-and-return-batches-partitioned-and-indexed-on-subject_id.">Example 7. Get all female patient encounters from year 2015, and return batches partitioned and indexed on <code class="docutils literal notranslate"><span class="pre">subject_id</span></code>.</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#Example-8.-Running-a-raw-SQL-string.">Example 8. Running a raw SQL string.</a></li>
 </ul>
 </li>
@@ -482,7 +482,7 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2023-10-27 11:20:48,937 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.orm    - Database setup, ready to run queries!
+2023-11-02 12:47:40,745 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.orm    - Database setup, ready to run queries!
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -527,8 +527,8 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2023-10-27 11:20:52,064 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.orm    - Query returned successfully!
-2023-10-27 11:20:52,066 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.utils.profile - Finished executing function run_query in 0.312621 s
+2023-11-02 12:47:43,112 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.orm    - Query returned successfully!
+2023-11-02 12:47:43,113 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.utils.profile - Finished executing function run_query in 0.184544 s
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -573,8 +573,8 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2023-10-27 11:20:52,919 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.orm    - Query returned successfully!
-2023-10-27 11:20:52,919 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.utils.profile - Finished executing function run_query in 0.813022 s
+2023-11-02 12:47:43,938 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.orm    - Query returned successfully!
+2023-11-02 12:47:43,939 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.utils.profile - Finished executing function run_query in 0.777078 s
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -619,8 +619,8 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2023-10-27 11:20:54,443 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.orm    - Query returned successfully!
-2023-10-27 11:20:54,444 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.utils.profile - Finished executing function run_query in 1.490446 s
+2023-11-02 12:47:45,494 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.orm    - Query returned successfully!
+2023-11-02 12:47:45,496 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.utils.profile - Finished executing function run_query in 1.524295 s
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -661,8 +661,8 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2023-10-27 11:22:18,167 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.orm    - Query returned successfully!
-2023-10-27 11:22:18,168 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.utils.profile - Finished executing function run_query in 83.684690 s
+2023-11-02 12:49:01,161 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.orm    - Query returned successfully!
+2023-11-02 12:49:01,162 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.utils.profile - Finished executing function run_query in 75.627061 s
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -703,8 +703,8 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2023-10-27 11:23:26,782 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.orm    - Query returned successfully!
-2023-10-27 11:23:26,783 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.utils.profile - Finished executing function run_query in 68.581814 s
+2023-11-02 12:50:04,931 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.orm    - Query returned successfully!
+2023-11-02 12:50:04,932 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.utils.profile - Finished executing function run_query in 63.736511 s
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -751,8 +751,8 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2023-10-27 11:23:34,560 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.orm    - Query returned successfully!
-2023-10-27 11:23:34,561 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.utils.profile - Finished executing function run_query in 7.749773 s
+2023-11-02 12:50:12,268 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.orm    - Query returned successfully!
+2023-11-02 12:50:12,269 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.utils.profile - Finished executing function run_query in 7.281615 s
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -764,8 +764,8 @@ div.rendered_html tbody tr:hover {
 </pre></div></div>
 </div>
 </section>
-<section id="Example-7.-Get-all-female-patient-encounters-from-year-2015,-and-return-as-dask-dataframe-(lazy-evaluation)-with-4-partitions-(batches)-aggregated-based-on-subject_id.">
-<h2>Example 7. Get all female patient encounters from year 2015, and return as dask dataframe (lazy evaluation) with 4 partitions (batches) aggregated based on <code class="docutils literal notranslate"><span class="pre">subject_id</span></code>.<a class="headerlink" href="#Example-7.-Get-all-female-patient-encounters-from-year-2015,-and-return-as-dask-dataframe-(lazy-evaluation)-with-4-partitions-(batches)-aggregated-based-on-subject_id." title="Link to this heading"></a></h2>
+<section id="Example-7.-Get-all-female-patient-encounters-from-year-2015,-and-return-batches-partitioned-and-indexed-on-subject_id.">
+<h2>Example 7. Get all female patient encounters from year 2015, and return batches partitioned and indexed on <code class="docutils literal notranslate"><span class="pre">subject_id</span></code>.<a class="headerlink" href="#Example-7.-Get-all-female-patient-encounters-from-year-2015,-and-return-batches-partitioned-and-indexed-on-subject_id." title="Link to this heading"></a></h2>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
@@ -781,13 +781,12 @@ div.rendered_html tbody tr:hover {
 <span class="p">)</span>
 <span class="n">patient_admissions</span> <span class="o">=</span> <span class="n">patient_admissions</span><span class="o">.</span><span class="n">ops</span><span class="p">(</span><span class="n">ops</span><span class="p">)</span>
 <span class="n">patient_admissions</span> <span class="o">=</span> <span class="n">patient_admissions</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
-    <span class="n">backend</span><span class="o">=</span><span class="s2">&quot;dask&quot;</span><span class="p">,</span>
     <span class="n">index_col</span><span class="o">=</span><span class="s2">&quot;subject_id&quot;</span><span class="p">,</span>
-    <span class="n">n_partitions</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+    <span class="n">batch_mode</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">patient_admissions</span><span class="p">)</span><span class="si">}</span><span class="s2"> rows extracted!&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Return type: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">patient_admissions</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of partitions: </span><span class="si">{</span><span class="n">patient_admissions</span><span class="o">.</span><span class="n">npartitions</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">patient_admissions_df</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">patient_admissions</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">patient_admissions_df</span><span class="p">)</span><span class="si">}</span><span class="s2"> rows extracted!&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -796,8 +795,8 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2023-10-27 11:23:34,938 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.orm    - Query returned successfully!
-2023-10-27 11:23:34,939 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.utils.profile - Finished executing function run_query in 0.345694 s
+2023-11-02 12:50:12,688 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.orm    - Query returned successfully!
+2023-11-02 12:50:12,688 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.utils.profile - Finished executing function run_query in 0.371772 s
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -805,9 +804,7 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-35639 rows extracted!
-Return type: &lt;class &#39;dask.dataframe.core.DataFrame&#39;&gt;
-Number of partitions: 4
+999 rows extracted!
 </pre></div></div>
 </div>
 </section>
@@ -827,8 +824,8 @@ Number of partitions: 4
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2023-10-27 11:23:35,900 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.orm    - Query returned successfully!
-2023-10-27 11:23:35,901 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.utils.profile - Finished executing function run_query in 0.009755 s
+2023-11-02 12:50:12,822 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.orm    - Query returned successfully!
+2023-11-02 12:50:12,823 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.utils.profile - Finished executing function run_query in 0.006808 s
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">

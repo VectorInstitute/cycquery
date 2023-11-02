@@ -11,9 +11,9 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>cyclops-query &mdash; cyclops-query  documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
-    <link rel="stylesheet" type="text/css" href="_static/css/cyclops.css?v=fc0e58c9" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/cyclops.css?v=fc0e58c9" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
 
   
     <link rel="shortcut icon" href="_static/favicon.ico"/>
@@ -123,6 +123,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">cyclops-query</a></li>
 <li class="toctree-l1"><a class="reference internal" href="#getting-started">🐣 Getting Started</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#installing-cyclops-query-using-pip">Installing cyclops-query using pip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#query-postgresql-database">Query postgresql database</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="#developing">🧑🏿‍💻 Developing</a><ul>
@@ -175,13 +176,54 @@
   <section id="cyclops-query">
 <h1>cyclops-query<a class="headerlink" href="#cyclops-query" title="Link to this heading"></a></h1>
 <p><a class="reference external" href="https://pypi.org/project/cycquery"><img alt="PyPI" src="https://img.shields.io/pypi/v/cycquery" /></a> <a class="reference external" href="https://github.com/VectorInstitute/cyclops-query/actions/workflows/code_checks.yml"><img alt="code checks" src="https://github.com/VectorInstitute/cyclops-query/actions/workflows/code_checks.yml/badge.svg" /></a> <a class="reference external" href="https://github.com/VectorInstitute/cyclops-query/actions/workflows/integration_tests.yml"><img alt="integration tests" src="https://github.com/VectorInstitute/cyclops-query/actions/workflows/integration_tests.yml/badge.svg" /></a> <a class="reference external" href="https://github.com/VectorInstitute/cyclops-query/actions/workflows/docs_deploy.yml"><img alt="docs" src="https://github.com/VectorInstitute/cyclops-query/actions/workflows/docs_deploy.yml/badge.svg" /></a> <a class="reference external" href="https://codecov.io/gh/VectorInstitute/cyclops-query"><img alt="codecov" src="https://codecov.io/gh/VectorInstitute/cyclops-query/branch/main/graph/badge.svg" /></a> <a class="reference external" href="https://github.com/VectorInstitute/cyclops-query/blob/main/LICENSE"><img alt="license" src="https://img.shields.io/github/license/VectorInstitute/cyclops-query.svg" /></a></p>
-<p><code class="docutils literal notranslate"><span class="pre">cyclops-query</span></code> is a tool for querying EHR databases.</p>
+<p><code class="docutils literal notranslate"><span class="pre">cyclops-query</span></code> is a tool for querying relational databases using a
+simple Python API. It is specifically developed to query Electronic
+Health Record (EHR) databases. The tool is a wrapper around
+<a class="reference external" href="https://www.sqlalchemy.org/">SQLAlchemy</a> and can be used to write
+SQL-like queries in Python, including joins, conditions, groupby
+aggregation and many more.</p>
 </section>
 <section id="getting-started">
 <h1>🐣 Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading"></a></h1>
 <section id="installing-cyclops-query-using-pip">
 <h2>Installing cyclops-query using pip<a class="headerlink" href="#installing-cyclops-query-using-pip" title="Link to this heading"></a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>cycquery
+</pre></div>
+</div>
+</section>
+<section id="query-postgresql-database">
+<h2>Query postgresql database<a class="headerlink" href="#query-postgresql-database" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">cycquery</span> <span class="kn">import</span> <span class="n">DatasetQuerier</span>
+<span class="kn">import</span> <span class="nn">cycquery.ops</span> <span class="k">as</span> <span class="nn">qo</span>
+
+
+<span class="n">querier</span> <span class="o">=</span> <span class="n">DatasetQuerier</span><span class="p">(</span>
+    <span class="n">dbms</span><span class="o">=</span><span class="s2">&quot;postgresql&quot;</span><span class="p">,</span>
+    <span class="n">port</span><span class="o">=</span><span class="mi">5432</span><span class="p">,</span>
+    <span class="n">host</span><span class="o">=</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span>
+    <span class="n">database</span><span class="o">=</span><span class="s2">&quot;dbname&quot;</span><span class="p">,</span>
+    <span class="n">user</span><span class="o">=</span><span class="s2">&quot;usename&quot;</span><span class="p">,</span>
+    <span class="n">password</span><span class="o">=</span><span class="s2">&quot;password&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="c1"># List all tables.</span>
+<span class="n">querier</span><span class="o">.</span><span class="n">list_tables</span><span class="p">()</span>
+
+<span class="c1"># Get some table.</span>
+<span class="n">table</span> <span class="o">=</span> <span class="n">querier</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">sometable</span><span class="p">()</span>
+<span class="c1"># Filter based on some condition (e.g. substring match).</span>
+<span class="n">table</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">ops</span><span class="p">(</span><span class="n">qo</span><span class="o">.</span><span class="n">ConditionSubstring</span><span class="p">(</span><span class="s2">&quot;col1&quot;</span><span class="p">,</span> <span class="s2">&quot;substr&quot;</span><span class="p">))</span>
+<span class="c1"># Run query to get data as a pandas dataframe.</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+
+<span class="c1"># Create a sequential list of operations to perform on the query.</span>
+<span class="n">ops</span> <span class="o">=</span> <span class="n">qo</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+    <span class="n">qo</span><span class="o">.</span><span class="n">ConditionIn</span><span class="p">(</span><span class="s2">&quot;col2&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]),</span>
+    <span class="n">qo</span><span class="o">.</span><span class="n">DropNulls</span><span class="p">(</span><span class="s2">&quot;col3&quot;</span><span class="p">),</span>
+    <span class="n">qo</span><span class="o">.</span><span class="n">Distinct</span><span class="p">(</span><span class="s2">&quot;col1&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">table</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">ops</span><span class="p">(</span><span class="n">ops</span><span class="p">)</span>
+<span class="c1"># Run query to get data as a pandas dataframe.</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
 </div>
 </section>

@@ -10,7 +10,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>cycquery.ops.ConditionIn &mdash; cyclops-query  documentation</title>
+  <title>cycquery.ops.Count &mdash; cyclops-query  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/cyclops.css?v=fc0e58c9" />
       <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
@@ -32,8 +32,8 @@
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="cycquery.ops.ConditionInMonths" href="cycquery.ops.ConditionInMonths.html" />
-    <link rel="prev" title="cycquery.ops.ConditionGreaterThan" href="cycquery.ops.ConditionGreaterThan.html" /> 
+    <link rel="next" title="cycquery.ops.Distinct" href="cycquery.ops.Distinct.html" />
+    <link rel="prev" title="cycquery.ops.ConditionSubstring" href="cycquery.ops.ConditionSubstring.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -143,7 +143,7 @@
 <li class="toctree-l4"><a class="reference internal" href="cycquery.ops.ConditionEndsWith.html">cycquery.ops.ConditionEndsWith</a></li>
 <li class="toctree-l4"><a class="reference internal" href="cycquery.ops.ConditionEquals.html">cycquery.ops.ConditionEquals</a></li>
 <li class="toctree-l4"><a class="reference internal" href="cycquery.ops.ConditionGreaterThan.html">cycquery.ops.ConditionGreaterThan</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">cycquery.ops.ConditionIn</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cycquery.ops.ConditionIn.html">cycquery.ops.ConditionIn</a></li>
 <li class="toctree-l4"><a class="reference internal" href="cycquery.ops.ConditionInMonths.html">cycquery.ops.ConditionInMonths</a></li>
 <li class="toctree-l4"><a class="reference internal" href="cycquery.ops.ConditionInYears.html">cycquery.ops.ConditionInYears</a></li>
 <li class="toctree-l4"><a class="reference internal" href="cycquery.ops.ConditionLessThan.html">cycquery.ops.ConditionLessThan</a></li>
@@ -151,7 +151,7 @@
 <li class="toctree-l4"><a class="reference internal" href="cycquery.ops.ConditionRegexMatch.html">cycquery.ops.ConditionRegexMatch</a></li>
 <li class="toctree-l4"><a class="reference internal" href="cycquery.ops.ConditionStartsWith.html">cycquery.ops.ConditionStartsWith</a></li>
 <li class="toctree-l4"><a class="reference internal" href="cycquery.ops.ConditionSubstring.html">cycquery.ops.ConditionSubstring</a></li>
-<li class="toctree-l4"><a class="reference internal" href="cycquery.ops.Count.html">cycquery.ops.Count</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">cycquery.ops.Count</a></li>
 <li class="toctree-l4"><a class="reference internal" href="cycquery.ops.Distinct.html">cycquery.ops.Distinct</a></li>
 <li class="toctree-l4"><a class="reference internal" href="cycquery.ops.Drop.html">cycquery.ops.Drop</a></li>
 <li class="toctree-l4"><a class="reference internal" href="cycquery.ops.DropEmpty.html">cycquery.ops.DropEmpty</a></li>
@@ -217,7 +217,7 @@
   
 
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/reference/api/_autosummary/cycquery.ops.ConditionIn.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../../_sources/reference/api/_autosummary/cycquery.ops.Count.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -225,27 +225,20 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="cycquery-ops-conditionin">
-<h1>cycquery.ops.ConditionIn<a class="headerlink" href="#cycquery-ops-conditionin" title="Link to this heading"></a></h1>
+  <section id="cycquery-ops-count">
+<h1>cycquery.ops.Count<a class="headerlink" href="#cycquery-ops-count" title="Link to this heading"></a></h1>
 <dl class="py class">
-<dt class="sig sig-object py" id="cycquery.ops.ConditionIn">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ConditionIn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">not_</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binarize_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">cond_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/cycquery/ops.html#ConditionIn"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cycquery.ops.ConditionIn" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="cycquery.ops.Count">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Count</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">col</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/cycquery/ops.html#Count"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cycquery.ops.Count" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="cycquery.ops.QueryOp.html#cycquery.ops.QueryOp" title="cycquery.ops.QueryOp"><code class="xref py py-class docutils literal notranslate"><span class="pre">QueryOp</span></code></a></p>
-<p>Filter rows based on having a value in list of values.</p>
+<p>Count the number of rows.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>col</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Column name on which to condition.</p></li>
-<li><p><strong>values</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/typing.html#typing.Union" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3.9/library/typing.html#typing.Any" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>, <a class="reference external" href="https://docs.python.org/3.9/library/typing.html#typing.List" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3.9/library/typing.html#typing.Any" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]]) – Values in which the column value must be.</p></li>
-<li><p><strong>not</strong> – Take negation of condition.</p></li>
-<li><p><strong>binarize_col</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/typing.html#typing.Optional" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]) – If specified, create a Boolean column of name binarize_col instead of filtering.</p></li>
-<li><p><strong>**cond_kwargs</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/typing.html#typing.Any" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>) – Optional keyword arguments for processing the condition.</p></li>
-</ul>
+<dd class="field-odd"><p><strong>col</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Column to count.</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ConditionIn</span><span class="p">(</span><span class="s2">&quot;col1&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])(</span><span class="n">table</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">ConditionIn</span><span class="p">(</span><span class="s2">&quot;col1&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">binarize_col</span><span class="o">=</span><span class="s2">&quot;col1_bool&quot;</span><span class="p">)(</span><span class="n">table</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Count</span><span class="p">(</span><span class="s2">&quot;person_id&quot;</span><span class="p">)(</span><span class="n">table</span><span class="p">)</span>
 </pre></div>
 </div>
 <p class="rubric">Methods</p>
@@ -254,14 +247,14 @@
 </tbody>
 </table>
 <dl class="py method">
-<dt class="sig sig-object py" id="cycquery.ops.ConditionIn.__call__">
-<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_cond</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/cycquery/ops.html#ConditionIn.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cycquery.ops.ConditionIn.__call__" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="cycquery.ops.Count.__call__">
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/cycquery/ops.html#Count.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cycquery.ops.Count.__call__" title="Link to this definition"></a></dt>
 <dd><p>Process the table.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>table</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/typing.html#typing.Union" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.sqlalchemy.org/en/20/core/selectable.html#sqlalchemy.sql.expression.Select" title="(in SQLAlchemy v2.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Select</span></code></a>, <a class="reference external" href="https://docs.sqlalchemy.org/en/20/core/selectable.html#sqlalchemy.sql.expression.Subquery" title="(in SQLAlchemy v2.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Subquery</span></code></a>, <a class="reference external" href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Table" title="(in SQLAlchemy v2.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Table</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DBTable</span></code>]) – Table on which to perform the operation.</p></li>
-<li><p><strong>return_cond</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#bool" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) – Return the condition instead of filtering.</p></li>
+<li><p><strong>col</strong> – Column to count.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -281,8 +274,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="cycquery.ops.ConditionGreaterThan.html" class="btn btn-neutral float-left" title="cycquery.ops.ConditionGreaterThan" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="cycquery.ops.ConditionInMonths.html" class="btn btn-neutral float-right" title="cycquery.ops.ConditionInMonths" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="cycquery.ops.ConditionSubstring.html" class="btn btn-neutral float-left" title="cycquery.ops.ConditionSubstring" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cycquery.ops.Distinct.html" class="btn btn-neutral float-right" title="cycquery.ops.Distinct" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

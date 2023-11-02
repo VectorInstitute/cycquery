@@ -10,9 +10,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>cycquery.ops &mdash; cyclops-query  documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/cyclops.css?v=fc0e58c9" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/cyclops.css?v=fc0e58c9" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
 
   
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
@@ -3694,6 +3694,52 @@
         <span class="n">table</span> <span class="o">=</span> <span class="n">_process_checks</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">cols</span><span class="o">=</span><span class="n">cols</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">select</span><span class="p">(</span><span class="n">table</span><span class="p">)</span><span class="o">.</span><span class="n">distinct</span><span class="p">(</span><span class="o">*</span><span class="n">get_columns</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">cols</span><span class="p">))</span><span class="o">.</span><span class="n">subquery</span><span class="p">()</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="Count">
+<a class="viewcode-back" href="../../reference/api/_autosummary/cycquery.ops.Count.html#cycquery.ops.Count">[docs]</a>
+<span class="k">class</span> <span class="nc">Count</span><span class="p">(</span><span class="n">QueryOp</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Count the number of rows.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    col</span>
+<span class="sd">        Column to count.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; Count(&quot;person_id&quot;)(table)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">col</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">col</span> <span class="o">=</span> <span class="n">col</span>
+
+<div class="viewcode-block" id="Count.__call__">
+<a class="viewcode-back" href="../../reference/api/_autosummary/cycquery.ops.Count.html#cycquery.ops.Count.__call__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table</span><span class="p">:</span> <span class="n">TableTypes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Subquery</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Process the table.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        table</span>
+<span class="sd">            Table on which to perform the operation.</span>
+<span class="sd">        col</span>
+<span class="sd">            Column to count.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        sqlalchemy.sql.selectable.Subquery</span>
+<span class="sd">            Processed table.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="n">_process_checks</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">cols</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">col</span><span class="p">)</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">get_column</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">col</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">select</span><span class="p">(</span><span class="n">count</span><span class="p">)</span><span class="o">.</span><span class="n">subquery</span><span class="p">()</span></div>
 </div>
 
 </pre></div>

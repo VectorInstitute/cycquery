@@ -11,9 +11,9 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>cycquery.ops &mdash; cyclops-query  documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/css/cyclops.css?v=fc0e58c9" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/cyclops.css?v=fc0e58c9" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
 
   
     <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
@@ -151,6 +151,7 @@
 <li class="toctree-l4"><a class="reference internal" href="cycquery.ops.ConditionRegexMatch.html">cycquery.ops.ConditionRegexMatch</a></li>
 <li class="toctree-l4"><a class="reference internal" href="cycquery.ops.ConditionStartsWith.html">cycquery.ops.ConditionStartsWith</a></li>
 <li class="toctree-l4"><a class="reference internal" href="cycquery.ops.ConditionSubstring.html">cycquery.ops.ConditionSubstring</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cycquery.ops.Count.html">cycquery.ops.Count</a></li>
 <li class="toctree-l4"><a class="reference internal" href="cycquery.ops.Distinct.html">cycquery.ops.Distinct</a></li>
 <li class="toctree-l4"><a class="reference internal" href="cycquery.ops.Drop.html">cycquery.ops.Drop</a></li>
 <li class="toctree-l4"><a class="reference internal" href="cycquery.ops.DropEmpty.html">cycquery.ops.DropEmpty</a></li>
@@ -288,70 +289,73 @@
 <tr class="row-even"><td><p><a class="reference internal" href="cycquery.ops.ConditionSubstring.html#cycquery.ops.ConditionSubstring" title="cycquery.ops.ConditionSubstring"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConditionSubstring</span></code></a></p></td>
 <td><p>Filter rows on based on having substrings.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="cycquery.ops.Distinct.html#cycquery.ops.Distinct" title="cycquery.ops.Distinct"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Distinct</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cycquery.ops.Count.html#cycquery.ops.Count" title="cycquery.ops.Count"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Count</span></code></a></p></td>
+<td><p>Count the number of rows.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="cycquery.ops.Distinct.html#cycquery.ops.Distinct" title="cycquery.ops.Distinct"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Distinct</span></code></a></p></td>
 <td><p>Get distinct rows.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="cycquery.ops.Drop.html#cycquery.ops.Drop" title="cycquery.ops.Drop"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Drop</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cycquery.ops.Drop.html#cycquery.ops.Drop" title="cycquery.ops.Drop"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Drop</span></code></a></p></td>
 <td><p>Drop some columns.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="cycquery.ops.DropEmpty.html#cycquery.ops.DropEmpty" title="cycquery.ops.DropEmpty"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DropEmpty</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cycquery.ops.DropEmpty.html#cycquery.ops.DropEmpty" title="cycquery.ops.DropEmpty"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DropEmpty</span></code></a></p></td>
 <td><p>Remove rows with empty values in some specified columns.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="cycquery.ops.DropNulls.html#cycquery.ops.DropNulls" title="cycquery.ops.DropNulls"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DropNulls</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cycquery.ops.DropNulls.html#cycquery.ops.DropNulls" title="cycquery.ops.DropNulls"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DropNulls</span></code></a></p></td>
 <td><p>Remove rows with null values in some specified columns.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="cycquery.ops.ExtractTimestampComponent.html#cycquery.ops.ExtractTimestampComponent" title="cycquery.ops.ExtractTimestampComponent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ExtractTimestampComponent</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cycquery.ops.ExtractTimestampComponent.html#cycquery.ops.ExtractTimestampComponent" title="cycquery.ops.ExtractTimestampComponent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ExtractTimestampComponent</span></code></a></p></td>
 <td><p>Extract a component such as year or month from a timestamp column.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="cycquery.ops.FillNull.html#cycquery.ops.FillNull" title="cycquery.ops.FillNull"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FillNull</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cycquery.ops.FillNull.html#cycquery.ops.FillNull" title="cycquery.ops.FillNull"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FillNull</span></code></a></p></td>
 <td><p>Fill NULL values with a given value.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="cycquery.ops.GroupByAggregate.html#cycquery.ops.GroupByAggregate" title="cycquery.ops.GroupByAggregate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GroupByAggregate</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cycquery.ops.GroupByAggregate.html#cycquery.ops.GroupByAggregate" title="cycquery.ops.GroupByAggregate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GroupByAggregate</span></code></a></p></td>
 <td><p>Aggregate over a group by object.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="cycquery.ops.Join.html#cycquery.ops.Join" title="cycquery.ops.Join"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Join</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cycquery.ops.Join.html#cycquery.ops.Join" title="cycquery.ops.Join"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Join</span></code></a></p></td>
 <td><p>Join a table with another table.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="cycquery.ops.Keep.html#cycquery.ops.Keep" title="cycquery.ops.Keep"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Keep</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cycquery.ops.Keep.html#cycquery.ops.Keep" title="cycquery.ops.Keep"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Keep</span></code></a></p></td>
 <td><p>Keep only the specified columns in a table.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="cycquery.ops.Limit.html#cycquery.ops.Limit" title="cycquery.ops.Limit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Limit</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cycquery.ops.Limit.html#cycquery.ops.Limit" title="cycquery.ops.Limit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Limit</span></code></a></p></td>
 <td><p>Limit the number of rows returned in a query.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="cycquery.ops.Literal.html#cycquery.ops.Literal" title="cycquery.ops.Literal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Literal</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cycquery.ops.Literal.html#cycquery.ops.Literal" title="cycquery.ops.Literal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Literal</span></code></a></p></td>
 <td><p>Add a literal column to a table.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="cycquery.ops.Or.html#cycquery.ops.Or" title="cycquery.ops.Or"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Or</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cycquery.ops.Or.html#cycquery.ops.Or" title="cycquery.ops.Or"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Or</span></code></a></p></td>
 <td><p>Combine multiple condition query ops using an OR.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="cycquery.ops.OrderBy.html#cycquery.ops.OrderBy" title="cycquery.ops.OrderBy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrderBy</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cycquery.ops.OrderBy.html#cycquery.ops.OrderBy" title="cycquery.ops.OrderBy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrderBy</span></code></a></p></td>
 <td><p>Order, or sort, the rows of a table by some columns.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="cycquery.ops.QueryOp.html#cycquery.ops.QueryOp" title="cycquery.ops.QueryOp"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QueryOp</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cycquery.ops.QueryOp.html#cycquery.ops.QueryOp" title="cycquery.ops.QueryOp"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QueryOp</span></code></a></p></td>
 <td><p>Base class for query operations.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="cycquery.ops.RandomizeOrder.html#cycquery.ops.RandomizeOrder" title="cycquery.ops.RandomizeOrder"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RandomizeOrder</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cycquery.ops.RandomizeOrder.html#cycquery.ops.RandomizeOrder" title="cycquery.ops.RandomizeOrder"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RandomizeOrder</span></code></a></p></td>
 <td><p>Randomize order of table rows.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="cycquery.ops.Rename.html#cycquery.ops.Rename" title="cycquery.ops.Rename"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Rename</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cycquery.ops.Rename.html#cycquery.ops.Rename" title="cycquery.ops.Rename"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Rename</span></code></a></p></td>
 <td><p>Rename some columns.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="cycquery.ops.Reorder.html#cycquery.ops.Reorder" title="cycquery.ops.Reorder"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Reorder</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cycquery.ops.Reorder.html#cycquery.ops.Reorder" title="cycquery.ops.Reorder"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Reorder</span></code></a></p></td>
 <td><p>Reorder the columns in a table.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="cycquery.ops.ReorderAfter.html#cycquery.ops.ReorderAfter" title="cycquery.ops.ReorderAfter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ReorderAfter</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cycquery.ops.ReorderAfter.html#cycquery.ops.ReorderAfter" title="cycquery.ops.ReorderAfter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ReorderAfter</span></code></a></p></td>
 <td><p>Reorder a number of columns to come after a specified column.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="cycquery.ops.Sequential.html#cycquery.ops.Sequential" title="cycquery.ops.Sequential"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Sequential</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cycquery.ops.Sequential.html#cycquery.ops.Sequential" title="cycquery.ops.Sequential"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Sequential</span></code></a></p></td>
 <td><p>Sequential query operations class.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="cycquery.ops.Substring.html#cycquery.ops.Substring" title="cycquery.ops.Substring"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Substring</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cycquery.ops.Substring.html#cycquery.ops.Substring" title="cycquery.ops.Substring"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Substring</span></code></a></p></td>
 <td><p>Get substring of a string column.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="cycquery.ops.Trim.html#cycquery.ops.Trim" title="cycquery.ops.Trim"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Trim</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cycquery.ops.Trim.html#cycquery.ops.Trim" title="cycquery.ops.Trim"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Trim</span></code></a></p></td>
 <td><p>Trim the whitespace from some string columns.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="cycquery.ops.Union.html#cycquery.ops.Union" title="cycquery.ops.Union"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Union</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cycquery.ops.Union.html#cycquery.ops.Union" title="cycquery.ops.Union"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Union</span></code></a></p></td>
 <td><p>Union two tables.</p></td>
 </tr>
 </tbody>
