@@ -1,7 +1,8 @@
 cyclops-query
 =============
 
-|PyPI| |code checks| |integration tests| |docs| |codecov| |license|
+|PyPI| |PyPI - Python Version| |code checks| |integration tests| |docs|
+|codecov| |license|
 
 ``cyclops-query`` is a tool for querying relational databases using a
 simple Python API. It is specifically developed to query Electronic
@@ -58,7 +59,7 @@ Query postgresql database
    df = table.run()
 
 🧑🏿‍💻 Developing
-=============
+=======================
 
 Using poetry
 ------------
@@ -120,6 +121,7 @@ research paper:
 
 .. |PyPI| image:: https://img.shields.io/pypi/v/cycquery
    :target: https://pypi.org/project/cycquery
+.. |PyPI - Python Version| image:: https://img.shields.io/pypi/pyversions/cycquery
 .. |code checks| image:: https://github.com/VectorInstitute/cyclops-query/actions/workflows/code_checks.yml/badge.svg
    :target: https://github.com/VectorInstitute/cyclops-query/actions/workflows/code_checks.yml
 .. |integration tests| image:: https://github.com/VectorInstitute/cyclops-query/actions/workflows/integration_tests.yml/badge.svg
