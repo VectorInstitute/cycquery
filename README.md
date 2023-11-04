@@ -2,6 +2,7 @@ cyclops-query
 --------------------------------------------------------------------------------
 
 [![PyPI](https://img.shields.io/pypi/v/cycquery)](https://pypi.org/project/cycquery)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/cycquery)
 [![code checks](https://github.com/VectorInstitute/cyclops-query/actions/workflows/code_checks.yml/badge.svg)](https://github.com/VectorInstitute/cyclops-query/actions/workflows/code_checks.yml)
 [![integration tests](https://github.com/VectorInstitute/cyclops-query/actions/workflows/integration_tests.yml/badge.svg)](https://github.com/VectorInstitute/cyclops-query/actions/workflows/integration_tests.yml)
 [![docs](https://github.com/VectorInstitute/cyclops-query/actions/workflows/docs_deploy.yml/badge.svg)](https://github.com/VectorInstitute/cyclops-query/actions/workflows/docs_deploy.yml)
