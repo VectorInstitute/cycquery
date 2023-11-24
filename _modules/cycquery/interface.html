@@ -363,6 +363,7 @@
         <span class="n">index_col</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">batch_mode</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1000000</span><span class="p">,</span>
+        <span class="n">dtype_backend</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;pyarrow&quot;</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">Generator</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Run the query, and fetch data.</span>
 
@@ -379,6 +380,8 @@
 <span class="sd">            Whether to run the query in batch mode. A generator is returned if True.</span>
 <span class="sd">        batch_size</span>
 <span class="sd">            Batch size for the query, default 1 million rows.</span>
+<span class="sd">        dtype_backend</span>
+<span class="sd">            Data type to use for the backend, default pyarrow.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -391,12 +394,14 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">,</span>
                 <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">,</span>
                 <span class="n">index_col</span><span class="o">=</span><span class="n">index_col</span><span class="p">,</span>
+                <span class="n">dtype_backend</span><span class="o">=</span><span class="n">dtype_backend</span><span class="p">,</span>
             <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">database</span><span class="o">.</span><span class="n">run_query_batch</span><span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">,</span>
                 <span class="n">index_col</span><span class="o">=</span><span class="n">index_col</span><span class="p">,</span>
                 <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
+                <span class="n">dtype_backend</span><span class="o">=</span><span class="n">dtype_backend</span><span class="p">,</span>
             <span class="p">)</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span></div>
