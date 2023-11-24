@@ -196,6 +196,7 @@ class Database:
     def run_query(
         self,
         query: Union[TableTypes, str],
+        dtype_backend: str = "pyarrow",
         limit: Optional[int] = None,
         index_col: Optional[str] = None,
     ) -> pd.DataFrame:
@@ -205,6 +206,8 @@ class Database:
         ----------
         query
             Query to run.
+        dtype_backend
+            Backend for dtype conversion.
         limit
             Limit query result to limit.
         index_col
@@ -227,7 +230,12 @@ class Database:
 
         # Run the query and return the results.
         with self.session.connection():
-            data = pd.read_sql_query(query, self.engine, index_col=index_col)
+            data = pd.read_sql_query(
+                query,
+                self.engine,
+                index_col=index_col,
+                dtype_backend=dtype_backend,
+            )
         LOGGER.info("Query returned successfully!")
 
         return data
@@ -386,6 +394,7 @@ class Database:
         query: TableTypes,
         index_col: str,
         batch_size: int,
+        dtype_backend: str = "pyarrow",
     ) -> Generator[pd.DataFrame, None, None]:
         """Generate query batches with complete sets of IDs in a batch.
 
@@ -402,6 +411,8 @@ class Database:
             Batch size for the query. Since the partitioning happens on the index
             column, the batch size is the approximate number of rows that will
             be returned in a batch.
+        dtype_backend
+            Backend for dtype conversion.
 
         Yields
         ------
@@ -420,4 +431,4 @@ class Database:
         # Opportunity for easy multi-processing/parallelization here!
         for condition in conditions:
             run = (sess_query.filter(condition)).subquery()
-            yield pd.read_sql_query(run, self.engine)
+            yield pd.read_sql_query(run, self.engine, dtype_backend=dtype_backend)

@@ -178,6 +178,7 @@ class QueryInterface:
         index_col: Optional[str] = None,
         batch_mode: bool = False,
         batch_size: int = 1000000,
+        dtype_backend: str = "pyarrow",
     ) -> Union[pd.DataFrame, Generator[pd.DataFrame, None, None]]:
         """Run the query, and fetch data.
 
@@ -194,6 +195,8 @@ class QueryInterface:
             Whether to run the query in batch mode. A generator is returned if True.
         batch_size
             Batch size for the query, default 1 million rows.
+        dtype_backend
+            Data type to use for the backend, default pyarrow.
 
         Returns
         -------
@@ -206,12 +209,14 @@ class QueryInterface:
                 self.query,
                 limit=limit,
                 index_col=index_col,
+                dtype_backend=dtype_backend,
             )
         else:
             self._data = self.database.run_query_batch(
                 self.query,
                 index_col=index_col,
                 batch_size=batch_size,
+                dtype_backend=dtype_backend,
             )
 
         return self._data
