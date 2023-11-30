@@ -18,9 +18,13 @@ def test_mimiciv_querier():
     assert len(patients) == 10
     assert "anchor_year_difference" in patients
 
-    diagnoses = querier.diagnoses().run(limit=10)
+    diagnoses = querier.diagnoses_icd().run(limit=10)
     assert len(diagnoses) == 10
     assert "long_title" in diagnoses
+
+    procedures = querier.procedures_icd().run(limit=10)
+    assert len(procedures) == 10
+    assert "long_title" in procedures
 
     lab_events = querier.labevents().run(limit=10)
     assert "category" in lab_events
@@ -31,7 +35,8 @@ def test_mimiciv_querier():
 
     custom_tables = querier.list_custom_tables()
     assert "patients" in custom_tables
-    assert "diagnoses" in custom_tables
+    assert "diagnoses_icd" in custom_tables
+    assert "procedures_icd" in custom_tables
     assert "labevents" in custom_tables
     assert "chartevents" in custom_tables
 
