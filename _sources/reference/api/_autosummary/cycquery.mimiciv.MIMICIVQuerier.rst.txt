@@ -17,7 +17,7 @@ cycquery.mimiciv.MIMICIVQuerier
       :nosignatures:
    
       ~MIMICIVQuerier.chartevents
-      ~MIMICIVQuerier.diagnoses
+      ~MIMICIVQuerier.diagnoses_icd
       ~MIMICIVQuerier.get_table
       ~MIMICIVQuerier.labevents
       ~MIMICIVQuerier.list_columns
@@ -25,6 +25,7 @@ cycquery.mimiciv.MIMICIVQuerier
       ~MIMICIVQuerier.list_schemas
       ~MIMICIVQuerier.list_tables
       ~MIMICIVQuerier.patients
+      ~MIMICIVQuerier.procedures_icd
    
    
 

@@ -482,7 +482,7 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2023-11-23 23:04:17,458 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.orm    - Database setup, ready to run queries!
+2023-11-30 10:59:20,600 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.orm    - Database setup, ready to run queries!
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -527,8 +527,8 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2023-11-23 23:04:20,446 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.orm    - Query returned successfully!
-2023-11-23 23:04:20,447 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.utils.profile - Finished executing function run_query in 0.216739 s
+2023-11-30 10:59:23,636 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.orm    - Query returned successfully!
+2023-11-30 10:59:23,637 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.utils.profile - Finished executing function run_query in 0.249856 s
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -554,7 +554,7 @@ div.rendered_html tbody tr:hover {
     <span class="n">qo</span><span class="o">.</span><span class="n">ConditionInYears</span><span class="p">(</span><span class="s2">&quot;admittime&quot;</span><span class="p">,</span> <span class="s2">&quot;2015&quot;</span><span class="p">),</span>
 <span class="p">)</span>
 <span class="n">patient_admissions</span> <span class="o">=</span> <span class="n">patient_admissions</span><span class="o">.</span><span class="n">ops</span><span class="p">(</span><span class="n">ops</span><span class="p">)</span>
-<span class="n">diagnoses</span> <span class="o">=</span> <span class="n">querier</span><span class="o">.</span><span class="n">diagnoses</span><span class="p">()</span>
+<span class="n">diagnoses</span> <span class="o">=</span> <span class="n">querier</span><span class="o">.</span><span class="n">diagnoses_icd</span><span class="p">()</span>
 <span class="n">diagnoses_ops</span> <span class="o">=</span> <span class="n">qo</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
     <span class="n">qo</span><span class="o">.</span><span class="n">ConditionEquals</span><span class="p">(</span><span class="s2">&quot;icd_version&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
     <span class="n">qo</span><span class="o">.</span><span class="n">ConditionSubstring</span><span class="p">(</span><span class="s2">&quot;long_title&quot;</span><span class="p">,</span> <span class="s2">&quot;schizophrenia&quot;</span><span class="p">),</span>
@@ -573,8 +573,8 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2023-11-23 23:04:21,311 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.orm    - Query returned successfully!
-2023-11-23 23:04:21,312 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.utils.profile - Finished executing function run_query in 0.818591 s
+2023-11-30 10:59:24,576 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.orm    - Query returned successfully!
+2023-11-30 10:59:24,577 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.utils.profile - Finished executing function run_query in 0.897111 s
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -600,7 +600,7 @@ div.rendered_html tbody tr:hover {
     <span class="n">qo</span><span class="o">.</span><span class="n">ConditionInYears</span><span class="p">(</span><span class="s2">&quot;admittime&quot;</span><span class="p">,</span> <span class="s2">&quot;2015&quot;</span><span class="p">),</span>
 <span class="p">)</span>
 <span class="n">patient_admissions</span> <span class="o">=</span> <span class="n">patient_admissions</span><span class="o">.</span><span class="n">ops</span><span class="p">(</span><span class="n">ops</span><span class="p">)</span>
-<span class="n">diagnoses</span> <span class="o">=</span> <span class="n">querier</span><span class="o">.</span><span class="n">diagnoses</span><span class="p">()</span>
+<span class="n">diagnoses</span> <span class="o">=</span> <span class="n">querier</span><span class="o">.</span><span class="n">diagnoses_icd</span><span class="p">()</span>
 <span class="n">diagnoses_ops</span> <span class="o">=</span> <span class="n">qo</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
     <span class="n">qo</span><span class="o">.</span><span class="n">ConditionEquals</span><span class="p">(</span><span class="s2">&quot;icd_version&quot;</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span>
     <span class="n">qo</span><span class="o">.</span><span class="n">ConditionRegexMatch</span><span class="p">(</span><span class="s2">&quot;long_title&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;(?=.*schizophrenia)(?=.*chronic)&quot;</span><span class="p">),</span>
@@ -619,8 +619,8 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2023-11-23 23:04:22,881 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.orm    - Query returned successfully!
-2023-11-23 23:04:22,882 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.utils.profile - Finished executing function run_query in 1.521143 s
+2023-11-30 10:59:26,143 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.orm    - Query returned successfully!
+2023-11-30 10:59:26,145 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.utils.profile - Finished executing function run_query in 1.535798 s
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -661,8 +661,8 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2023-11-23 23:05:42,951 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.orm    - Query returned successfully!
-2023-11-23 23:05:42,952 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.utils.profile - Finished executing function run_query in 80.028161 s
+2023-11-30 11:00:49,191 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.orm    - Query returned successfully!
+2023-11-30 11:00:49,192 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.utils.profile - Finished executing function run_query in 83.003143 s
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -703,8 +703,8 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2023-11-23 23:06:48,258 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.orm    - Query returned successfully!
-2023-11-23 23:06:48,260 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.utils.profile - Finished executing function run_query in 65.272793 s
+2023-11-30 11:01:53,787 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.orm    - Query returned successfully!
+2023-11-30 11:01:53,789 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.utils.profile - Finished executing function run_query in 64.557161 s
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -751,8 +751,8 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2023-11-23 23:06:56,241 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.orm    - Query returned successfully!
-2023-11-23 23:06:56,243 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.utils.profile - Finished executing function run_query in 7.956646 s
+2023-11-30 11:02:01,566 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.orm    - Query returned successfully!
+2023-11-30 11:02:01,567 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.utils.profile - Finished executing function run_query in 7.741606 s
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -795,8 +795,8 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2023-11-23 23:06:56,680 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.orm    - Query returned successfully!
-2023-11-23 23:06:56,681 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.utils.profile - Finished executing function run_query in 0.390611 s
+2023-11-30 11:02:01,942 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.orm    - Query returned successfully!
+2023-11-30 11:02:01,943 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.utils.profile - Finished executing function run_query in 0.329142 s
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -824,8 +824,8 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2023-11-23 23:06:56,844 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.orm    - Query returned successfully!
-2023-11-23 23:06:56,845 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.utils.profile - Finished executing function run_query in 0.007669 s
+2023-11-30 11:02:02,060 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.orm    - Query returned successfully!
+2023-11-30 11:02:02,061 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.utils.profile - Finished executing function run_query in 0.005366 s
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">

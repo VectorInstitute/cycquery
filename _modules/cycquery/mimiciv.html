@@ -258,19 +258,12 @@
         <span class="k">return</span> <span class="n">QueryInterface</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">,</span> <span class="n">table</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="MIMICIVQuerier.diagnoses">
-<a class="viewcode-back" href="../../reference/api/_autosummary/cycquery.mimiciv.MIMICIVQuerier.html#cycquery.mimiciv.MIMICIVQuerier.diagnoses">[docs]</a>
-    <span class="k">def</span> <span class="nf">diagnoses</span><span class="p">(</span>
+<div class="viewcode-block" id="MIMICIVQuerier.diagnoses_icd">
+<a class="viewcode-back" href="../../reference/api/_autosummary/cycquery.mimiciv.MIMICIVQuerier.html#cycquery.mimiciv.MIMICIVQuerier.diagnoses_icd">[docs]</a>
+    <span class="k">def</span> <span class="nf">diagnoses_icd</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QueryInterface</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Query MIMIC diagnosis data.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        join</span>
-<span class="sd">            Join arguments.</span>
-<span class="sd">        ops</span>
-<span class="sd">            Additional operations to apply to the query.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -283,6 +276,31 @@
         <span class="c1"># Join with diagnoses dimension table.</span>
         <span class="n">table</span> <span class="o">=</span> <span class="n">qo</span><span class="o">.</span><span class="n">Join</span><span class="p">(</span>
             <span class="n">join_table</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_table</span><span class="p">(</span><span class="s2">&quot;mimiciv_hosp&quot;</span><span class="p">,</span> <span class="s2">&quot;d_icd_diagnoses&quot;</span><span class="p">),</span>
+            <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;icd_code&quot;</span><span class="p">,</span> <span class="s2">&quot;icd_version&quot;</span><span class="p">],</span>
+            <span class="n">on_to_type</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;str&quot;</span><span class="p">,</span> <span class="s2">&quot;int&quot;</span><span class="p">],</span>
+        <span class="p">)(</span><span class="n">table</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">QueryInterface</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">,</span> <span class="n">table</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="MIMICIVQuerier.procedures_icd">
+<a class="viewcode-back" href="../../reference/api/_autosummary/cycquery.mimiciv.MIMICIVQuerier.html#cycquery.mimiciv.MIMICIVQuerier.procedures_icd">[docs]</a>
+    <span class="k">def</span> <span class="nf">procedures_icd</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QueryInterface</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Query MIMIC procedures data.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        cycquery.interface.QueryInterface</span>
+<span class="sd">            Constructed query, wrapped in an interface object.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_table</span><span class="p">(</span><span class="s2">&quot;mimiciv_hosp&quot;</span><span class="p">,</span> <span class="s2">&quot;procedures_icd&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Join with procedures dimension table.</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="n">qo</span><span class="o">.</span><span class="n">Join</span><span class="p">(</span>
+            <span class="n">join_table</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_table</span><span class="p">(</span><span class="s2">&quot;mimiciv_hosp&quot;</span><span class="p">,</span> <span class="s2">&quot;d_icd_procedures&quot;</span><span class="p">),</span>
             <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;icd_code&quot;</span><span class="p">,</span> <span class="s2">&quot;icd_version&quot;</span><span class="p">],</span>
             <span class="n">on_to_type</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;str&quot;</span><span class="p">,</span> <span class="s2">&quot;int&quot;</span><span class="p">],</span>
         <span class="p">)(</span><span class="n">table</span><span class="p">)</span>
