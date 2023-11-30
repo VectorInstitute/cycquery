@@ -87,17 +87,10 @@ class MIMICIVQuerier(DatasetQuerier):
 
         return QueryInterface(self.db, table)
 
-    def diagnoses(
+    def diagnoses_icd(
         self,
     ) -> QueryInterface:
         """Query MIMIC diagnosis data.
-
-        Parameters
-        ----------
-        join
-            Join arguments.
-        ops
-            Additional operations to apply to the query.
 
         Returns
         -------
@@ -110,6 +103,28 @@ class MIMICIVQuerier(DatasetQuerier):
         # Join with diagnoses dimension table.
         table = qo.Join(
             join_table=self.get_table("mimiciv_hosp", "d_icd_diagnoses"),
+            on=["icd_code", "icd_version"],
+            on_to_type=["str", "int"],
+        )(table)
+
+        return QueryInterface(self.db, table)
+
+    def procedures_icd(
+        self,
+    ) -> QueryInterface:
+        """Query MIMIC procedures data.
+
+        Returns
+        -------
+        cycquery.interface.QueryInterface
+            Constructed query, wrapped in an interface object.
+
+        """
+        table = self.get_table("mimiciv_hosp", "procedures_icd")
+
+        # Join with procedures dimension table.
+        table = qo.Join(
+            join_table=self.get_table("mimiciv_hosp", "d_icd_procedures"),
             on=["icd_code", "icd_version"],
             on_to_type=["str", "int"],
         )(table)
