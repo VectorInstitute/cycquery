@@ -92,13 +92,6 @@ class MIMICIVQuerier(DatasetQuerier):
     ) -> QueryInterface:
         """Query MIMIC diagnosis data.
 
-        Parameters
-        ----------
-        join
-            Join arguments.
-        ops
-            Additional operations to apply to the query.
-
         Returns
         -------
         cycquery.interface.QueryInterface
@@ -119,14 +112,7 @@ class MIMICIVQuerier(DatasetQuerier):
     def procedures_icd(
         self,
     ) -> QueryInterface:
-        """Query MIMIC diagnosis data.
-
-        Parameters
-        ----------
-        join
-            Join arguments.
-        ops
-            Additional operations to apply to the query.
+        """Query MIMIC procedures data.
 
         Returns
         -------
