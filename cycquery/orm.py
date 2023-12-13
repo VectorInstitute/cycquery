@@ -41,13 +41,60 @@ SOCKET_CONNECTION_TIMEOUT = 5
 
 def _get_db_url(
     dbms: str,
-    user: str,
-    pwd: str,
-    host: str,
-    port: int,
-    database: str,
+    user: str = "",
+    pwd: str = "",
+    host: str = "",
+    port: Optional[int] = None,
+    database: str = "",
 ) -> str:
-    """Combine to make Database URL string."""
+    """
+    Generate a database connection URL.
+
+    This function constructs a URL for database connection, which is compatible
+    with various database management systems (DBMS), including support for SQLite
+    database files.
+
+    Parameters
+    ----------
+    dbms : str
+        The database management system type (e.g., 'postgresql', 'mysql', 'sqlite').
+    user : str, optional
+        The username for the database, by default empty. Not used for SQLite.
+    pwd : str, optional
+        The password for the database, by default empty. Not used for SQLite.
+    host : str, optional
+        The host address of the database, by default empty. Not used for SQLite.
+    port : int, optional
+        The port number for the database, by default None. Not used for SQLite.
+    database : str, optional
+        The name of the database or the path to the database file (for SQLite),
+        by default empty.
+
+    Returns
+    -------
+    str
+        A string representing the database connection URL. For SQLite,
+        it returns a URL in the format 'sqlite:///path_to_database.db'.
+        For other DBMS types, it returns a URL in the
+        format 'dbms://user:password@host:port/database'.
+
+    Examples
+    --------
+    >>> _get_db_url('postgresql', 'user', 'pass', 'localhost', 5432, 'mydatabase')
+    'postgresql://user:pass@localhost:5432/mydatabase'
+
+    >>> _get_db_url('sqlite', database='path_to_database.db')
+    'sqlite:///path_to_database.db'
+
+    """
+    if dbms.lower() not in ["postgresql", "mysql", "sqlite"]:
+        raise ValueError(
+            f"Database management system '{dbms}' is not supported, "
+            f"please use one of 'postgresql', 'mysql', or 'sqlite'.",
+        )
+    if dbms.lower() == "sqlite":
+        return f"sqlite:///{database}"  # SQLite expects a file path as the database parameter
+
     return f"{dbms}://{user}:{quote_plus(pwd)}@{host}:{str(port)}/{database}"
 
 
@@ -57,27 +104,28 @@ class DatasetQuerierConfig:
 
     Attributes
     ----------
-    dbms
-        Database management system.
-    host
-        Hostname of database.
-    port
-        Port of database.
-    database
-        Name of database.
-    user
-        Username for database.
-    password
-        Password for database.
+    dbms : str
+        The database management system type (e.g., 'postgresql', 'mysql', 'sqlite').
+    user : str, optional
+        The username for the database, by default empty. Not used for SQLite.
+    pwd : str, optional
+        The password for the database, by default empty. Not used for SQLite.
+    host : str, optional
+        The host address of the database, by default empty. Not used for SQLite.
+    port : int, optional
+        The port number for the database, by default None. Not used for SQLite.
+    database : str, optional
+        The name of the database or the path to the database file (for SQLite),
+        by default empty.
 
     """
 
-    database: str
-    user: str
-    password: str
-    dbms: str = "postgresql"
-    host: str = "localhost"
-    port: int = 5432
+    dbms: str
+    user: str = ""
+    password: str = ""
+    host: str = ""
+    port: Optional[int] = None
+    database: str = ""
 
 
 class Database:
@@ -110,18 +158,26 @@ class Database:
         self.config = config
         self.is_connected = False
 
-        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        sock.settimeout(SOCKET_CONNECTION_TIMEOUT)
-        try:
-            is_port_open = sock.connect_ex((self.config.host, self.config.port))
-        except socket.gaierror:
-            LOGGER.error("""Server name not known, cannot establish connection!""")
-            return
-        if is_port_open:
-            LOGGER.error(
-                """Valid server host but port seems open, check if server is up!""",
-            )
-            return
+        # Check if server is up or database file exists.
+        if self.config.dbms.lower() == "sqlite":
+            if not os.path.exists(self.config.database):
+                LOGGER.error(
+                    f"""Database file '{self.config.database}' does not exist!""",
+                )
+                return
+        else:
+            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            sock.settimeout(SOCKET_CONNECTION_TIMEOUT)
+            try:
+                is_port_open = sock.connect_ex((self.config.host, self.config.port))
+            except socket.gaierror:
+                LOGGER.error("""Server name not known, cannot establish connection!""")
+                return
+            if is_port_open:
+                LOGGER.error(
+                    """Valid server host but port seems open, check if server is up!""",
+                )
+                return
 
         self.engine = self._create_engine()
         self.session = self._create_session()
@@ -185,10 +241,10 @@ class Database:
                 table = DBTable(table_name, meta[schema_name].tables[table_name])
                 for column in meta[schema_name].tables[table_name].columns:
                     setattr(table, column.name, column)
-                if not isinstance(table.name, str):
-                    table.name = str(table.name)
-                self._tables.append(table.name)
-                setattr(schema, get_attr_name(table.name), table)
+                if not isinstance(table.name_, str):
+                    table.name_ = str(table.name_)
+                self._tables.append(table.name_)
+                setattr(schema, get_attr_name(table.name_), table)
             setattr(self, schema_name, schema)
 
     @time_function
