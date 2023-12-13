@@ -37,7 +37,7 @@ class DBSchema:
     ----------
     name_: str
         Name of schema.
-    _data: sqlalchemy.sql.schema.MetaData
+    data_: sqlalchemy.sql.schema.MetaData
         Metadata for schema.
 
     """
