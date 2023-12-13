@@ -166,6 +166,12 @@ class Database:
                 )
                 return
         else:
+            if not self.config.host:
+                LOGGER.error("""No server host provided!""")
+                return
+            if not self.config.port:
+                LOGGER.error("""No server port provided!""")
+                return
             sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             sock.settimeout(SOCKET_CONNECTION_TIMEOUT)
             try:

@@ -177,7 +177,7 @@ class DatasetQuerier:
 
         """
         return list(
-            getattr(getattr(self.db, schema_name), table_name).data.columns.keys(),
+            getattr(getattr(self.db, schema_name), table_name).data_.columns.keys(),
         )
 
     def list_custom_tables(self) -> List[str]:
@@ -232,7 +232,7 @@ class DatasetQuerier:
             Table with mapped columns.
 
         """
-        table = _create_get_table_lambdafn(schema_name, table_name)(self.db).data
+        table = _create_get_table_lambdafn(schema_name, table_name)(self.db).data_
 
         if cast_timestamp_cols:
             table = _cast_timestamp_cols(table)

@@ -9,6 +9,9 @@ from cycquery import MIMICIVQuerier
 def test_mimiciv_querier():
     """Test MIMICQuerier on MIMICIV-2.0."""
     querier = MIMICIVQuerier(
+        dbms="postgresql",
+        host="localhost",
+        port=5432,
         database="mimiciv-2.0",
         user="postgres",
         password="pwd",
