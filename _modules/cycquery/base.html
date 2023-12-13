@@ -244,18 +244,19 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    database</span>
-<span class="sd">        Name of database.</span>
-<span class="sd">    user</span>
-<span class="sd">        Username for database.</span>
-<span class="sd">    password</span>
-<span class="sd">        Password for database.</span>
-<span class="sd">    dbms</span>
-<span class="sd">        Database management system.</span>
-<span class="sd">    host</span>
-<span class="sd">        Hostname of database.</span>
-<span class="sd">    port</span>
-<span class="sd">        Port of database.</span>
+<span class="sd">    dbms : str</span>
+<span class="sd">        The database management system type (e.g., &#39;postgresql&#39;, &#39;mysql&#39;, &#39;sqlite&#39;).</span>
+<span class="sd">    user : str, optional</span>
+<span class="sd">        The username for the database, by default empty. Not used for SQLite.</span>
+<span class="sd">    pwd : str, optional</span>
+<span class="sd">        The password for the database, by default empty. Not used for SQLite.</span>
+<span class="sd">    host : str, optional</span>
+<span class="sd">        The host address of the database, by default empty. Not used for SQLite.</span>
+<span class="sd">    port : int, optional</span>
+<span class="sd">        The port number for the database, by default None. Not used for SQLite.</span>
+<span class="sd">    database : str, optional</span>
+<span class="sd">        The name of the database or the path to the database file (for SQLite),</span>
+<span class="sd">        by default empty.</span>
 
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
@@ -270,12 +271,12 @@
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">database</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">user</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">password</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">dbms</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;postgresql&quot;</span><span class="p">,</span>
-        <span class="n">host</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;localhost&quot;</span><span class="p">,</span>
-        <span class="n">port</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5432</span><span class="p">,</span>
+        <span class="n">dbms</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">user</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">password</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">host</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">port</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">database</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">config</span> <span class="o">=</span> <span class="n">DatasetQuerierConfig</span><span class="p">(</span>
             <span class="n">database</span><span class="o">=</span><span class="n">database</span><span class="p">,</span>
@@ -352,7 +353,7 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span>
-            <span class="nb">getattr</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">,</span> <span class="n">schema_name</span><span class="p">),</span> <span class="n">table_name</span><span class="p">)</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span>
+            <span class="nb">getattr</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">,</span> <span class="n">schema_name</span><span class="p">),</span> <span class="n">table_name</span><span class="p">)</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span>
         <span class="p">)</span></div>
 
 
@@ -413,7 +414,7 @@
 <span class="sd">            Table with mapped columns.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">table</span> <span class="o">=</span> <span class="n">_create_get_table_lambdafn</span><span class="p">(</span><span class="n">schema_name</span><span class="p">,</span> <span class="n">table_name</span><span class="p">)(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="n">_create_get_table_lambdafn</span><span class="p">(</span><span class="n">schema_name</span><span class="p">,</span> <span class="n">table_name</span><span class="p">)(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">)</span><span class="o">.</span><span class="n">data_</span>
 
         <span class="k">if</span> <span class="n">cast_timestamp_cols</span><span class="p">:</span>
             <span class="n">table</span> <span class="o">=</span> <span class="n">_cast_timestamp_cols</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
@@ -441,7 +442,7 @@
 <span class="sd">            A query interface object.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">table</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">,</span> <span class="n">schema_name</span><span class="p">),</span> <span class="n">table_name</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">,</span> <span class="n">schema_name</span><span class="p">),</span> <span class="n">table_name</span><span class="p">)</span><span class="o">.</span><span class="n">data_</span>
         <span class="n">table</span> <span class="o">=</span> <span class="n">_to_subquery</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">QueryInterface</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">,</span> <span class="n">table</span><span class="p">)</span>
