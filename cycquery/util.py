@@ -35,15 +35,15 @@ class DBSchema:
 
     Parameters
     ----------
-    name: str
+    name_: str
         Name of schema.
-    data: sqlalchemy.sql.schema.MetaData
+    data_: sqlalchemy.sql.schema.MetaData
         Metadata for schema.
 
     """
 
-    name: str
-    data: sqlalchemy.sql.schema.MetaData
+    name_: str
+    data_: sqlalchemy.sql.schema.MetaData
 
 
 @dataclass
@@ -52,15 +52,15 @@ class DBTable:
 
     Parameters
     ----------
-    name: str
+    name_: str
         Name of table.
-    data: sqlalchemy.sql.schema.Table
+    data_: sqlalchemy.sql.schema.Table
         Metadata for schema.
 
     """
 
-    name: str
-    data: sqlalchemy.sql.schema.MetaData
+    name_: str
+    data_: sqlalchemy.sql.schema.MetaData
 
 
 TABLE_OBJECTS = [Table, Select, Subquery, DBTable]
@@ -91,7 +91,7 @@ def _to_subquery(table: TableTypes) -> Subquery:
         return select(table).subquery()
 
     if isinstance(table, DBTable):
-        return select(table.data).subquery()
+        return select(table.data_).subquery()
 
     raise ValueError(
         f"""Table has type {type(table)}, but must have one of the
@@ -123,7 +123,7 @@ def _to_select(table: TableTypes) -> Select:
         return select(table)
 
     if isinstance(table, DBTable):
-        return select(table.data)
+        return select(table.data_)
 
     raise ValueError(
         f"""Table has type {type(table)}, but must have one of the

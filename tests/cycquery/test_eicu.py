@@ -9,9 +9,12 @@ from cycquery import EICUQuerier
 def test_eicu_querier():
     """Test EICUQuerier on eICU-CRD."""
     querier = EICUQuerier(
+        dbms="postgresql",
         database="eicu",
         user="postgres",
         password="pwd",
+        host="localhost",
+        port=5432,
     )
 
     patients = querier.eicu_crd.patient().run(limit=10)

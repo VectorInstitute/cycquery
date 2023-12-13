@@ -76,18 +76,19 @@ class DatasetQuerier:
 
     Parameters
     ----------
-    database
-        Name of database.
-    user
-        Username for database.
-    password
-        Password for database.
-    dbms
-        Database management system.
-    host
-        Hostname of database.
-    port
-        Port of database.
+    dbms : str
+        The database management system type (e.g., 'postgresql', 'mysql', 'sqlite').
+    user : str, optional
+        The username for the database, by default empty. Not used for SQLite.
+    pwd : str, optional
+        The password for the database, by default empty. Not used for SQLite.
+    host : str, optional
+        The host address of the database, by default empty. Not used for SQLite.
+    port : int, optional
+        The port number for the database, by default None. Not used for SQLite.
+    database : str, optional
+        The name of the database or the path to the database file (for SQLite),
+        by default empty.
 
     Notes
     -----
@@ -102,12 +103,12 @@ class DatasetQuerier:
 
     def __init__(
         self,
-        database: str,
-        user: str,
-        password: str,
-        dbms: str = "postgresql",
-        host: str = "localhost",
-        port: int = 5432,
+        dbms: str,
+        user: str = "",
+        password: str = "",
+        host: str = "",
+        port: Optional[int] = None,
+        database: str = "",
     ) -> None:
         config = DatasetQuerierConfig(
             database=database,
@@ -176,7 +177,7 @@ class DatasetQuerier:
 
         """
         return list(
-            getattr(getattr(self.db, schema_name), table_name).data.columns.keys(),
+            getattr(getattr(self.db, schema_name), table_name).data_.columns.keys(),
         )
 
     def list_custom_tables(self) -> List[str]:
@@ -231,7 +232,7 @@ class DatasetQuerier:
             Table with mapped columns.
 
         """
-        table = _create_get_table_lambdafn(schema_name, table_name)(self.db).data
+        table = _create_get_table_lambdafn(schema_name, table_name)(self.db).data_
 
         if cast_timestamp_cols:
             table = _cast_timestamp_cols(table)
@@ -258,7 +259,7 @@ class DatasetQuerier:
             A query interface object.
 
         """
-        table = getattr(getattr(self.db, schema_name), table_name).data
+        table = getattr(getattr(self.db, schema_name), table_name).data_
         table = _to_subquery(table)
 
         return QueryInterface(self.db, table)
