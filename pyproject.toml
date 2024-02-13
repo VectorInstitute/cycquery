@@ -13,7 +13,7 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = ">=3.9, <3.11"
-pandas = "^2.0"
+pandas = ">2.0.0, <2.2.0"
 pyarrow = "^14.0.0"
 psycopg2 = "^2.9.6"
 SQLAlchemy = "^1.4.32, <2.0"
