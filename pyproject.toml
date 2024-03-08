@@ -31,6 +31,7 @@ nbstripout = "^0.6.1"
 mypy = "^1.0.0"
 ruff = "^0.3.0"
 nbqa = { version = "^1.7.0", extras = ["toolchain"] }
+pip-audit = "^2.7.1"
 
 [tool.poetry.group.docs]
 optional = true
@@ -38,10 +39,11 @@ optional = true
 [tool.poetry.group.docs.dependencies]
 numpydoc = "^1.2"
 sphinx = "^7.2.5"
-sphinx-rtd-theme = "^2.0.0rc2"
+furo = "^2024.01.29"
 sphinxcontrib-apidoc = "^0.4.0"
 sphinx-autodoc-typehints = "^1.24.0"
 myst-parser = "^2.0.0"
+sphinx-design = "^0.5.0"
 sphinx-copybutton = "^0.5.0"
 sphinx-autoapi = "^2.0.0"
 nbsphinx = "^0.8.11"
