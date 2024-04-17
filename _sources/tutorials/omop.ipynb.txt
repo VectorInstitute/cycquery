@@ -13,7 +13,7 @@
    "id": "1efffc64",
    "metadata": {},
    "source": [
-    "This notebook shows examples of how to use the cyclops-query tool to query EHR databases that follow the OMOP common data model. Each query is limit to 100 rows (for quick results).\n",
+    "This notebook shows examples of how to use the cycquery tool to query EHR databases that follow the OMOP common data model. Each query is limit to 100 rows (for quick results).\n",
     "\n",
     "We showcase the examples on:\n",
     "\n",

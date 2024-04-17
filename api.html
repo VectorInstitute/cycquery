@@ -1,175 +1,303 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="cycquery" href="reference/api/cycquery.html" /><link rel="prev" title="GEMINI tutorial" href="tutorials/gemini.html" />
+
+    <link rel="shortcut icon" href="_static/favicon.ico"/><!-- Generated with Sphinx 7.3.5 and Furo 2024.01.29 -->
+        <title>API Reference - cycquery documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=36a5483c" />
+    <link rel="stylesheet" type="text/css" href="_static/css/cyclops.css?v=9f20b50b" />
+    
+    
 
 
-
-
-
-
-<!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="./">
-<head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>API Reference &mdash; cyclops-query  documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="_static/css/cyclops.css?v=fc0e58c9" />
-      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  --color-card-background: #5e88f2;
   
-    <link rel="shortcut icon" href="_static/favicon.ico"/>
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-brand-primary: #faad1a;
+  --color-brand-content: #eb088a;
+  --color-foreground-secondary: #52c7de;
+  --color-card-background: #3b0e28;
   
-        <script src="_static/jquery.js?v=5d32c60e"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=5929fcd5"></script>
-        <script src="_static/doctools.js?v=888ff710"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-        <script src="_static/clipboard.min.js?v=a7894cd8"></script>
-        <script src="_static/copybutton.js?v=ccdb6887"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="cycquery" href="reference/api/cycquery.html" />
-    <link rel="prev" title="GEMINI tutorial" href="tutorials/gemini.html" /> 
-</head>
-
-<body class="wy-body-for-nav">
-  <!--
-    Lie about what theme we really are when some RTD-injected JS fetches the
-    full versions panel from the RTD API.  RTD's JS replaces the stub versions
-    panel in the Sphinx-generated HTML with the full versions panel it fetches
-    from the RTD API.  If the API thinks we're not sphinx_rtd_theme, it will
-    serve us the wrong HTML and the panel will float as a "badge" when it
-    shouldn't.  As a customized version of sphinx_rtd_theme, we really do want
-    the same HTML it gets.  See also the diagnoses in
-    <https://github.com/nextstrain/docs.nextstrain.org/issues/76>.
-
-    This bit of JS finds the data RTD injects into the page and modifies it
-    before the code that RTD injects runs and looks at the data.  RTD's
-    <script>s (in <head>) run before this JS, but they wait until the DOM is
-    ready to actually do any work.  This gives us a chance to modify the data
-    during DOM load before the RTD code actually uses it.
-
-      -trs, 27 Jan 2022
-  -->
-  <script>
-    (() => {
-      try {
-        console.log("Lying about the theme to RTD's JS so the versions panel works properly. 🙈");
-
-        /* Update global variable, which is used in the request to get the RTD
-         * "footer" that includes the versions panel.
-         */
-        if (window.READTHEDOCS_DATA)
-          window.READTHEDOCS_DATA.theme = "sphinx_rtd_theme";
-
-        /* Update stored JSON in case anything else deserializes it later.
-         * Comments in the RTD-injected HTML source claim the global variable
-         * above is deprecated.
-         */
-        var script = document.querySelector("#READTHEDOCS_DATA");
-        if (script)
-          script.innerHTML = JSON.stringify({ ...JSON.parse(script.innerHTML), theme: "sphinx_rtd_theme" });
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-brand-primary: #faad1a;
+  --color-brand-content: #eb088a;
+  --color-foreground-secondary: #52c7de;
+  --color-card-background: #3b0e28;
+  
       }
-      catch (err) {
-        console.log("Lying about the theme to RTD's JS failed… oh well. 🤷", err);
-      }
-    })();
-  </script>
-
-  <div class="wy-grid-for-nav">
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search"  style="background: #efeeed" >
-
-
-
-
-  <a href="https://vectorinstitute.github.io/cyclops/">
-    <img src="_static/cyclops_logo-dark.png" class="logo" alt="Logo"/>
-  </a>
-
-
-
-  <div class="subproject">
-    <a href="index.html" class="project-name" alt="Documentation Home">
-      cyclops-query
-    </a>
-
+    }
+  }
+</style></head>
+  <body>
     
-    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
     
 
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">cycquery  documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="_static/cyclops_logo-dark.png" alt="Logo"/>
   </div>
-
-
-
-
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
-</div>
-
-
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+  
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="intro.html">cyclops-query</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">cycquery</a></li>
 <li class="toctree-l1"><a class="reference internal" href="intro.html#getting-started">🐣 Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="intro.html#developing">🧑🏿‍💻 Developing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="intro.html#documentation">📚 Documentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="intro.html#citation">🎓 Citation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to cyclops-query</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="reference/api/cycquery.html">cycquery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to cycquery</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="tutorials.html">Tutorials</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Tutorials</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/mimiciii.html">MIMIC-III tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/mimiciv.html">MIMIC-IV tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/eicu.html">eICU-CRD tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/omop.html">OMOP tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/gemini.html">GEMINI tutorial</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children current-page"><a class="current reference internal" href="#">API Reference</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of API Reference</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="reference/api/cycquery.html">cycquery</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of cycquery</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="reference/api/_autosummary/cycquery.interface.html">cycquery.interface</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of cycquery.interface</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.interface.QueryInterface.html">cycquery.interface.QueryInterface</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.html">cycquery.ops</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of cycquery.ops</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.AddColumn.html">cycquery.ops.AddColumn</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.AddDeltaColumn.html">cycquery.ops.AddDeltaColumn</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.AddDeltaConstant.html">cycquery.ops.AddDeltaConstant</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.AddNumeric.html">cycquery.ops.AddNumeric</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.And.html">cycquery.ops.And</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Apply.html">cycquery.ops.Apply</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Cast.html">cycquery.ops.Cast</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionAfterDate.html">cycquery.ops.ConditionAfterDate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionBeforeDate.html">cycquery.ops.ConditionBeforeDate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionEndsWith.html">cycquery.ops.ConditionEndsWith</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionEquals.html">cycquery.ops.ConditionEquals</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionGreaterThan.html">cycquery.ops.ConditionGreaterThan</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionIn.html">cycquery.ops.ConditionIn</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionInMonths.html">cycquery.ops.ConditionInMonths</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionInYears.html">cycquery.ops.ConditionInYears</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionLessThan.html">cycquery.ops.ConditionLessThan</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionLike.html">cycquery.ops.ConditionLike</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionRegexMatch.html">cycquery.ops.ConditionRegexMatch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionStartsWith.html">cycquery.ops.ConditionStartsWith</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionSubstring.html">cycquery.ops.ConditionSubstring</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Count.html">cycquery.ops.Count</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Distinct.html">cycquery.ops.Distinct</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Drop.html">cycquery.ops.Drop</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.DropEmpty.html">cycquery.ops.DropEmpty</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.DropNulls.html">cycquery.ops.DropNulls</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ExtractTimestampComponent.html">cycquery.ops.ExtractTimestampComponent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.FillNull.html">cycquery.ops.FillNull</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.GroupByAggregate.html">cycquery.ops.GroupByAggregate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Join.html">cycquery.ops.Join</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Keep.html">cycquery.ops.Keep</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Limit.html">cycquery.ops.Limit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Literal.html">cycquery.ops.Literal</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Or.html">cycquery.ops.Or</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.OrderBy.html">cycquery.ops.OrderBy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.QueryOp.html">cycquery.ops.QueryOp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.RandomizeOrder.html">cycquery.ops.RandomizeOrder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Rename.html">cycquery.ops.Rename</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Reorder.html">cycquery.ops.Reorder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ReorderAfter.html">cycquery.ops.ReorderAfter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Sequential.html">cycquery.ops.Sequential</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Substring.html">cycquery.ops.Substring</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Trim.html">cycquery.ops.Trim</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Union.html">cycquery.ops.Union</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="reference/api/_autosummary/cycquery.base.html">cycquery.base</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of cycquery.base</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.base.DatasetQuerier.html">cycquery.base.DatasetQuerier</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="reference/api/_autosummary/cycquery.mimiciii.html">cycquery.mimiciii</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of cycquery.mimiciii</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.mimiciii.MIMICIIIQuerier.html">cycquery.mimiciii.MIMICIIIQuerier</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="reference/api/_autosummary/cycquery.mimiciv.html">cycquery.mimiciv</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of cycquery.mimiciv</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.mimiciv.MIMICIVQuerier.html">cycquery.mimiciv.MIMICIVQuerier</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="reference/api/_autosummary/cycquery.eicu.html">cycquery.eicu</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of cycquery.eicu</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.eicu.EICUQuerier.html">cycquery.eicu.EICUQuerier</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="reference/api/_autosummary/cycquery.omop.html">cycquery.omop</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of cycquery.omop</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.omop.OMOPQuerier.html">cycquery.omop.OMOPQuerier</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="reference/api/_autosummary/cycquery.gemini.html">cycquery.gemini</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><div class="visually-hidden">Toggle navigation of cycquery.gemini</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.gemini.GEMINIQuerier.html">cycquery.gemini.GEMINIQuerier</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 
-        </div>
-      </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #efeeed" >
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">cyclops-query</a>
-      </nav>
-
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
-  <ul class="wy-breadcrumbs">
-  
-
-  
-  
-    <li><a href="https://vectorinstitute.github.io/cyclops/">Home</a></li>
-    <li><a href="index.html">cyclops-query</a></li>
-  
-
-  
-  
-
-  
-
-      <li class="wy-breadcrumbs-aside">
-            <a href="_sources/api.rst.txt" rel="nofollow"> View page source</a>
-      </li>
-  </ul>
-  <hr/>
 </div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
-             
-  <section id="api-reference">
-<h1>API Reference<a class="headerlink" href="#api-reference" title="Link to this heading"></a></h1>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="api-reference">
+<h1>API Reference<a class="headerlink" href="#api-reference" title="Link to this heading">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="reference/api/cycquery.html">cycquery</a><ul>
@@ -614,66 +742,70 @@
 </div>
 </section>
 
-
-           </div>
-          </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="tutorials/gemini.html" class="btn btn-neutral float-left" title="GEMINI tutorial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="reference/api/cycquery.html" class="btn btn-neutral float-right" title="cycquery" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
-
-  <hr/>
-
-  <div role="contentinfo">
-    <p></p>
-  </div>
-
-  
-
-  <div class="footer-small-text">
-    All <a href="https://github.com/VectorInstitute/cyclops">source code for cyclops</a> is freely available under the terms of an <a href="https://opensource.org/licenses/Apache-2.0">Apache-2.0</a> license.
-  </div>
-
-  <div class="footer-small-text">
-      This work is made possible due to the data obtained from the <a href="https://www.geminimedicine.ca/">GEMINI study</a>.
-  </div>
-
-  <hr/>
-
-  <div class="logo">
-    <a class="logo" href="https://vectorinstitute.ai/">
-      <span class="logo"></span>
-      <img alt="Logo of the Vector Institute" style="width:90px; max-width:90px;" src="_static/logos/vector_logo.png" />
-    </a>
-    <a class="logo" href="https://www.geminimedicine.ca/">
-      <span class="logo"></span>
-      <img alt="Logo of GEMINI" style="width:90px; max-width:90px;" src="_static/logos/gemini_logo.png" />
-    </a>
-  </div>
-
-  <div class="copyright">
-    &copy; Copyright 2022, Vector AI Engineering
-  </div>
-
-  <div class="copyright">
-    </p>
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using customised version of
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">base theme</a> provided by
-    <a href="https://readthedocs.org">Read the Docs</a>.
-  </div>
-
-
-
-</footer>
-        </div>
+        </article>
       </div>
-    </section>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="reference/api/cycquery.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">cycquery</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="tutorials/gemini.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">GEMINI tutorial</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, Vector AI Engineering
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              <a class="muted-link " href="https://github.com/VectorInstitute/cycquery" aria-label="GitHub">
+                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
+                </svg>
+            </a>
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
   </div>
-  <script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
-
-</body>
+</div><script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/furo.js?v=32e29ea5"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=ccdb6887"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/require.min.js?v=53367eec"></script>
+    <script src="_static/custom.js?v=275847af"></script>
+    </body>
 </html>
