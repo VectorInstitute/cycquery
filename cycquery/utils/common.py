@@ -1,4 +1,4 @@
-"""Common utility functions that can be used across multiple cyclops packages."""
+"""Common utility functions that can be used across multiple cycquery packages."""
 
 import warnings
 from datetime import datetime
