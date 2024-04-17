@@ -1,5 +1,5 @@
-Welcome to cyclops-query's documentation!
-=========================================
+Welcome to cycquery's documentation!
+====================================
 
 
 .. toctree::

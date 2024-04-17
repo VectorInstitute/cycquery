@@ -1,4 +1,4 @@
-"""Test cyclops.query.orm module."""
+"""Test cycquery.orm module."""
 
 import os
 import sqlite3

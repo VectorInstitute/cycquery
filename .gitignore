@@ -12,7 +12,6 @@ venv
 mlruns
 .profile
 .env
-*.html
 _extract
 *.gzip
 *checkpoint*

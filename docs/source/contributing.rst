@@ -1,7 +1,7 @@
-Contributing to cyclops-query
-=============================
+Contributing to cycquery
+========================
 
-Thanks for your interest in contributing to the cyclops-query tool!
+Thanks for your interest in contributing to the cycquery tool!
 
 To submit PRs, please fill out the PR template along with the PR. If the
 PR fixes an issue, don’t forget to link the PR to the issue!

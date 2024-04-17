@@ -72,7 +72,7 @@ def _to_subquery(table: TableTypes) -> Subquery:
 
     Parameters
     ----------
-    table: cyclops.query.util.TableTypes
+    table: cycquery.util.TableTypes
         Table to convert.
 
     Returns
@@ -104,7 +104,7 @@ def _to_select(table: TableTypes) -> Select:
 
     Parameters
     ----------
-    table: cyclops.query.util.TableTypes
+    table: cycquery.util.TableTypes
         Table to convert.
 
     Returns
@@ -184,7 +184,7 @@ def table_params_to_type(to_type: TableTypes) -> Callable[..., Any]:
 
     Parameters
     ----------
-    to_type: cyclops.query.util.TableTypes
+    to_type: cycquery.util.TableTypes
         The type to which to convert.
 
     Returns
@@ -217,7 +217,7 @@ def get_column(
 
     Parameters
     ----------
-    table: cyclops.query.util.TableTypes
+    table: cycquery.util.TableTypes
         The table with the column.
     col: str
         Name of column to extract.
@@ -244,7 +244,7 @@ def filter_columns(
 
     Parameters
     ----------
-    table: cyclops.query.util.TableTypes
+    table: cycquery.util.TableTypes
         The table with the column.
     cols: str or list of str
         Name of columns to keep.
@@ -275,7 +275,7 @@ def get_columns(
 
     Parameters
     ----------
-    table: cyclops.query.util.TableTypes
+    table: cycquery.util.TableTypes
         The table.
     cols: str or list of str
         Names of columns to extract.
@@ -295,7 +295,7 @@ def get_column_names(table: TableTypes) -> List[str]:
 
     Parameters
     ----------
-    table: cyclops.query.util.TableTypes
+    table: cycquery.util.TableTypes
         The table.
 
     Returns
@@ -317,7 +317,7 @@ def has_columns(
 
     Parameters
     ----------
-    table : cyclops.query.util.TableTypes
+    table : cycquery.util.TableTypes
         Table to check.
     cols: str or list of str
         Required columns.
@@ -413,7 +413,7 @@ def drop_columns(
 
     Parameters
     ----------
-    table: cyclops.query.util.TableTypes
+    table: cycquery.util.TableTypes
         The table.
     col : str or list of str
         Names of columns to drop.
@@ -440,7 +440,7 @@ def rename_columns(table: TableTypes, rename_map: Dict[str, str]) -> Subquery:
 
     Parameters
     ----------
-    table: cyclops.query.util.TableTypes
+    table: cycquery.util.TableTypes
         The table.
     rename_map : dict
         Dictionary mapping current column names (key) to new ones (value).
@@ -465,7 +465,7 @@ def reorder_columns(table: TableTypes, cols: List[str]) -> Subquery:
 
     Parameters
     ----------
-    table: cyclops.query.util.TableTypes
+    table: cycquery.util.TableTypes
         The table to reorder.
     cols : list of str
         New order of columns, which must include all existing columns.
@@ -514,7 +514,7 @@ def apply_to_columns(
 
     Parameters
     ----------
-    table: cyclops.query.util.TableTypes
+    table: cycquery.util.TableTypes
         The table.
     col_names: str or list of str
         Columns to which to apply the function.
@@ -575,7 +575,7 @@ def trim_columns(
 
     Parameters
     ----------
-    table: cyclops.query.util.TableTypes
+    table: cycquery.util.TableTypes
         The table.
     cols: str or list of str
         Names of columns to trim.
@@ -1100,7 +1100,7 @@ def _check_column_type(
 
     Parameters
     ----------
-    table: cyclops.query.util.TableTypes
+    table: cycquery.util.TableTypes
         The table.
     cols: str or list of str
         Column names to check.
@@ -1144,7 +1144,7 @@ def check_timestamp_columns(
 
     Parameters
     ----------
-    table: cyclops.query.util.TableTypes
+    table: cycquery.util.TableTypes
         The table.
     cols: str or list of str
         Column names to check.
@@ -1177,7 +1177,7 @@ def get_delta_column(
 
     Parameters
     ----------
-    table: cyclops.query.util.TableTypes
+    table: cycquery.util.TableTypes
         The table.
     years: None or str
         Years column.
