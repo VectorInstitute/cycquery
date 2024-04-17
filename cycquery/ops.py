@@ -273,16 +273,13 @@ class Sequential(QueryOp):
     """
 
     @typing.overload
-    def __init__(self, *ops: QueryOp) -> None:
-        ...
+    def __init__(self, *ops: QueryOp) -> None: ...
 
     @typing.overload
-    def __init__(self, ops: typing.List[QueryOp]) -> None:
-        ...
+    def __init__(self, ops: typing.List[QueryOp]) -> None: ...
 
     @typing.overload
-    def __init__(self, op: OrderedDict[str, QueryOp]) -> None:
-        ...
+    def __init__(self, op: OrderedDict[str, QueryOp]) -> None: ...
 
     def __init__(self, *args: QueryOp) -> None:  # type: ignore
         """Initialize the class.
