@@ -41,8 +41,11 @@ extensions = [
     "sphinx.ext.autosummary",
     "sphinx.ext.viewcode",
     "sphinx.ext.intersphinx",
+    "sphinx.ext.autosectionlabel",
     "sphinx_autodoc_typehints",
+    "sphinxcontrib.apidoc",
     "myst_parser",
+    "sphinx_design",
     "sphinx_copybutton",
     "nbsphinx",
     "IPython.sphinxext.ipython_console_highlighting",
@@ -65,9 +68,6 @@ intersphinx_mapping = {
     "numpy": ("http://docs.scipy.org/doc/numpy/", None),
     "pandas": ("https://pandas.pydata.org/docs/", None),
     "sqlalchemy": ("https://docs.sqlalchemy.org", None),
-    "sklearn": ("https://scikit-learn.org/stable/", None),
-    "dask": ("https://docs.dask.org/en/stable/", None),
-    "torch": ("https://pytorch.org/docs/stable/", None),
 }
 
 # Add any paths that contain templates here, relative to this directory.

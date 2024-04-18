@@ -24,13 +24,13 @@ optional = true
 [tool.poetry.group.test.dependencies]
 pytest = "^7.1.1"
 pre-commit = "^2.17.0"
-black = "^22.1.0"
 pytest-cov = "^3.0.0"
 codecov = "^2.1.13"
 nbstripout = "^0.6.1"
 mypy = "^1.0.0"
 ruff = "^0.3.0"
 nbqa = { version = "^1.7.0", extras = ["toolchain"] }
+pip-audit = "^2.7.1"
 
 [tool.poetry.group.docs]
 optional = true
@@ -41,6 +41,7 @@ sphinx = "^7.2.5"
 sphinxcontrib-apidoc = "^0.4.0"
 sphinx-autodoc-typehints = "^1.24.0"
 myst-parser = "^2.0.0"
+sphinx-design = "^0.5.0"
 sphinx-copybutton = "^0.5.0"
 sphinx-autoapi = "^2.0.0"
 nbsphinx = "^0.8.11"
