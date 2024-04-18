@@ -1,15 +1,24 @@
 <!doctype html>
-<html class="no-js" lang="en" data-content_root="../">
+<html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="GEMINI tutorial" href="gemini.html" /><link rel="prev" title="eICU-CRD tutorial" href="eicu.html" />
+    <meta name="color-scheme" content="light dark">
+    <meta name="google-site-verification" content="i0qQRaR9OA3tSz_9tDocdcXGY27Ox_cy4FrvTHD2C_0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <link rel="shortcut icon" href="../_static/favicon.ico"/><!-- Generated with Sphinx 7.3.5 and Furo 2024.01.29 -->
+    
+      <meta name="description" content="CyclOps Python API documentation">
+    <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="GEMINI tutorial" href="gemini.html" /><link rel="prev" title="eICU-CRD tutorial" href="eicu.html" />
+
+    <link rel="shortcut icon" href="../_static/favicon.ico"/><meta name="generator" content="sphinx-7.3.5, furo 2024.01.29"/>
+
+    
+    <meta name="msvalidate.01" content="8D2A5032F006424CAF54C0DDCD16F666" />
+      
         <title>OMOP tutorial - cycquery documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=135e06be" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=36a5483c" />
     <link rel="stylesheet" type="text/css" href="../_static/css/cyclops.css?v=9f20b50b" />
     
@@ -45,7 +54,22 @@
       }
     }
   }
-</style></head>
+</style><script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/furo.js?v=32e29ea5"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=ccdb6887"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/require.min.js?v=53367eec"></script>
+    <script src="../_static/custom.js?v=275847af"></script>
+    
+    <script src="https://kit.fontawesome.com/2c1f516901.js" crossorigin="anonymous"></script>
+
+  </head>
   <body>
     
     <script>
@@ -599,7 +623,7 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2024-04-17 15:16:54,201 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.orm    - Database setup, ready to run queries!
+2024-04-17 20:29:18,057 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.orm    - Database setup, ready to run queries!
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -674,7 +698,7 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2024-04-17 15:16:55,699 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.orm    - Query returned successfully!
+2024-04-17 20:29:19,545 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.orm    - Query returned successfully!
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -682,7 +706,7 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2024-04-17 15:16:55,701 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.utils.profile - Finished executing function run_query in 0.061462 s
+2024-04-17 20:29:19,547 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.utils.profile - Finished executing function run_query in 0.053134 s
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -740,7 +764,7 @@ Name: count, dtype: int64
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2024-04-17 15:16:55,828 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.orm    - Query returned successfully!
+2024-04-17 20:29:19,654 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.orm    - Query returned successfully!
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -748,7 +772,7 @@ Name: count, dtype: int64
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2024-04-17 15:16:55,829 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.utils.profile - Finished executing function run_query in 0.058665 s
+2024-04-17 20:29:19,656 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.utils.profile - Finished executing function run_query in 0.058852 s
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -794,7 +818,7 @@ Name: count, dtype: int64
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2024-04-17 15:16:58,478 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.orm    - Database setup, ready to run queries!
+2024-04-17 20:29:25,809 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.orm    - Database setup, ready to run queries!
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -834,7 +858,7 @@ Name: count, dtype: int64
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2024-04-17 15:17:05,260 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.orm    - Query returned successfully!
+2024-04-17 20:29:30,838 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.orm    - Query returned successfully!
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -842,7 +866,7 @@ Name: count, dtype: int64
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2024-04-17 15:17:05,261 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.utils.profile - Finished executing function run_query in 0.978384 s
+2024-04-17 20:29:30,839 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.utils.profile - Finished executing function run_query in 0.983240 s
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -898,7 +922,7 @@ Name: count, dtype: int64
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2024-04-17 15:17:21,347 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.orm    - Query returned successfully!
+2024-04-17 20:29:46,708 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.orm    - Query returned successfully!
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -906,7 +930,7 @@ Name: count, dtype: int64
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2024-04-17 15:17:21,348 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.utils.profile - Finished executing function run_query in 16.013580 s
+2024-04-17 20:29:46,709 <span class="ansi-white-intense-fg ansi-bold">INFO</span> cycquery.utils.profile - Finished executing function run_query in 15.798767 s
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -971,10 +995,12 @@ Name: count, dtype: int64[pyarrow]
             <div class="copyright">
                 Copyright &#169; 2024, Vector AI Engineering
             </div>
+            <!--
             Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
             
             <a href="https://github.com/pradyunsg/furo">Furo</a>
             
+            -->
           </div>
           <div class="right-details">
             <div class="icons">
@@ -985,6 +1011,26 @@ Name: count, dtype: int64[pyarrow]
             </a>
               
             </div>
+          </div>
+        </div>
+        <div class="footer-container" style="text-align: center;">
+          <div class="footer-small-text">
+              <br> All <a href="https://github.com/VectorInstitute/cycquery">source code for cycquery</a> is freely available under the terms of an <a href="https://opensource.org/licenses/Apache-2.0">Apache-2.0</a> license.
+          </div>
+
+          <div class="footer-small-text">
+            This work is made possible due to the data obtained from the <a href="https://www.geminimedicine.ca/">GEMINI study</a>.
+          </div>
+
+          <div class="logo">
+            <a class="logo" href="https://vectorinstitute.ai/">
+              <span class="logo"></span>
+              <img alt="Logo of the Vector Institute" style="width:90px; max-width:90px;" src="../_static/logos/vector_logo.png" />
+            </a>
+            <a class="logo" href="https://www.geminimedicine.ca/">
+              <span class="logo"></span>
+              <img alt="Logo of GEMINI" style="width:90px; max-width:90px;" src="../_static/logos/gemini_logo.png" />
+            </a>
           </div>
         </div>
         
@@ -1020,16 +1066,5 @@ Name: count, dtype: int64[pyarrow]
       
     </aside>
   </div>
-</div><script src="../_static/documentation_options.js?v=5929fcd5"></script>
-    <script src="../_static/doctools.js?v=9a2dae69"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../_static/scripts/furo.js?v=32e29ea5"></script>
-    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="../_static/copybutton.js?v=ccdb6887"></script>
-    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="../_static/require.min.js?v=53367eec"></script>
-    <script src="../_static/custom.js?v=275847af"></script>
-    </body>
+</div></body>
 </html>
