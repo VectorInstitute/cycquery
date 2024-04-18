@@ -117,6 +117,8 @@ class DatasetQuerierConfig:
     database : str, optional
         The name of the database or the path to the database file (for SQLite),
         by default empty.
+    schemas : Union[str, List[str]], optional
+        The schema(s) to be used for querying, by default None.
 
     """
 
@@ -126,6 +128,7 @@ class DatasetQuerierConfig:
     host: str = ""
     port: Optional[int] = None
     database: str = ""
+    schemas: Optional[Union[str, List[str]]] = None
 
 
 class Database:
@@ -238,20 +241,27 @@ class Database:
         """Prepare ORM DB."""
         meta: Dict[str, MetaData] = {}
         schemas = self.inspector.get_schema_names()
+        if self.config.schemas is None:
+            schemas_to_use = schemas
+        elif isinstance(self.config.schemas, str):
+            schemas_to_use = [self.config.schemas]
+        else:
+            schemas_to_use = self.config.schemas
         for schema_name in schemas:
-            metadata = MetaData(schema=schema_name)
-            metadata.reflect(bind=self.engine)
-            meta[schema_name] = metadata
-            schema = DBSchema(schema_name, meta[schema_name])
-            for table_name in meta[schema_name].tables:
-                table = DBTable(table_name, meta[schema_name].tables[table_name])
-                for column in meta[schema_name].tables[table_name].columns:
-                    setattr(table, column.name, column)
-                if not isinstance(table.name_, str):
-                    table.name_ = str(table.name_)
-                self._tables.append(table.name_)
-                setattr(schema, get_attr_name(table.name_), table)
-            setattr(self, schema_name, schema)
+            if schemas_to_use is None or schema_name in schemas_to_use:
+                metadata = MetaData(schema=schema_name)
+                metadata.reflect(bind=self.engine)
+                meta[schema_name] = metadata
+                schema = DBSchema(schema_name, meta[schema_name])
+                for table_name in meta[schema_name].tables:
+                    table = DBTable(table_name, meta[schema_name].tables[table_name])
+                    for column in meta[schema_name].tables[table_name].columns:
+                        setattr(table, column.name, column)
+                    if not isinstance(table.name_, str):
+                        table.name_ = str(table.name_)
+                    self._tables.append(table.name_)
+                    setattr(schema, get_attr_name(table.name_), table)
+                setattr(self, schema_name, schema)
 
     @time_function
     @table_params_to_type(Select)
