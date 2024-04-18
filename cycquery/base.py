@@ -89,6 +89,8 @@ class DatasetQuerier:
     database : str, optional
         The name of the database or the path to the database file (for SQLite),
         by default empty.
+    schemas : Union[str, List[str]], optional
+        The schema(s) to query, by default None.
 
     Notes
     -----
@@ -109,6 +111,7 @@ class DatasetQuerier:
         host: str = "",
         port: Optional[int] = None,
         database: str = "",
+        schemas: Optional[List[str]] = None,
     ) -> None:
         config = DatasetQuerierConfig(
             database=database,
@@ -117,6 +120,7 @@ class DatasetQuerier:
             dbms=dbms,
             host=host,
             port=port,
+            schemas=schemas,
         )
         self.db = Database(config)
         if not self.db.is_connected:
@@ -133,7 +137,15 @@ class DatasetQuerier:
             List of schema names.
 
         """
-        return list(self.db.inspector.get_schema_names())
+        all_schemas = list(self.db.inspector.get_schema_names())
+        if self.db.config.schemas is None:
+            return all_schemas
+        if isinstance(self.db.config.schemas, str):
+            schemas_to_use = [self.db.config.schemas]
+        else:
+            schemas_to_use = self.db.config.schemas
+
+        return [schema for schema in all_schemas if schema in schemas_to_use]
 
     def list_tables(self, schema_name: Optional[str] = None) -> List[str]:
         """List table methods that can be queried using the database.

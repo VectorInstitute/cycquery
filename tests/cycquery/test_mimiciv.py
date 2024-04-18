@@ -15,8 +15,11 @@ def test_mimiciv_querier():
         database="mimiciv-2.0",
         user="postgres",
         password="pwd",
+        schemas=["mimiciv_hosp", "mimiciv_icu"],
     )
 
+    schemas = querier.list_schemas()
+    assert schemas == ["mimiciv_hosp", "mimiciv_icu"]
     patients = querier.patients().run(limit=10)
     assert len(patients) == 10
     assert "anchor_year_difference" in patients

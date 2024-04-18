@@ -14,7 +14,7 @@ def test_dataset_querier():
         user="postgres",
         password="pwd",
     )
-    assert len(querier.list_tables()) == 69
+    assert len(querier.list_tables()) == 66
     assert len(querier.list_schemas()) == 4
     assert len(querier.list_tables(schema_name="cdm_synthea10")) == 44
     visit_occrrence_columns = querier.list_columns("cdm_synthea10", "visit_occurrence")
