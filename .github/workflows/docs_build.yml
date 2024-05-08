@@ -20,12 +20,12 @@ jobs:
   build:
     runs-on: [self-hosted, db]
     steps:
-      - uses: actions/checkout@v4.1.1
+      - uses: actions/checkout@v4.1.5
         with:
           submodules: 'true'
       - name: Install dependencies, build docs and coverage report
         run: python3 -m pip install --upgrade pip && python3 -m pip install poetry
-      - uses: actions/setup-python@v5.0.0
+      - uses: actions/setup-python@v5.1.0
         with:
           python-version: '3.10'
           cache: 'poetry'
@@ -38,7 +38,7 @@ jobs:
           cd docs && rm -rf source/reference/api/_autosummary && make html
           cd .. && coverage run -m pytest -m "not integration_test" && coverage xml && coverage report -m
       - name: Upload coverage to Codecov
-        uses: Wandalen/wretry.action@v1.4.4
+        uses: Wandalen/wretry.action@v3.4.0
         with:
           action: codecov/codecov-action@v4.3.1
           with: |
