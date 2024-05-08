@@ -51,7 +51,7 @@ jobs:
           attempt_limit: 5
           attempt_delay: 30000
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: github_pages
