@@ -38,7 +38,7 @@ jobs:
   integration-tests:
     runs-on: [self-hosted, db]
     steps:
-      - uses: actions/checkout@v4.1.6
+      - uses: actions/checkout@v4.1.7
       - name: Install poetry
         run: pip install poetry
       - uses: actions/setup-python@v5.1.0
