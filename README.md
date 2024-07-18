@@ -7,7 +7,6 @@ cycquery
 [![integration tests](https://github.com/VectorInstitute/cycquery/actions/workflows/integration_tests.yml/badge.svg)](https://github.com/VectorInstitute/cycquery/actions/workflows/integration_tests.yml)
 [![docs](https://github.com/VectorInstitute/cycquery/actions/workflows/docs_deploy.yml/badge.svg)](https://github.com/VectorInstitute/cycquery/actions/workflows/docs_deploy.yml)
 [![codecov](https://codecov.io/gh/VectorInstitute/cycquery/branch/main/graph/badge.svg)](https://codecov.io/gh/VectorInstitute/cycquery)
-[![license](https://img.shields.io/github/license/VectorInstitute/cycquery.svg)](https://github.com/VectorInstitute/cycquery/blob/main/LICENSE)
 
 ``cycquery`` is a tool for querying relational databases using a simple Python API. It is specifically developed to query
 Electronic Health Record (EHR) databases. The tool is a wrapper around [SQLAlchemy](https://www.sqlalchemy.org/) and can be used
