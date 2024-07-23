@@ -376,6 +376,12 @@ def test_group_by_aggregate(
             {"visit_concept_name": ", "},
         ),
     ).run()
+    measurements_array_agg = measurements_table.ops(
+        GroupByAggregate(
+            "person_id",
+            {"value_as_number": ("array_agg", "value_as_number_array")},
+        ),
+    ).run()
     measurements_sum = measurements_table.ops(
         GroupByAggregate(
             "person_id",
@@ -445,6 +451,21 @@ def test_group_by_aggregate(
             "value_as_number_median"
         ].item()
         == 75.7
+    )
+    assert "value_as_number_array" in measurements_array_agg.columns
+    assert isinstance(
+        measurements_array_agg[measurements_array_agg["person_id"] == 33][
+            "value_as_number_array"
+        ][0],
+        str,
+    )
+    assert (
+        len(
+            measurements_array_agg[measurements_array_agg["person_id"] == 33][
+                "value_as_number_array"
+            ][0],
+        )
+        > 0
     )
 
 
