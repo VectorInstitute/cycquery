@@ -3122,6 +3122,7 @@ class GroupByAggregate(QueryOp):
     >>> GroupByAggregate("person_id", {"person_id": ("count", "visit_count")})(table)
     >>> GroupByAggregate("person_id", {"lab_name": "string_agg"}, {"lab_name": ", "})(table)
     >>> GroupByAggregate("person_id", {"lab_name": ("string_agg", "lab_name_agg"}, {"lab_name": ", "})(table)
+    >>> GroupByAggregate("person_id", {"lab_name": ("array_agg", "lab_name_array")})(table)
 
     """
 
@@ -3163,6 +3164,7 @@ class GroupByAggregate(QueryOp):
             "count": func.count,
             "median": func.percentile_cont(0.5).within_group,
             "string_agg": func.string_agg,
+            "array_agg": func.array_agg,
         }
 
         aggfunc_tuples = list(self.aggfuncs.items())
