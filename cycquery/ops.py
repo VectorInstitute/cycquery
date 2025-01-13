@@ -161,7 +161,7 @@ class QueryOp:
         elif ops is not None and name in ops:
             if value is not None:
                 raise TypeError(
-                    "Cannot assign '{}' as child op '{}' " "(QueryOp or None expected)",
+                    "Cannot assign '{}' as child op '{}' (QueryOp or None expected)",
                 )
             ops[name] = value
         else:
