@@ -4,7 +4,6 @@ import pandas as pd
 
 from cycquery.post_process.util import process_care_unit_changepoints
 
-
 CARE_UNIT_HIERARCHY = [
     "ER",
     "Emergency",
