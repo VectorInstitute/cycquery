@@ -11,7 +11,6 @@ from cycquery.interface import QueryInterface
 from cycquery.utils.common import to_list
 from cycquery.utils.log import setup_logging
 
-
 # Logging.
 LOGGER = logging.getLogger(__name__)
 setup_logging(print_level="INFO", logger=LOGGER)
@@ -66,6 +65,7 @@ class OMOPQuerier(DatasetQuerier):
         port: int = 5432,
         schema_name: str = "omop",
     ) -> None:
+        """Initialize OMOP querier."""
         super().__init__(
             database=database,
             user=user,

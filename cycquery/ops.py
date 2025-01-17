@@ -46,7 +46,6 @@ from cycquery.util import (
 from cycquery.utils.common import to_datetime_format, to_list, to_list_optional
 from cycquery.utils.log import setup_logging
 
-
 LOGGER = logging.getLogger(__name__)
 setup_logging(print_level="INFO", logger=LOGGER)
 
@@ -86,6 +85,7 @@ class QueryOp:
     _ops: typing.Dict[str, "QueryOp"]
 
     def __init__(self, *args: typing.Any, **kwargs: typing.Any) -> None:
+        """Initialize the class."""
         super().__setattr__("_ops", OrderedDict())
 
     @abstractmethod
@@ -623,6 +623,8 @@ def _process_checks(
         Table on which to perform the operation.
     cols
         Columns to check.
+    cols_not_in
+        Columns that should not be in the table.
     timestamp_cols
         Timestamp columns to check.
 
@@ -673,6 +675,7 @@ class FillNull(QueryOp):
         fill_values: typing.Union[typing.Any, typing.List[typing.Any]],
         new_col_names: typing.Optional[typing.Union[str, typing.List[str]]] = None,
     ) -> None:
+        """Initialize the operation."""
         super().__init__()
         self.cols = cols
         self.fill_values = fill_values
@@ -735,6 +738,7 @@ class Drop(QueryOp):
     """
 
     def __init__(self, cols: typing.Union[str, typing.List[str]]) -> None:
+        """Initialize the operation."""
         super().__init__()
         self.cols = cols
 
@@ -774,6 +778,7 @@ class Rename(QueryOp):
     """
 
     def __init__(self, rename_map: typing.Dict[str, str], check_exists: bool = True):
+        """Initialize the operation."""
         super().__init__()
         self.rename_map = rename_map
         self.check_exists = check_exists
@@ -826,6 +831,7 @@ class Substring(QueryOp):
         stop_index: int,
         new_col_label: typing.Optional[str] = None,
     ):
+        """Initialize the operation."""
         super().__init__()
         self.col = col
         self.start_index = start_index
@@ -875,6 +881,7 @@ class Reorder(QueryOp):
     """
 
     def __init__(self, cols: typing.List[str]):
+        """Initialize the operation."""
         super().__init__()
         self.cols = cols
 
@@ -914,6 +921,7 @@ class ReorderAfter(QueryOp):
     """
 
     def __init__(self, cols: typing.Union[str, typing.List[str]], after: str):
+        """Initialize the operation."""
         super().__init__()
         self.cols = cols
         self.after = after
@@ -958,6 +966,7 @@ class Keep(QueryOp):
     """
 
     def __init__(self, cols: typing.Union[str, typing.List[str]]):
+        """Initialize the operation."""
         super().__init__()
         self.cols = cols
 
@@ -1005,6 +1014,7 @@ class Trim(QueryOp):
         cols: typing.Union[str, typing.List[str]],
         new_col_labels: typing.Optional[typing.Union[str, typing.List[str]]] = None,
     ):
+        """Initialize the operation."""
         super().__init__()
         self.cols = cols
         self.new_col_labels = new_col_labels
@@ -1045,6 +1055,7 @@ class Literal(QueryOp):
     """
 
     def __init__(self, value: typing.Any, col: str):
+        """Initialize the operation."""
         super().__init__()
         self.value = value
         self.col = col
@@ -1088,6 +1099,7 @@ class ExtractTimestampComponent(QueryOp):
     """
 
     def __init__(self, timestamp_col: str, extract_str: str, label: str):
+        """Initialize the operation."""
         super().__init__()
         self.timestamp_col = timestamp_col
         self.extract_str = extract_str
@@ -1151,6 +1163,7 @@ class AddNumeric(QueryOp):
         add: typing.Union[int, float, typing.List[int], typing.List[float]],
         new_col_labels: typing.Optional[typing.Union[str, typing.List[str]]] = None,
     ):
+        """Initialize the operation."""
         super().__init__()
         self.add_to = add_to
         self.add = add
@@ -1227,6 +1240,7 @@ class AddDeltaConstant(QueryOp):
         delta: timedelta,
         new_col_labels: typing.Optional[typing.Union[str, typing.List[str]]] = None,
     ):
+        """Initialize the operation."""
         super().__init__()
         self.add_to = add_to
         self.delta = delta
@@ -1297,6 +1311,7 @@ class AddColumn(QueryOp):
         negative: typing.Optional[bool] = False,
         new_col_labels: typing.Optional[typing.Union[str, typing.List[str]]] = None,
     ):
+        """Initialize the operation."""
         super().__init__()
         self.add_to = add_to
         self.col = col
@@ -1378,6 +1393,7 @@ class AddDeltaColumn(QueryOp):
         new_col_labels: typing.Optional[typing.Union[str, typing.List[str]]] = None,
         **delta_kwargs: typing.Any,
     ) -> None:
+        """Initialize the operation."""
         super().__init__()
         self.add_to = add_to
         self.negative = negative
@@ -1444,6 +1460,7 @@ class Cast(QueryOp):
     """
 
     def __init__(self, cols: typing.Union[str, typing.List[str]], type_: str):
+        """Initialize the operation."""
         super().__init__()
         self.cols = cols
         self.type_ = type_
@@ -1510,6 +1527,7 @@ class Union(QueryOp):
         union_table: TableTypes,
         union_all: typing.Optional[bool] = False,
     ):
+        """Initialize the operation."""
         super().__init__()
         self.union_table = union_table
         self.union_all = union_all
@@ -1592,6 +1610,7 @@ class Join(QueryOp):
         join_table_cols: typing.Optional[typing.Union[str, typing.List[str]]] = None,
         isouter: typing.Optional[bool] = False,
     ) -> None:
+        """Initialize the operation."""
         super().__init__()
         if on is not None and cond is not None:
             raise ValueError("Cannot specify both the 'on' and 'cond' arguments.")
@@ -1718,6 +1737,7 @@ class ConditionEquals(QueryOp):
         binarize_col: typing.Optional[str] = None,
         **cond_kwargs: typing.Any,
     ) -> None:
+        """Initialize the operation."""
         super().__init__()
         self.col = col
         self.value = value
@@ -1800,6 +1820,7 @@ class ConditionGreaterThan(QueryOp):
         binarize_col: typing.Optional[str] = None,
         **cond_kwargs: typing.Any,
     ) -> None:
+        """Initialize the operation."""
         super().__init__()
         self.col = col
         self.value = value
@@ -1884,6 +1905,7 @@ class ConditionLessThan(QueryOp):
         binarize_col: typing.Optional[str] = None,
         **cond_kwargs: typing.Any,
     ) -> None:
+        """Initialize the operation."""
         super().__init__()
         self.col = col
         self.value = value
@@ -1962,6 +1984,7 @@ class ConditionRegexMatch(QueryOp):
         not_: bool = False,
         binarize_col: typing.Optional[str] = None,
     ):
+        """Initialize the operation."""
         super().__init__()
         self.col = col
         self.regex = regex
@@ -2034,6 +2057,7 @@ class ConditionIn(QueryOp):
         binarize_col: typing.Optional[str] = None,
         **cond_kwargs: typing.Any,
     ) -> None:
+        """Initialize the operation."""
         super().__init__()
         self.col = col
         self.values = values
@@ -2121,6 +2145,7 @@ class ConditionSubstring(QueryOp):
         binarize_col: typing.Optional[str] = None,
         **cond_kwargs: typing.Any,
     ) -> None:
+        """Initialize the operation."""
         super().__init__()
         self.col = col
         self.substrings = to_list(substrings)
@@ -2199,6 +2224,7 @@ class ConditionStartsWith(QueryOp):
         binarize_col: typing.Optional[str] = None,
         **cond_kwargs: typing.Any,
     ) -> None:
+        """Initialize the operation."""
         super().__init__()
         self.col = col
         self.string = string
@@ -2278,6 +2304,7 @@ class ConditionEndsWith(QueryOp):
         binarize_col: typing.Optional[str] = None,
         **cond_kwargs: typing.Any,
     ) -> None:
+        """Initialize the operation."""
         super().__init__()
         self.col = col
         self.string = string
@@ -2355,6 +2382,7 @@ class ConditionInYears(QueryOp):
         not_: bool = False,
         binarize_col: typing.Optional[str] = None,
     ):
+        """Initialize the operation."""
         super().__init__()
         self.timestamp_col = timestamp_col
         self.years = years
@@ -2432,6 +2460,7 @@ class ConditionInMonths(QueryOp):
         not_: bool = False,
         binarize_col: typing.Optional[str] = None,
     ):
+        """Initialize the operation."""
         super().__init__()
         self.timestamp_col = timestamp_col
         self.months = months
@@ -2509,6 +2538,7 @@ class ConditionBeforeDate(QueryOp):
         not_: bool = False,
         binarize_col: typing.Optional[str] = None,
     ):
+        """Initialize the operation."""
         super().__init__()
         self.timestamp_col = timestamp_col
         self.timestamp = timestamp
@@ -2583,6 +2613,7 @@ class ConditionAfterDate(QueryOp):
         not_: bool = False,
         binarize_col: typing.Optional[str] = None,
     ):
+        """Initialize the operation."""
         super().__init__()
         self.timestamp_col = timestamp_col
         self.timestamp = timestamp
@@ -2657,6 +2688,7 @@ class ConditionLike(QueryOp):
         not_: bool = False,
         binarize_col: typing.Optional[str] = None,
     ):
+        """Initialize the operation."""
         super().__init__()
         self.col = col
         self.pattern = pattern
@@ -2714,6 +2746,7 @@ class Or(QueryOp):
     """
 
     def __init__(self, *cond_ops: typing.Union[QueryOp, typing.List[QueryOp]]):
+        """Initialize the operation."""
         super().__init__()
         self.cond_ops = cond_ops
 
@@ -2766,6 +2799,7 @@ class And(QueryOp):
     """
 
     def __init__(self, *cond_ops: typing.Union[QueryOp, typing.List[QueryOp]]):
+        """Initialize the operation."""
         super().__init__()
         self.cond_ops = cond_ops
 
@@ -2817,6 +2851,7 @@ class Limit(QueryOp):
     """
 
     def __init__(self, number: int):
+        """Initialize the operation."""
         super().__init__()
         self.number = number
 
@@ -2844,11 +2879,11 @@ class RandomizeOrder(QueryOp):
     Useful when the data is ordered, so certain rows cannot
     be seen or analyzed when limited.
 
-    Examples
+    Examples:
     --------
     >>> RandomizeOrder()(table)
 
-    Warnings
+    Warnings:
     --------
     Becomes quite slow on large tables.
 
@@ -2888,6 +2923,7 @@ class DropNulls(QueryOp):
     """
 
     def __init__(self, cols: typing.Union[str, typing.List[str]]):
+        """Initialize the operation."""
         super().__init__()
         self.cols = cols
 
@@ -2928,6 +2964,7 @@ class DropEmpty(QueryOp):
     """
 
     def __init__(self, cols: typing.Union[str, typing.List[str]]):
+        """Initialize the operation."""
         super().__init__()
         self.cols = cols
 
@@ -2997,6 +3034,7 @@ class Apply(QueryOp):
         ],
         new_cols: typing.Optional[typing.Union[str, typing.List[str]]] = None,
     ):
+        """Initialize the operation."""
         super().__init__()
         self.cols = cols
         self.funcs = funcs
@@ -3062,6 +3100,7 @@ class OrderBy(QueryOp):
         cols: typing.Union[str, typing.List[str]],
         ascending: typing.Optional[typing.Union[bool, typing.List[bool]]] = None,
     ):
+        """Initialize the operation."""
         super().__init__()
         self.cols = cols
         self.ascending = ascending
@@ -3134,6 +3173,7 @@ class GroupByAggregate(QueryOp):
         ],
         aggseps: typing.Optional[typing.Dict[str, str]] = None,
     ):
+        """Initialize the operation."""
         super().__init__()
         self.groupby_cols = groupby_cols
         self.aggfuncs = aggfuncs
@@ -3236,6 +3276,7 @@ class Distinct(QueryOp):
     """
 
     def __init__(self, cols: typing.Union[str, typing.List[str]]):
+        """Initialize the operation."""
         super().__init__()
         self.cols = cols
 
@@ -3274,6 +3315,7 @@ class Count(QueryOp):
     """
 
     def __init__(self, col: str):
+        """Initialize the count operation."""
         super().__init__()
         self.col = col
 
