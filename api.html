@@ -9,17 +9,17 @@
       <meta name="description" content="CyclOps Python API documentation">
     <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="cycquery" href="reference/api/cycquery.html" /><link rel="prev" title="GEMINI tutorial" href="tutorials/gemini.html" />
 
-    <link rel="shortcut icon" href="_static/favicon.ico"/><meta name="generator" content="sphinx-7.3.5, furo 2024.01.29"/>
+    <link rel="shortcut icon" href="_static/favicon.ico"/><meta name="generator" content="sphinx-7.4.7, furo 2024.08.06"/>
 
     
     <meta name="msvalidate.01" content="8D2A5032F006424CAF54C0DDCD16F666" />
       
         <title>API Reference - cycquery documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=135e06be" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=36a5483c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=302659d7" />
     <link rel="stylesheet" type="text/css" href="_static/css/cyclops.css?v=9f20b50b" />
     
     
@@ -57,7 +57,7 @@
 </style><script src="_static/documentation_options.js?v=5929fcd5"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="_static/scripts/furo.js?v=32e29ea5"></script>
+    <script src="_static/scripts/furo.js?v=5fa4622c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=ccdb6887"></script>
     <script src="_static/design-tabs.js?v=36754332"></script>
@@ -101,7 +101,7 @@
   <symbol id="svg-sun" viewBox="0 0 24 24">
     <title>Light mode</title>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
       <circle cx="12" cy="12" r="5"></circle>
       <line x1="12" y1="1" x2="12" y2="3"></line>
       <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -116,22 +116,63 @@
   <symbol id="svg-moon" viewBox="0 0 24 24">
     <title>Dark mode</title>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
       <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
     </svg>
   </symbol>
-  <symbol id="svg-sun-half" viewBox="0 0 24 24">
-    <title>Auto light/dark mode</title>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
-      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-      <circle cx="12" cy="12" r="9" />
-      <path d="M13 12h5" />
-      <path d="M13 15h4" />
-      <path d="M13 18h1" />
-      <path d="M13 9h4" />
-      <path d="M13 6h1" />
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
     </svg>
   </symbol>
 </svg>
@@ -345,6 +386,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.AddColumn.html">cycquery.ops.AddColumn</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.AddColumn.html#cycquery.ops.AddColumn"><code class="docutils literal notranslate"><span class="pre">AddColumn</span></code></a><ul>
 <li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.AddColumn.html#cycquery.ops.AddColumn.__call__"><code class="docutils literal notranslate"><span class="pre">AddColumn.__call__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.AddColumn.html#cycquery.ops.AddColumn.__init__"><code class="docutils literal notranslate"><span class="pre">AddColumn.__init__()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -352,6 +394,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.AddDeltaColumn.html">cycquery.ops.AddDeltaColumn</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.AddDeltaColumn.html#cycquery.ops.AddDeltaColumn"><code class="docutils literal notranslate"><span class="pre">AddDeltaColumn</span></code></a><ul>
 <li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.AddDeltaColumn.html#cycquery.ops.AddDeltaColumn.__call__"><code class="docutils literal notranslate"><span class="pre">AddDeltaColumn.__call__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.AddDeltaColumn.html#cycquery.ops.AddDeltaColumn.__init__"><code class="docutils literal notranslate"><span class="pre">AddDeltaColumn.__init__()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -359,6 +402,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.AddDeltaConstant.html">cycquery.ops.AddDeltaConstant</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.AddDeltaConstant.html#cycquery.ops.AddDeltaConstant"><code class="docutils literal notranslate"><span class="pre">AddDeltaConstant</span></code></a><ul>
 <li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.AddDeltaConstant.html#cycquery.ops.AddDeltaConstant.__call__"><code class="docutils literal notranslate"><span class="pre">AddDeltaConstant.__call__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.AddDeltaConstant.html#cycquery.ops.AddDeltaConstant.__init__"><code class="docutils literal notranslate"><span class="pre">AddDeltaConstant.__init__()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -366,6 +410,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.AddNumeric.html">cycquery.ops.AddNumeric</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.AddNumeric.html#cycquery.ops.AddNumeric"><code class="docutils literal notranslate"><span class="pre">AddNumeric</span></code></a><ul>
 <li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.AddNumeric.html#cycquery.ops.AddNumeric.__call__"><code class="docutils literal notranslate"><span class="pre">AddNumeric.__call__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.AddNumeric.html#cycquery.ops.AddNumeric.__init__"><code class="docutils literal notranslate"><span class="pre">AddNumeric.__init__()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -373,6 +418,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.And.html">cycquery.ops.And</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.And.html#cycquery.ops.And"><code class="docutils literal notranslate"><span class="pre">And</span></code></a><ul>
 <li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.And.html#cycquery.ops.And.__call__"><code class="docutils literal notranslate"><span class="pre">And.__call__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.And.html#cycquery.ops.And.__init__"><code class="docutils literal notranslate"><span class="pre">And.__init__()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -380,6 +426,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Apply.html">cycquery.ops.Apply</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Apply.html#cycquery.ops.Apply"><code class="docutils literal notranslate"><span class="pre">Apply</span></code></a><ul>
 <li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Apply.html#cycquery.ops.Apply.__call__"><code class="docutils literal notranslate"><span class="pre">Apply.__call__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Apply.html#cycquery.ops.Apply.__init__"><code class="docutils literal notranslate"><span class="pre">Apply.__init__()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -387,6 +434,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Cast.html">cycquery.ops.Cast</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Cast.html#cycquery.ops.Cast"><code class="docutils literal notranslate"><span class="pre">Cast</span></code></a><ul>
 <li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Cast.html#cycquery.ops.Cast.__call__"><code class="docutils literal notranslate"><span class="pre">Cast.__call__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Cast.html#cycquery.ops.Cast.__init__"><code class="docutils literal notranslate"><span class="pre">Cast.__init__()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -394,6 +442,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionAfterDate.html">cycquery.ops.ConditionAfterDate</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionAfterDate.html#cycquery.ops.ConditionAfterDate"><code class="docutils literal notranslate"><span class="pre">ConditionAfterDate</span></code></a><ul>
 <li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionAfterDate.html#cycquery.ops.ConditionAfterDate.__call__"><code class="docutils literal notranslate"><span class="pre">ConditionAfterDate.__call__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionAfterDate.html#cycquery.ops.ConditionAfterDate.__init__"><code class="docutils literal notranslate"><span class="pre">ConditionAfterDate.__init__()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -401,6 +450,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionBeforeDate.html">cycquery.ops.ConditionBeforeDate</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionBeforeDate.html#cycquery.ops.ConditionBeforeDate"><code class="docutils literal notranslate"><span class="pre">ConditionBeforeDate</span></code></a><ul>
 <li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionBeforeDate.html#cycquery.ops.ConditionBeforeDate.__call__"><code class="docutils literal notranslate"><span class="pre">ConditionBeforeDate.__call__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionBeforeDate.html#cycquery.ops.ConditionBeforeDate.__init__"><code class="docutils literal notranslate"><span class="pre">ConditionBeforeDate.__init__()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -408,6 +458,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionEndsWith.html">cycquery.ops.ConditionEndsWith</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionEndsWith.html#cycquery.ops.ConditionEndsWith"><code class="docutils literal notranslate"><span class="pre">ConditionEndsWith</span></code></a><ul>
 <li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionEndsWith.html#cycquery.ops.ConditionEndsWith.__call__"><code class="docutils literal notranslate"><span class="pre">ConditionEndsWith.__call__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionEndsWith.html#cycquery.ops.ConditionEndsWith.__init__"><code class="docutils literal notranslate"><span class="pre">ConditionEndsWith.__init__()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -415,6 +466,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionEquals.html">cycquery.ops.ConditionEquals</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionEquals.html#cycquery.ops.ConditionEquals"><code class="docutils literal notranslate"><span class="pre">ConditionEquals</span></code></a><ul>
 <li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionEquals.html#cycquery.ops.ConditionEquals.__call__"><code class="docutils literal notranslate"><span class="pre">ConditionEquals.__call__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionEquals.html#cycquery.ops.ConditionEquals.__init__"><code class="docutils literal notranslate"><span class="pre">ConditionEquals.__init__()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -422,6 +474,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionGreaterThan.html">cycquery.ops.ConditionGreaterThan</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionGreaterThan.html#cycquery.ops.ConditionGreaterThan"><code class="docutils literal notranslate"><span class="pre">ConditionGreaterThan</span></code></a><ul>
 <li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionGreaterThan.html#cycquery.ops.ConditionGreaterThan.__call__"><code class="docutils literal notranslate"><span class="pre">ConditionGreaterThan.__call__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionGreaterThan.html#cycquery.ops.ConditionGreaterThan.__init__"><code class="docutils literal notranslate"><span class="pre">ConditionGreaterThan.__init__()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -429,6 +482,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionIn.html">cycquery.ops.ConditionIn</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionIn.html#cycquery.ops.ConditionIn"><code class="docutils literal notranslate"><span class="pre">ConditionIn</span></code></a><ul>
 <li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionIn.html#cycquery.ops.ConditionIn.__call__"><code class="docutils literal notranslate"><span class="pre">ConditionIn.__call__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionIn.html#cycquery.ops.ConditionIn.__init__"><code class="docutils literal notranslate"><span class="pre">ConditionIn.__init__()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -436,6 +490,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionInMonths.html">cycquery.ops.ConditionInMonths</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionInMonths.html#cycquery.ops.ConditionInMonths"><code class="docutils literal notranslate"><span class="pre">ConditionInMonths</span></code></a><ul>
 <li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionInMonths.html#cycquery.ops.ConditionInMonths.__call__"><code class="docutils literal notranslate"><span class="pre">ConditionInMonths.__call__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionInMonths.html#cycquery.ops.ConditionInMonths.__init__"><code class="docutils literal notranslate"><span class="pre">ConditionInMonths.__init__()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -443,6 +498,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionInYears.html">cycquery.ops.ConditionInYears</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionInYears.html#cycquery.ops.ConditionInYears"><code class="docutils literal notranslate"><span class="pre">ConditionInYears</span></code></a><ul>
 <li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionInYears.html#cycquery.ops.ConditionInYears.__call__"><code class="docutils literal notranslate"><span class="pre">ConditionInYears.__call__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionInYears.html#cycquery.ops.ConditionInYears.__init__"><code class="docutils literal notranslate"><span class="pre">ConditionInYears.__init__()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -450,6 +506,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionLessThan.html">cycquery.ops.ConditionLessThan</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionLessThan.html#cycquery.ops.ConditionLessThan"><code class="docutils literal notranslate"><span class="pre">ConditionLessThan</span></code></a><ul>
 <li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionLessThan.html#cycquery.ops.ConditionLessThan.__call__"><code class="docutils literal notranslate"><span class="pre">ConditionLessThan.__call__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionLessThan.html#cycquery.ops.ConditionLessThan.__init__"><code class="docutils literal notranslate"><span class="pre">ConditionLessThan.__init__()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -457,6 +514,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionLike.html">cycquery.ops.ConditionLike</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionLike.html#cycquery.ops.ConditionLike"><code class="docutils literal notranslate"><span class="pre">ConditionLike</span></code></a><ul>
 <li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionLike.html#cycquery.ops.ConditionLike.__call__"><code class="docutils literal notranslate"><span class="pre">ConditionLike.__call__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionLike.html#cycquery.ops.ConditionLike.__init__"><code class="docutils literal notranslate"><span class="pre">ConditionLike.__init__()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -464,6 +522,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionRegexMatch.html">cycquery.ops.ConditionRegexMatch</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionRegexMatch.html#cycquery.ops.ConditionRegexMatch"><code class="docutils literal notranslate"><span class="pre">ConditionRegexMatch</span></code></a><ul>
 <li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionRegexMatch.html#cycquery.ops.ConditionRegexMatch.__call__"><code class="docutils literal notranslate"><span class="pre">ConditionRegexMatch.__call__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionRegexMatch.html#cycquery.ops.ConditionRegexMatch.__init__"><code class="docutils literal notranslate"><span class="pre">ConditionRegexMatch.__init__()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -471,6 +530,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionStartsWith.html">cycquery.ops.ConditionStartsWith</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionStartsWith.html#cycquery.ops.ConditionStartsWith"><code class="docutils literal notranslate"><span class="pre">ConditionStartsWith</span></code></a><ul>
 <li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionStartsWith.html#cycquery.ops.ConditionStartsWith.__call__"><code class="docutils literal notranslate"><span class="pre">ConditionStartsWith.__call__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionStartsWith.html#cycquery.ops.ConditionStartsWith.__init__"><code class="docutils literal notranslate"><span class="pre">ConditionStartsWith.__init__()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -478,6 +538,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionSubstring.html">cycquery.ops.ConditionSubstring</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionSubstring.html#cycquery.ops.ConditionSubstring"><code class="docutils literal notranslate"><span class="pre">ConditionSubstring</span></code></a><ul>
 <li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionSubstring.html#cycquery.ops.ConditionSubstring.__call__"><code class="docutils literal notranslate"><span class="pre">ConditionSubstring.__call__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ConditionSubstring.html#cycquery.ops.ConditionSubstring.__init__"><code class="docutils literal notranslate"><span class="pre">ConditionSubstring.__init__()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -485,6 +546,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Count.html">cycquery.ops.Count</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Count.html#cycquery.ops.Count"><code class="docutils literal notranslate"><span class="pre">Count</span></code></a><ul>
 <li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Count.html#cycquery.ops.Count.__call__"><code class="docutils literal notranslate"><span class="pre">Count.__call__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Count.html#cycquery.ops.Count.__init__"><code class="docutils literal notranslate"><span class="pre">Count.__init__()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -492,6 +554,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Distinct.html">cycquery.ops.Distinct</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Distinct.html#cycquery.ops.Distinct"><code class="docutils literal notranslate"><span class="pre">Distinct</span></code></a><ul>
 <li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Distinct.html#cycquery.ops.Distinct.__call__"><code class="docutils literal notranslate"><span class="pre">Distinct.__call__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Distinct.html#cycquery.ops.Distinct.__init__"><code class="docutils literal notranslate"><span class="pre">Distinct.__init__()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -499,6 +562,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Drop.html">cycquery.ops.Drop</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Drop.html#cycquery.ops.Drop"><code class="docutils literal notranslate"><span class="pre">Drop</span></code></a><ul>
 <li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Drop.html#cycquery.ops.Drop.__call__"><code class="docutils literal notranslate"><span class="pre">Drop.__call__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Drop.html#cycquery.ops.Drop.__init__"><code class="docutils literal notranslate"><span class="pre">Drop.__init__()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -506,6 +570,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.DropEmpty.html">cycquery.ops.DropEmpty</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.DropEmpty.html#cycquery.ops.DropEmpty"><code class="docutils literal notranslate"><span class="pre">DropEmpty</span></code></a><ul>
 <li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.DropEmpty.html#cycquery.ops.DropEmpty.__call__"><code class="docutils literal notranslate"><span class="pre">DropEmpty.__call__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.DropEmpty.html#cycquery.ops.DropEmpty.__init__"><code class="docutils literal notranslate"><span class="pre">DropEmpty.__init__()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -513,6 +578,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.DropNulls.html">cycquery.ops.DropNulls</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.DropNulls.html#cycquery.ops.DropNulls"><code class="docutils literal notranslate"><span class="pre">DropNulls</span></code></a><ul>
 <li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.DropNulls.html#cycquery.ops.DropNulls.__call__"><code class="docutils literal notranslate"><span class="pre">DropNulls.__call__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.DropNulls.html#cycquery.ops.DropNulls.__init__"><code class="docutils literal notranslate"><span class="pre">DropNulls.__init__()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -520,6 +586,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ExtractTimestampComponent.html">cycquery.ops.ExtractTimestampComponent</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ExtractTimestampComponent.html#cycquery.ops.ExtractTimestampComponent"><code class="docutils literal notranslate"><span class="pre">ExtractTimestampComponent</span></code></a><ul>
 <li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ExtractTimestampComponent.html#cycquery.ops.ExtractTimestampComponent.__call__"><code class="docutils literal notranslate"><span class="pre">ExtractTimestampComponent.__call__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ExtractTimestampComponent.html#cycquery.ops.ExtractTimestampComponent.__init__"><code class="docutils literal notranslate"><span class="pre">ExtractTimestampComponent.__init__()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -527,6 +594,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.FillNull.html">cycquery.ops.FillNull</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.FillNull.html#cycquery.ops.FillNull"><code class="docutils literal notranslate"><span class="pre">FillNull</span></code></a><ul>
 <li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.FillNull.html#cycquery.ops.FillNull.__call__"><code class="docutils literal notranslate"><span class="pre">FillNull.__call__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.FillNull.html#cycquery.ops.FillNull.__init__"><code class="docutils literal notranslate"><span class="pre">FillNull.__init__()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -534,6 +602,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.GroupByAggregate.html">cycquery.ops.GroupByAggregate</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.GroupByAggregate.html#cycquery.ops.GroupByAggregate"><code class="docutils literal notranslate"><span class="pre">GroupByAggregate</span></code></a><ul>
 <li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.GroupByAggregate.html#cycquery.ops.GroupByAggregate.__call__"><code class="docutils literal notranslate"><span class="pre">GroupByAggregate.__call__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.GroupByAggregate.html#cycquery.ops.GroupByAggregate.__init__"><code class="docutils literal notranslate"><span class="pre">GroupByAggregate.__init__()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -541,6 +610,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Join.html">cycquery.ops.Join</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Join.html#cycquery.ops.Join"><code class="docutils literal notranslate"><span class="pre">Join</span></code></a><ul>
 <li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Join.html#cycquery.ops.Join.__call__"><code class="docutils literal notranslate"><span class="pre">Join.__call__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Join.html#cycquery.ops.Join.__init__"><code class="docutils literal notranslate"><span class="pre">Join.__init__()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -548,6 +618,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Keep.html">cycquery.ops.Keep</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Keep.html#cycquery.ops.Keep"><code class="docutils literal notranslate"><span class="pre">Keep</span></code></a><ul>
 <li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Keep.html#cycquery.ops.Keep.__call__"><code class="docutils literal notranslate"><span class="pre">Keep.__call__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Keep.html#cycquery.ops.Keep.__init__"><code class="docutils literal notranslate"><span class="pre">Keep.__init__()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -555,6 +626,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Limit.html">cycquery.ops.Limit</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Limit.html#cycquery.ops.Limit"><code class="docutils literal notranslate"><span class="pre">Limit</span></code></a><ul>
 <li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Limit.html#cycquery.ops.Limit.__call__"><code class="docutils literal notranslate"><span class="pre">Limit.__call__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Limit.html#cycquery.ops.Limit.__init__"><code class="docutils literal notranslate"><span class="pre">Limit.__init__()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -562,6 +634,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Literal.html">cycquery.ops.Literal</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Literal.html#cycquery.ops.Literal"><code class="docutils literal notranslate"><span class="pre">Literal</span></code></a><ul>
 <li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Literal.html#cycquery.ops.Literal.__call__"><code class="docutils literal notranslate"><span class="pre">Literal.__call__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Literal.html#cycquery.ops.Literal.__init__"><code class="docutils literal notranslate"><span class="pre">Literal.__init__()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -569,6 +642,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Or.html">cycquery.ops.Or</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Or.html#cycquery.ops.Or"><code class="docutils literal notranslate"><span class="pre">Or</span></code></a><ul>
 <li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Or.html#cycquery.ops.Or.__call__"><code class="docutils literal notranslate"><span class="pre">Or.__call__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Or.html#cycquery.ops.Or.__init__"><code class="docutils literal notranslate"><span class="pre">Or.__init__()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -576,6 +650,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.OrderBy.html">cycquery.ops.OrderBy</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.OrderBy.html#cycquery.ops.OrderBy"><code class="docutils literal notranslate"><span class="pre">OrderBy</span></code></a><ul>
 <li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.OrderBy.html#cycquery.ops.OrderBy.__call__"><code class="docutils literal notranslate"><span class="pre">OrderBy.__call__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.OrderBy.html#cycquery.ops.OrderBy.__init__"><code class="docutils literal notranslate"><span class="pre">OrderBy.__init__()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -583,6 +658,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.QueryOp.html">cycquery.ops.QueryOp</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.QueryOp.html#cycquery.ops.QueryOp"><code class="docutils literal notranslate"><span class="pre">QueryOp</span></code></a><ul>
 <li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.QueryOp.html#cycquery.ops.QueryOp.__call__"><code class="docutils literal notranslate"><span class="pre">QueryOp.__call__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.QueryOp.html#cycquery.ops.QueryOp.__init__"><code class="docutils literal notranslate"><span class="pre">QueryOp.__init__()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -590,6 +666,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.RandomizeOrder.html">cycquery.ops.RandomizeOrder</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.RandomizeOrder.html#cycquery.ops.RandomizeOrder"><code class="docutils literal notranslate"><span class="pre">RandomizeOrder</span></code></a><ul>
 <li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.RandomizeOrder.html#cycquery.ops.RandomizeOrder.__call__"><code class="docutils literal notranslate"><span class="pre">RandomizeOrder.__call__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.RandomizeOrder.html#cycquery.ops.RandomizeOrder.__init__"><code class="docutils literal notranslate"><span class="pre">RandomizeOrder.__init__()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -597,6 +674,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Rename.html">cycquery.ops.Rename</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Rename.html#cycquery.ops.Rename"><code class="docutils literal notranslate"><span class="pre">Rename</span></code></a><ul>
 <li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Rename.html#cycquery.ops.Rename.__call__"><code class="docutils literal notranslate"><span class="pre">Rename.__call__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Rename.html#cycquery.ops.Rename.__init__"><code class="docutils literal notranslate"><span class="pre">Rename.__init__()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -604,6 +682,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Reorder.html">cycquery.ops.Reorder</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Reorder.html#cycquery.ops.Reorder"><code class="docutils literal notranslate"><span class="pre">Reorder</span></code></a><ul>
 <li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Reorder.html#cycquery.ops.Reorder.__call__"><code class="docutils literal notranslate"><span class="pre">Reorder.__call__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Reorder.html#cycquery.ops.Reorder.__init__"><code class="docutils literal notranslate"><span class="pre">Reorder.__init__()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -611,6 +690,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ReorderAfter.html">cycquery.ops.ReorderAfter</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ReorderAfter.html#cycquery.ops.ReorderAfter"><code class="docutils literal notranslate"><span class="pre">ReorderAfter</span></code></a><ul>
 <li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ReorderAfter.html#cycquery.ops.ReorderAfter.__call__"><code class="docutils literal notranslate"><span class="pre">ReorderAfter.__call__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.ReorderAfter.html#cycquery.ops.ReorderAfter.__init__"><code class="docutils literal notranslate"><span class="pre">ReorderAfter.__init__()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -631,6 +711,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Substring.html">cycquery.ops.Substring</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Substring.html#cycquery.ops.Substring"><code class="docutils literal notranslate"><span class="pre">Substring</span></code></a><ul>
 <li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Substring.html#cycquery.ops.Substring.__call__"><code class="docutils literal notranslate"><span class="pre">Substring.__call__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Substring.html#cycquery.ops.Substring.__init__"><code class="docutils literal notranslate"><span class="pre">Substring.__init__()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -638,6 +719,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Trim.html">cycquery.ops.Trim</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Trim.html#cycquery.ops.Trim"><code class="docutils literal notranslate"><span class="pre">Trim</span></code></a><ul>
 <li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Trim.html#cycquery.ops.Trim.__call__"><code class="docutils literal notranslate"><span class="pre">Trim.__call__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Trim.html#cycquery.ops.Trim.__init__"><code class="docutils literal notranslate"><span class="pre">Trim.__init__()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -645,6 +727,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Union.html">cycquery.ops.Union</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Union.html#cycquery.ops.Union"><code class="docutils literal notranslate"><span class="pre">Union</span></code></a><ul>
 <li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Union.html#cycquery.ops.Union.__call__"><code class="docutils literal notranslate"><span class="pre">Union.__call__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.ops.Union.html#cycquery.ops.Union.__init__"><code class="docutils literal notranslate"><span class="pre">Union.__init__()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -655,6 +738,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference/api/_autosummary/cycquery.base.DatasetQuerier.html">cycquery.base.DatasetQuerier</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.base.DatasetQuerier.html#cycquery.base.DatasetQuerier"><code class="docutils literal notranslate"><span class="pre">DatasetQuerier</span></code></a><ul>
 <li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.base.DatasetQuerier.html#cycquery.base.DatasetQuerier.db"><code class="docutils literal notranslate"><span class="pre">DatasetQuerier.db</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.base.DatasetQuerier.html#cycquery.base.DatasetQuerier.__init__"><code class="docutils literal notranslate"><span class="pre">DatasetQuerier.__init__()</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.base.DatasetQuerier.html#cycquery.base.DatasetQuerier.get_table"><code class="docutils literal notranslate"><span class="pre">DatasetQuerier.get_table()</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.base.DatasetQuerier.html#cycquery.base.DatasetQuerier.list_columns"><code class="docutils literal notranslate"><span class="pre">DatasetQuerier.list_columns()</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.base.DatasetQuerier.html#cycquery.base.DatasetQuerier.list_custom_tables"><code class="docutils literal notranslate"><span class="pre">DatasetQuerier.list_custom_tables()</span></code></a></li>
@@ -670,6 +754,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference/api/_autosummary/cycquery.mimiciii.html">cycquery.mimiciii</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.mimiciii.MIMICIIIQuerier.html">cycquery.mimiciii.MIMICIIIQuerier</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.mimiciii.MIMICIIIQuerier.html#cycquery.mimiciii.MIMICIIIQuerier"><code class="docutils literal notranslate"><span class="pre">MIMICIIIQuerier</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="reference/api/_autosummary/cycquery.mimiciii.MIMICIIIQuerier.html#cycquery.mimiciii.MIMICIIIQuerier.__init__"><code class="docutils literal notranslate"><span class="pre">MIMICIIIQuerier.__init__()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="reference/api/_autosummary/cycquery.mimiciii.MIMICIIIQuerier.html#cycquery.mimiciii.MIMICIIIQuerier.chartevents"><code class="docutils literal notranslate"><span class="pre">MIMICIIIQuerier.chartevents()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="reference/api/_autosummary/cycquery.mimiciii.MIMICIIIQuerier.html#cycquery.mimiciii.MIMICIIIQuerier.diagnoses"><code class="docutils literal notranslate"><span class="pre">MIMICIIIQuerier.diagnoses()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="reference/api/_autosummary/cycquery.mimiciii.MIMICIIIQuerier.html#cycquery.mimiciii.MIMICIIIQuerier.get_table"><code class="docutils literal notranslate"><span class="pre">MIMICIIIQuerier.get_table()</span></code></a></li>
@@ -687,6 +772,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference/api/_autosummary/cycquery.mimiciv.html">cycquery.mimiciv</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.mimiciv.MIMICIVQuerier.html">cycquery.mimiciv.MIMICIVQuerier</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.mimiciv.MIMICIVQuerier.html#cycquery.mimiciv.MIMICIVQuerier"><code class="docutils literal notranslate"><span class="pre">MIMICIVQuerier</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="reference/api/_autosummary/cycquery.mimiciv.MIMICIVQuerier.html#cycquery.mimiciv.MIMICIVQuerier.__init__"><code class="docutils literal notranslate"><span class="pre">MIMICIVQuerier.__init__()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="reference/api/_autosummary/cycquery.mimiciv.MIMICIVQuerier.html#cycquery.mimiciv.MIMICIVQuerier.chartevents"><code class="docutils literal notranslate"><span class="pre">MIMICIVQuerier.chartevents()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="reference/api/_autosummary/cycquery.mimiciv.MIMICIVQuerier.html#cycquery.mimiciv.MIMICIVQuerier.diagnoses_icd"><code class="docutils literal notranslate"><span class="pre">MIMICIVQuerier.diagnoses_icd()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="reference/api/_autosummary/cycquery.mimiciv.MIMICIVQuerier.html#cycquery.mimiciv.MIMICIVQuerier.get_table"><code class="docutils literal notranslate"><span class="pre">MIMICIVQuerier.get_table()</span></code></a></li>
@@ -706,6 +792,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference/api/_autosummary/cycquery.eicu.html">cycquery.eicu</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.eicu.EICUQuerier.html">cycquery.eicu.EICUQuerier</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.eicu.EICUQuerier.html#cycquery.eicu.EICUQuerier"><code class="docutils literal notranslate"><span class="pre">EICUQuerier</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="reference/api/_autosummary/cycquery.eicu.EICUQuerier.html#cycquery.eicu.EICUQuerier.__init__"><code class="docutils literal notranslate"><span class="pre">EICUQuerier.__init__()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="reference/api/_autosummary/cycquery.eicu.EICUQuerier.html#cycquery.eicu.EICUQuerier.get_table"><code class="docutils literal notranslate"><span class="pre">EICUQuerier.get_table()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="reference/api/_autosummary/cycquery.eicu.EICUQuerier.html#cycquery.eicu.EICUQuerier.list_columns"><code class="docutils literal notranslate"><span class="pre">EICUQuerier.list_columns()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="reference/api/_autosummary/cycquery.eicu.EICUQuerier.html#cycquery.eicu.EICUQuerier.list_custom_tables"><code class="docutils literal notranslate"><span class="pre">EICUQuerier.list_custom_tables()</span></code></a></li>
@@ -720,6 +807,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference/api/_autosummary/cycquery.omop.html">cycquery.omop</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.omop.OMOPQuerier.html">cycquery.omop.OMOPQuerier</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.omop.OMOPQuerier.html#cycquery.omop.OMOPQuerier"><code class="docutils literal notranslate"><span class="pre">OMOPQuerier</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="reference/api/_autosummary/cycquery.omop.OMOPQuerier.html#cycquery.omop.OMOPQuerier.__init__"><code class="docutils literal notranslate"><span class="pre">OMOPQuerier.__init__()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="reference/api/_autosummary/cycquery.omop.OMOPQuerier.html#cycquery.omop.OMOPQuerier.get_table"><code class="docutils literal notranslate"><span class="pre">OMOPQuerier.get_table()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="reference/api/_autosummary/cycquery.omop.OMOPQuerier.html#cycquery.omop.OMOPQuerier.list_columns"><code class="docutils literal notranslate"><span class="pre">OMOPQuerier.list_columns()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="reference/api/_autosummary/cycquery.omop.OMOPQuerier.html#cycquery.omop.OMOPQuerier.list_custom_tables"><code class="docutils literal notranslate"><span class="pre">OMOPQuerier.list_custom_tables()</span></code></a></li>
@@ -740,6 +828,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference/api/_autosummary/cycquery.gemini.html">cycquery.gemini</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="reference/api/_autosummary/cycquery.gemini.GEMINIQuerier.html">cycquery.gemini.GEMINIQuerier</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="reference/api/_autosummary/cycquery.gemini.GEMINIQuerier.html#cycquery.gemini.GEMINIQuerier"><code class="docutils literal notranslate"><span class="pre">GEMINIQuerier</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="reference/api/_autosummary/cycquery.gemini.GEMINIQuerier.html#cycquery.gemini.GEMINIQuerier.__init__"><code class="docutils literal notranslate"><span class="pre">GEMINIQuerier.__init__()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="reference/api/_autosummary/cycquery.gemini.GEMINIQuerier.html#cycquery.gemini.GEMINIQuerier.care_units"><code class="docutils literal notranslate"><span class="pre">GEMINIQuerier.care_units()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="reference/api/_autosummary/cycquery.gemini.GEMINIQuerier.html#cycquery.gemini.GEMINIQuerier.diagnoses"><code class="docutils literal notranslate"><span class="pre">GEMINIQuerier.diagnoses()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="reference/api/_autosummary/cycquery.gemini.GEMINIQuerier.html#cycquery.gemini.GEMINIQuerier.get_table"><code class="docutils literal notranslate"><span class="pre">GEMINIQuerier.get_table()</span></code></a></li>
