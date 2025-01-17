@@ -5,7 +5,6 @@ import pandas as pd
 from cycquery.post_process.util import process_care_unit_changepoints
 from cycquery.utils.profile import time_function
 
-
 CARE_UNIT = "care_unit"
 ER = "ER"
 ICU = "ICU"

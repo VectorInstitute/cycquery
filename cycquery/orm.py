@@ -30,7 +30,6 @@ from cycquery.utils.file import exchange_extension, process_file_save_path
 from cycquery.utils.log import setup_logging
 from cycquery.utils.profile import time_function
 
-
 # Logging.
 LOGGER = logging.getLogger(__name__)
 setup_logging(print_level="INFO", logger=LOGGER)
@@ -47,8 +46,7 @@ def _get_db_url(
     port: Optional[int] = None,
     database: str = "",
 ) -> str:
-    """
-    Generate a database connection URL.
+    """Generate a database connection URL.
 
     This function constructs a URL for database connection, which is compatible
     with various database management systems (DBMS), including support for SQLite
