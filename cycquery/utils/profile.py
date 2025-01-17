@@ -1,3 +1,5 @@
+# noqa: A005
+
 """Useful functions for timing, profiling."""
 
 import logging
@@ -5,7 +7,6 @@ import time
 from typing import Any, Callable, Dict, List
 
 from cycquery.utils.log import setup_logging
-
 
 # Logging.
 LOGGER = logging.getLogger(__name__)

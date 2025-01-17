@@ -5,7 +5,6 @@ from typing import List
 import pandas as pd
 from pandas import Timestamp
 
-
 CARE_UNIT = "care_unit"
 
 
