@@ -30,6 +30,7 @@ from cycquery.utils.file import exchange_extension, process_file_save_path
 from cycquery.utils.log import setup_logging
 from cycquery.utils.profile import time_function
 
+
 # Logging.
 LOGGER = logging.getLogger(__name__)
 setup_logging(print_level="INFO", logger=LOGGER)
@@ -78,10 +79,10 @@ def _get_db_url(
 
     Examples
     --------
-    >>> _get_db_url('postgresql', 'user', 'pass', 'localhost', 5432, 'mydatabase')
+    >>> _get_db_url("postgresql", "user", "pass", "localhost", 5432, "mydatabase")
     'postgresql://user:pass@localhost:5432/mydatabase'
 
-    >>> _get_db_url('sqlite', database='path_to_database.db')
+    >>> _get_db_url("sqlite", database="path_to_database.db")
     'sqlite:///path_to_database.db'
 
     """

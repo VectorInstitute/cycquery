@@ -7,6 +7,7 @@ from cycquery.mimiciii import MIMICIIIQuerier
 from cycquery.mimiciv import MIMICIVQuerier
 from cycquery.omop import OMOPQuerier
 
+
 __all__ = [
     "DatasetQuerier",
     "EICUQuerier",

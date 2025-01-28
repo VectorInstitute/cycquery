@@ -46,6 +46,7 @@ from cycquery.util import (
 from cycquery.utils.common import to_datetime_format, to_list, to_list_optional
 from cycquery.utils.log import setup_logging
 
+
 LOGGER = logging.getLogger(__name__)
 setup_logging(print_level="INFO", logger=LOGGER)
 
@@ -2879,7 +2880,7 @@ class RandomizeOrder(QueryOp):
     Useful when the data is ordered, so certain rows cannot
     be seen or analyzed when limited.
 
-    Examples:
+    Examples
     --------
     >>> RandomizeOrder()(table)
 
@@ -3013,7 +3014,11 @@ class Apply(QueryOp):
     >>> Apply(["col1", "col2"], [lambda x: x + 1, lambda x: x + 2])(table)
     >>> Apply("col1", lambda x: x + 1, new_cols="col1_new")(table)
     >>> Apply(["col1", "col2"], lambda x, y: x + y, new_cols="col1_new")(table)
-    >>> Apply(["col1", "col2"], lambda x, y: (x + y, x - y), new_cols=["col1_new", "col2_new"])(table)  # noqa: E501, pylint: disable=line-too-long
+    >>> Apply(
+    ...     ["col1", "col2"],
+    ...     lambda x, y: (x + y, x - y),
+    ...     new_cols=["col1_new", "col2_new"],
+    ... )(table)  # noqa: E501, pylint: disable=line-too-long
 
     """
 
@@ -3159,7 +3164,9 @@ class GroupByAggregate(QueryOp):
     --------
     >>> GroupByAggregate("person_id", {"person_id": "count"})(table)
     >>> GroupByAggregate("person_id", {"person_id": ("count", "visit_count")})(table)
-    >>> GroupByAggregate("person_id", {"lab_name": "string_agg"}, {"lab_name": ", "})(table)
+    >>> GroupByAggregate("person_id", {"lab_name": "string_agg"}, {"lab_name": ", "})(
+    ...     table
+    ... )
     >>> GroupByAggregate("person_id", {"lab_name": ("string_agg", "lab_name_agg"}, {"lab_name": ", "})(table)
 
     """
