@@ -8,7 +8,7 @@ license = "Apache-2.0"
 repository = "https://github.com/VectorInstitute/cycquery"
 requires-python = ">=3.9,<3.12"
 dependencies = [
-    "numpy>=1.24.0",
+    "numpy>=1.24.0,<2.0.0",
     "pandas>2.0.0,<2.2.0",
     "pyarrow>=17.0.0",
     "psycopg2>=2.9.6",
