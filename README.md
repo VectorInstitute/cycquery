@@ -58,30 +58,31 @@ df = table.run()
 
 ## 🧑🏿‍💻 Developing
 
-### Using poetry
+### Using uv
 
 The development environment can be set up using
-[poetry](https://python-poetry.org/docs/#installation). Hence, make sure it is
+[uv](https://docs.astral.sh/uv/). Hence, make sure it is
 installed and then run:
 
 
 ```bash
-python3 -m poetry install
-source $(poetry env info --path)/bin/activate
+uv sync
+source .venv/bin/activate
 ```
 
 In order to install dependencies for testing (codestyle, unit tests, integration tests),
 run:
 
 ```bash
-python3 -m poetry install --with test
+uv sync --dev
+source .venv/bin/activate
 ```
 
 API documentation is built using [Sphinx](https://www.sphinx-doc.org/en/master/) and
 can be locally built by:
 
 ```bash
-python3 -m poetry install --with docs
+uv sync --group docs
 cd docs
 make html SPHINXOPTS="-D nbsphinx_allow_errors=True"
 ```
