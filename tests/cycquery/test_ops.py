@@ -49,6 +49,7 @@ from cycquery.ops import (
 )
 from cycquery.util import process_column
 
+
 QUERIER = OMOPQuerier(
     database="synthea_integration_test",
     user="postgres",
