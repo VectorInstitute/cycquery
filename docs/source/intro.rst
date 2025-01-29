@@ -1,9 +1,15 @@
 cycquery
 ========
 
-|PyPI| |PyPI - Python Version| |code checks| |integration tests| |docs| |codecov| |license|
+|PyPI| |PyPI - Python Version| |code checks| |integration tests| |docs|
+|codecov|
 
-``cycquery`` is a tool for querying relational databases using a simple Python API. It is specifically developed to query Electronic Health Record (EHR) databases. The tool is a wrapper around `SQLAlchemy <https://www.sqlalchemy.org/>`__ and can be used to write SQL-like queries in Python, including joins, conditions, groupby aggregation and many more.
+``cycquery`` is a tool for querying relational databases using a simple
+Python API. It is specifically developed to query Electronic Health
+Record (EHR) databases. The tool is a wrapper around
+`SQLAlchemy <https://www.sqlalchemy.org/>`__ and can be used to write
+SQL-like queries in Python, including joins, conditions, groupby
+aggregation and many more.
 
 🐣 Getting Started
 ==================
@@ -52,37 +58,44 @@ Query postgresql database
    # Run query to get data as a pandas dataframe.
    df = table.run()
 
-🧑🏿‍💻 Developing
-=======================
+=========================
 
-Using poetry
-------------
+Using uv
+--------
 
-The development environment can be set up using `poetry <https://python-poetry.org/docs/#installation>`__. Hence, make sure it is installed and then run:
-
-.. code:: bash
-
-   python3 -m poetry install
-   source $(poetry env info --path)/bin/activate
-
-In order to install dependencies for testing (codestyle, unit tests, integration tests), run:
+The development environment can be set up using
+`uv <https://docs.astral.sh/uv/>`__. Hence, make sure it is installed
+and then run:
 
 .. code:: bash
 
-   python3 -m poetry install --with test
+   uv sync
+   source .venv/bin/activate
 
-API documentation is built using `Sphinx <https://www.sphinx-doc.org/en/master/>`__ and can be locally built by:
+In order to install dependencies for testing (codestyle, unit tests,
+integration tests), run:
 
 .. code:: bash
 
-   python3 -m poetry install --with docs
+   uv sync --dev
+   source .venv/bin/activate
+
+API documentation is built using
+`Sphinx <https://www.sphinx-doc.org/en/master/>`__ and can be locally
+built by:
+
+.. code:: bash
+
+   uv sync --group docs
    cd docs
    make html SPHINXOPTS="-D nbsphinx_allow_errors=True"
 
 Contributing
 ------------
 
-Contributing to ``cycquery`` is welcomed. See `Contributing <https://vectorinstitute.github.io/cycquery/api/contributing.html>`__ for guidelines.
+Contributing to ``cycquery`` is welcomed. See
+`Contributing <https://vectorinstitute.github.io/cycquery/api/contributing.html>`__
+for guidelines.
 
 📚 `Documentation <https://vectorinstitute.github.io/cycquery/>`__
 ==================================================================
@@ -98,5 +111,3 @@ Contributing to ``cycquery`` is welcomed. See `Contributing <https://vectorinsti
    :target: https://github.com/VectorInstitute/cycquery/actions/workflows/docs_deploy.yml
 .. |codecov| image:: https://codecov.io/gh/VectorInstitute/cycquery/branch/main/graph/badge.svg
    :target: https://codecov.io/gh/VectorInstitute/cycquery
-.. |license| image:: https://img.shields.io/github/license/VectorInstitute/cycquery.svg
-   :target: https://github.com/VectorInstitute/cycquery/blob/main/LICENSE
