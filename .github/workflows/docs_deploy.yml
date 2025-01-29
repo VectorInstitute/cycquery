@@ -39,6 +39,7 @@ jobs:
       - name: Install dependencies and build docs
         run: |
           uv sync --group dev --group docs
+          source .venv/bin/activate
           # pandoc README.md -f markdown -t rst -s -o docs/source/intro.rst
           cd docs && rm -rf source/reference/api/_autosummary && make html
           cd .. && coverage run -m pytest -m "not integration_test" && coverage xml && coverage report -m
