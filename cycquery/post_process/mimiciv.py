@@ -147,7 +147,7 @@ def process_mimic_care_units(
     for unit, unit_dict in CARE_UNIT_MAP.items():
         for specific_unit, unit_list in unit_dict.items():
             value = specific_unit if specific else unit
-            replace_dict.update({elem: value for elem in unit_list})
+            replace_dict.update(dict.fromkeys(unit_list, value))
     transfers[CARE_UNIT].replace(replace_dict, inplace=True)
 
     transfers.dropna(inplace=True)
