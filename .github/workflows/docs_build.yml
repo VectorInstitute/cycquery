@@ -20,7 +20,7 @@ jobs:
   build:
     runs-on: [self-hosted, db]
     steps:
-      - uses: actions/checkout@v4.2.2
+      - uses: actions/checkout@v5.0.0
         with:
           submodules: 'true'
       - name: Install uv
