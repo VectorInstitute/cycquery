@@ -26,7 +26,7 @@ COLUMN_OBJECTS = [Column, ColumnClause]
 
 def get_attr_name(name: str) -> str:
     """Get attribute name (second part of first.second)."""
-    return name.split(".")[-1]
+    return name.rsplit(".", maxsplit=1)[-1]
 
 
 @dataclass
