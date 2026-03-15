@@ -45,7 +45,7 @@ class MIMICIVQuerier(DatasetQuerier):
 
         # Process and include patient's anchor year.
         table = select(
-            table,
+            *list(table.columns),
             (
                 func.substr(get_column(table, "anchor_year_group"), 1, 4).cast(Integer)
             ).label("anchor_year_group_start"),
@@ -56,7 +56,7 @@ class MIMICIVQuerier(DatasetQuerier):
 
         # Select the middle of the anchor year group as the anchor year
         table = select(
-            table,
+            *list(table.c),
             (
                 get_column(table, "anchor_year_group_start")
                 + (
@@ -68,7 +68,7 @@ class MIMICIVQuerier(DatasetQuerier):
         ).subquery()
 
         table = select(
-            table,
+            *list(table.c),
             (
                 get_column(table, "anchor_year_group_middle")
                 - get_column(table, "anchor_year")

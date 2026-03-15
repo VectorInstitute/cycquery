@@ -3,7 +3,7 @@
 import logging
 import os
 import pickle
-from typing import Any, Generator, List, Optional
+from typing import Any, Generator
 
 import numpy as np
 import pandas as pd
@@ -347,7 +347,7 @@ def load_pickle(
         return pickle.load(handle)
 
 
-def listdir_nonhidden(path: str) -> List[str]:
+def listdir_nonhidden(path: str) -> list[str]:
     """List the non-hidden files of a directory.
 
     Parameters
@@ -367,7 +367,7 @@ def listdir_nonhidden(path: str) -> List[str]:
 def yield_dataframes(
     dir_path: str,
     sort: bool = True,
-    skip_n: Optional[int] = None,
+    skip_n: int | None = None,
     log: bool = True,
 ) -> Generator[pd.DataFrame, None, None]:
     """Yield DataFrames loaded from a directory.
@@ -407,7 +407,7 @@ def yield_dataframes(
 def yield_pickled_files(
     dir_path: str,
     sort: bool = True,
-    skip_n: Optional[int] = None,
+    skip_n: int | None = None,
     log: bool = True,
 ) -> Generator[pd.DataFrame, None, None]:
     """Yield pickled files loaded from a directory.

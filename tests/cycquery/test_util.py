@@ -1,7 +1,8 @@
 """Test query API util functions."""
 
 import pytest
-from sqlalchemy import Table, column, select
+from sqlalchemy import Column, MetaData, Table, column, select
+from sqlalchemy import Integer as SAInteger
 from sqlalchemy.sql.selectable import Select, Subquery
 from sqlalchemy.types import Integer
 
@@ -30,6 +31,10 @@ from cycquery.util import (
     table_params_to_type,
     trim_columns,
 )
+
+
+_meta = MetaData()
+_dummy_table = Table("dummy", _meta, Column("id", SAInteger))
 
 
 @pytest.fixture()
@@ -66,8 +71,8 @@ def test__to_subquery():
     """Test _to_subquery fn."""
     assert isinstance(_to_subquery(select().subquery()), Subquery)
     assert isinstance(_to_subquery(select()), Subquery)
-    assert isinstance(_to_subquery(Table()), Subquery)
-    assert isinstance(_to_subquery(DBTable("a", Table())), Subquery)
+    assert isinstance(_to_subquery(_dummy_table), Subquery)
+    assert isinstance(_to_subquery(DBTable("a", _dummy_table)), Subquery)
     with pytest.raises(TypeError):
         _to_subquery("a")
     with pytest.raises(ValueError):
@@ -78,8 +83,8 @@ def test__to_select():
     """Test _to_select fn."""
     assert isinstance(_to_select(select().subquery()), Select)
     assert isinstance(_to_select(select()), Select)
-    assert isinstance(_to_select(Table()), Select)
-    assert isinstance(_to_select(DBTable("a", Table())), Select)
+    assert isinstance(_to_select(_dummy_table), Select)
+    assert isinstance(_to_select(DBTable("a", _dummy_table)), Select)
     with pytest.raises(TypeError):
         _to_select("a")
 

@@ -36,7 +36,7 @@ on:
 
 jobs:
   integration-tests:
-    runs-on: [self-hosted, db]
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.2.2
         with:

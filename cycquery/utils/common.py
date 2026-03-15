@@ -2,7 +2,7 @@
 
 import warnings
 from datetime import datetime
-from typing import Any, List, Optional, Union
+from typing import Any
 
 import numpy as np
 import numpy.typing as npt
@@ -10,7 +10,7 @@ import pandas as pd
 from pandas.errors import PerformanceWarning
 
 
-def to_timestamp(data: Union[pd.Series, npt.NDArray[Any]]) -> pd.Series:
+def to_timestamp(data: pd.Series | npt.NDArray[Any]) -> pd.Series:
     """Convert a Pandas series or NumPy array to a datetime/timestamp type.
 
     Parameters
@@ -70,7 +70,7 @@ def add_years_approximate(
 
     # Subtract 1 from potentially invalid leap days to avoid issues
     leap_days = (month == 2) & (day == 29)
-    data["day"][leap_days] -= 1
+    data.loc[leap_days, "day"] -= 1
 
     return pd.to_datetime(data)
 
@@ -105,7 +105,7 @@ def add_years_exact(timestamp_series: pd.Series, years_series: pd.Series) -> pd.
     return timestamp_series + years_series.apply(lambda x: pd.DateOffset(years=x))
 
 
-def to_list(obj: Any) -> List[Any]:
+def to_list(obj: Any) -> list[Any]:
     """Convert some object to a list of object(s) unless already one.
 
     Parameters
@@ -129,9 +129,9 @@ def to_list(obj: Any) -> List[Any]:
 
 
 def to_list_optional(
-    obj: Optional[Any],
+    obj: Any | None,
     none_to_empty: bool = False,
-) -> Union[List[Any], None]:
+) -> list[Any] | None:
     """Convert some object to a list of object(s) unless already None or a list.
 
     Parameters
@@ -174,7 +174,7 @@ def to_datetime_format(date: str, fmt: str = "%Y-%m-%d") -> datetime:
     return datetime.strptime(date, fmt)
 
 
-def list_swap(lst: List[Any], index1: int, index2: int) -> List[Any]:
+def list_swap(lst: list[Any], index1: int, index2: int) -> list[Any]:
     """Swap items in a list given the item index and new item index.
 
     Parameters

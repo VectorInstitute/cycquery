@@ -2,7 +2,7 @@
 
 import logging
 from functools import partial
-from typing import Any, Callable, Dict, List, Optional
+from typing import Any, Callable
 
 from sqlalchemy import MetaData
 from sqlalchemy.sql.selectable import Subquery
@@ -80,7 +80,7 @@ class DatasetQuerier:
         The database management system type (e.g., 'postgresql', 'mysql', 'sqlite').
     user : str, optional
         The username for the database, by default empty. Not used for SQLite.
-    pwd : str, optional
+    password : str, optional
         The password for the database, by default empty. Not used for SQLite.
     host : str, optional
         The host address of the database, by default empty. Not used for SQLite.
@@ -109,9 +109,9 @@ class DatasetQuerier:
         user: str = "",
         password: str = "",
         host: str = "",
-        port: Optional[int] = None,
+        port: int | None = None,
         database: str = "",
-        schemas: Optional[List[str]] = None,
+        schemas: list[str] | None = None,
     ) -> None:
         """Initialize the querier."""
         config = DatasetQuerierConfig(
@@ -129,7 +129,7 @@ class DatasetQuerier:
             return
         self._setup_table_methods()
 
-    def list_schemas(self) -> List[str]:
+    def list_schemas(self) -> list[str]:
         """List schemas in the database to query.
 
         Returns
@@ -148,7 +148,7 @@ class DatasetQuerier:
 
         return [schema for schema in all_schemas if schema in schemas_to_use]
 
-    def list_tables(self, schema_name: Optional[str] = None) -> List[str]:
+    def list_tables(self, schema_name: str | None = None) -> list[str]:
         """List table methods that can be queried using the database.
 
         Parameters
@@ -173,7 +173,7 @@ class DatasetQuerier:
 
         return table_names
 
-    def list_columns(self, schema_name: str, table_name: str) -> List[str]:
+    def list_columns(self, schema_name: str, table_name: str) -> list[str]:
         """List columns in a table.
 
         Parameters
@@ -193,7 +193,7 @@ class DatasetQuerier:
             getattr(getattr(self.db, schema_name), table_name).data_.columns.keys(),
         )
 
-    def list_custom_tables(self) -> List[str]:
+    def list_custom_tables(self) -> list[str]:
         """List custom tables methods provided by the dataset API.
 
         Returns
@@ -285,10 +285,11 @@ class DatasetQuerier:
 
         """
         schemas = self.list_schemas()
-        meta: Dict[str, MetaData] = {}
+        meta: dict[str, MetaData] = {}
         for schema_name in schemas:
             metadata = MetaData(schema=schema_name)
-            metadata.reflect(bind=self.db.engine)
+            with self.db.engine.connect() as conn:
+                metadata.reflect(bind=conn)
             meta[schema_name] = metadata
             schema = DBSchema(schema_name, meta[schema_name])
             for table_name in meta[schema_name].tables:
