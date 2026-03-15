@@ -4,17 +4,16 @@ import csv
 import logging
 import os
 import socket
+from collections.abc import Generator
 from dataclasses import dataclass
-from typing import Dict, Generator, List, Optional, Union
 from urllib.parse import quote_plus
 
 import pandas as pd
 import pyarrow.csv as pv
 import pyarrow.parquet as pq
-from sqlalchemy import MetaData, and_, create_engine, func, inspect, select
-from sqlalchemy.engine.base import Engine
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.orm.session import Session
+from sqlalchemy import MetaData, and_, create_engine, func, inspect, select, text
+from sqlalchemy.engine import Engine
+from sqlalchemy.orm import Session, sessionmaker
 from sqlalchemy.sql.elements import BinaryExpression, BooleanClauseList
 from sqlalchemy.sql.selectable import Select, Subquery
 
@@ -44,7 +43,7 @@ def _get_db_url(
     user: str = "",
     pwd: str = "",
     host: str = "",
-    port: Optional[int] = None,
+    port: int | None = None,
     database: str = "",
 ) -> str:
     """Generate a database connection URL.
@@ -125,9 +124,9 @@ class DatasetQuerierConfig:
     user: str = ""
     password: str = ""
     host: str = ""
-    port: Optional[int] = None
+    port: int | None = None
     database: str = ""
-    schemas: Optional[Union[str, List[str]]] = None
+    schemas: str | list[str] | None = None
 
 
 class Database:
@@ -189,14 +188,14 @@ class Database:
 
         self.engine = self._create_engine()
         self.session = self._create_session()
-        self._tables: List[str] = []
+        self._tables: list[str] = []
         self._setup()
         self.is_connected = True
         LOGGER.info("Database setup, ready to run queries!")
 
     def _create_engine(self) -> Engine:
         """Create an engine."""
-        self.conn = _get_db_url(
+        db_url = _get_db_url(
             self.config.dbms,
             self.config.user,
             self.config.password,
@@ -204,33 +203,24 @@ class Database:
             self.config.port,
             self.config.database,
         )
-        return create_engine(
-            _get_db_url(
-                self.config.dbms,
-                self.config.user,
-                self.config.password,
-                self.config.host,
-                self.config.port,
-                self.config.database,
-            ),
-        )
+        self.conn = db_url
+        return create_engine(db_url)
 
     def _create_session(self) -> Session:
         """Create session."""
         self.inspector = inspect(self.engine)
 
         # Create a session for using ORM.
-        session = sessionmaker(self.engine)
-        session.configure(bind=self.engine)
+        session_factory = sessionmaker(bind=self.engine)
 
-        return session()
+        return session_factory()
 
-    def list_tables(self) -> List[str]:
+    def list_tables(self) -> list[str]:
         """List tables in a schema.
 
         Returns
         -------
-        List[str]
+        list[str]
             List of table names.
 
         """
@@ -238,7 +228,7 @@ class Database:
 
     def _setup(self) -> None:
         """Prepare ORM DB."""
-        meta: Dict[str, MetaData] = {}
+        meta: dict[str, MetaData] = {}
         schemas = self.inspector.get_schema_names()
         if self.config.schemas is None:
             schemas_to_use = schemas
@@ -249,11 +239,12 @@ class Database:
         for schema_name in schemas:
             if schemas_to_use is None or schema_name in schemas_to_use:
                 metadata = MetaData(schema=schema_name)
-                metadata.reflect(bind=self.engine)
+                with self.engine.connect() as conn:
+                    metadata.reflect(bind=conn)
                 meta[schema_name] = metadata
                 schema = DBSchema(schema_name, meta[schema_name])
                 for table_name in meta[schema_name].tables:
-                    table = DBTable(table_name, meta[schema_name].tables[table_name])
+                    table = DBTable(table_name, meta[schema_name].tables[table_name])  # type: ignore[arg-type]
                     for column in meta[schema_name].tables[table_name].columns:
                         setattr(table, column.name, column)
                     if not isinstance(table.name_, str):
@@ -263,13 +254,13 @@ class Database:
                 setattr(self, schema_name, schema)
 
     @time_function
-    @table_params_to_type(Select)
+    @table_params_to_type(Select)  # type: ignore[arg-type]
     def run_query(
         self,
-        query: Union[TableTypes, str],
+        query: TableTypes | str,
         dtype_backend: str = "pyarrow",
-        limit: Optional[int] = None,
-        index_col: Optional[str] = None,
+        limit: int | None = None,
+        index_col: str | None = None,
     ) -> pd.DataFrame:
         """Run query.
 
@@ -299,11 +290,13 @@ class Database:
         if limit is not None:
             query = query.limit(limit)  # type: ignore
 
-        # Run the query and return the results.
-        with self.session.connection():
+        # Wrap raw SQL strings for SA 2.0 compatibility.
+        sql = text(query) if isinstance(query, str) else query
+
+        with self.engine.connect() as conn:
             data = pd.read_sql_query(
-                query,
-                self.engine,
+                sql,
+                conn,
                 index_col=index_col,
                 dtype_backend=dtype_backend,
             )
@@ -312,7 +305,7 @@ class Database:
         return data
 
     @time_function
-    @table_params_to_type(Select)
+    @table_params_to_type(Select)  # type: ignore[arg-type]
     def save_query_to_csv(self, query: TableTypes, path: str) -> str:
         """Save query in a .csv format.
 
@@ -331,8 +324,8 @@ class Database:
         """
         path = process_file_save_path(path, "csv")
 
-        with self.session.connection():
-            result = self.engine.execute(query)
+        with self.engine.connect() as conn:
+            result = conn.execute(query)  # type: ignore
             with open(path, "w", encoding="utf-8") as file_descriptor:
                 outcsv = csv.writer(file_descriptor)
                 outcsv.writerow(result.keys())
@@ -341,7 +334,7 @@ class Database:
         return path
 
     @time_function
-    @table_params_to_type(Select)
+    @table_params_to_type(Select)  # type: ignore[arg-type]
     def save_query_to_parquet(self, query: TableTypes, path: str) -> str:
         """Save query in a .parquet format.
 
@@ -374,7 +367,7 @@ class Database:
         query: TableTypes,
         index_col: str,
         batch_size: int,
-    ) -> List[Union[BinaryExpression, BooleanClauseList]]:
+    ) -> list[BinaryExpression | BooleanClauseList]:
         """Return a list of WHERE conditions to segment a query into batches.
 
         Batches are created via SQL windowing, based on segmenting the values in a
@@ -403,7 +396,7 @@ class Database:
             query: Subquery,
             index_col: str,
             maximum: int,
-        ) -> List[int]:
+        ) -> list[int]:
             # Compute the row count for each unique value
             col = get_column(query, index_col)
             table = select(col, func.count(col).label("count")).group_by(col)
@@ -436,15 +429,15 @@ class Database:
 
         def _range_condition(
             start_id: int,
-            end_id: Optional[int] = None,
-        ) -> Union[BinaryExpression, BooleanClauseList]:
+            end_id: int | None = None,
+        ) -> BinaryExpression | BooleanClauseList:
             if end_id:
-                return and_(column >= start_id, column < end_id)
+                return and_(column >= start_id, column < end_id)  # type: ignore[return-value]
 
             return column >= start_id
 
         # Create interval dividers
-        dividers = _compute_query_dividers(query, index_col, batch_size)
+        dividers = _compute_query_dividers(query, index_col, batch_size)  # type: ignore[arg-type]
 
         # Create filtering conditions
         column = get_column(query, index_col)
@@ -459,7 +452,7 @@ class Database:
 
         return conditions
 
-    @table_params_to_type(Subquery)
+    @table_params_to_type(Subquery)  # type: ignore[arg-type]
     def run_query_batch(
         self,
         query: TableTypes,
@@ -497,9 +490,9 @@ class Database:
             )
 
         conditions = self._query_batch_conditions(query, index_col, batch_size)
-        sess_query = self.session.query(query)
 
         # Opportunity for easy multi-processing/parallelization here!
-        for condition in conditions:
-            run = (sess_query.filter(condition)).subquery()
-            yield pd.read_sql_query(run, self.engine, dtype_backend=dtype_backend)
+        with self.engine.connect() as conn:
+            for condition in conditions:
+                run = select(query).where(condition)  # type: ignore[arg-type]
+                yield pd.read_sql_query(run, conn, dtype_backend=dtype_backend)

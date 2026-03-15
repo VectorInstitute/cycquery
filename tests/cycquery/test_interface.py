@@ -43,13 +43,14 @@ def test_query_interface(
 
 
 @pytest.mark.integration_test()
-def test_query_interface_integration():
+def test_query_interface_integration(synthea_sqlite_db):
     """Test QueryInterface with OMOPQuerier."""
     synthea = OMOPQuerier(
-        database="synthea_integration_test",
+        database=synthea_sqlite_db,
+        user="",
+        password="",
+        dbms="sqlite",
         schema_name="cdm_synthea10",
-        user="postgres",
-        password="pwd",
     )
     visits = synthea.visit_occurrence()
     assert isinstance(visits, QueryInterface)

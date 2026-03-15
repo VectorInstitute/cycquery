@@ -3,7 +3,7 @@
 import logging
 from dataclasses import dataclass
 from functools import wraps
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, TypeAlias
 
 import sqlalchemy
 from sqlalchemy import cast, func, select
@@ -43,7 +43,7 @@ class DBSchema:
     """
 
     name_: str
-    data_: sqlalchemy.sql.schema.MetaData
+    data_: sqlalchemy.MetaData
 
 
 @dataclass
@@ -60,11 +60,11 @@ class DBTable:
     """
 
     name_: str
-    data_: sqlalchemy.sql.schema.MetaData
+    data_: sqlalchemy.MetaData
 
 
 TABLE_OBJECTS = [Table, Select, Subquery, DBTable]
-TableTypes = Union[Select, Subquery, Table, DBTable]
+TableTypes: TypeAlias = Select | Subquery | Table | DBTable
 
 
 def _to_subquery(table: TableTypes) -> Subquery:
@@ -91,7 +91,7 @@ def _to_subquery(table: TableTypes) -> Subquery:
         return select(table).subquery()
 
     if isinstance(table, DBTable):
-        return select(table.data_).subquery()
+        return select(table.data_).subquery()  # type: ignore[call-overload]
 
     raise ValueError(
         f"""Table has type {type(table)}, but must have one of the
@@ -123,7 +123,7 @@ def _to_select(table: TableTypes) -> Select:
         return select(table)
 
     if isinstance(table, DBTable):
-        return select(table.data_)
+        return select(table.data_)  # type: ignore[call-overload]
 
     raise ValueError(
         f"""Table has type {type(table)}, but must have one of the
@@ -132,7 +132,7 @@ def _to_select(table: TableTypes) -> Select:
 
 
 def param_types_to_type(
-    relevant_types: List[Any],
+    relevant_types: list[Any],
     to_type_fn: Callable[..., Any],
 ) -> Callable[..., Any]:
     """Convert TableTypes parameters to a specified type.
@@ -200,15 +200,15 @@ def table_params_to_type(to_type: TableTypes) -> Callable[..., Any]:
         Table: lambda x: x,
         DBTable: lambda x: x,
     }
-    if to_type not in TABLE_OBJECTS:
+    if to_type not in TABLE_OBJECTS:  # type: ignore[comparison-overlap]
         raise ValueError(f"to_type must be in {TABLE_OBJECTS}")
 
-    to_type_fn = table_to_type_fn_map[to_type]
+    to_type_fn = table_to_type_fn_map[to_type]  # type: ignore[index]
 
     return param_types_to_type(TABLE_OBJECTS, to_type_fn)
 
 
-@table_params_to_type(Subquery)
+@table_params_to_type(Subquery)  # type: ignore[arg-type]
 def get_column(
     table: TableTypes,
     col: str,
@@ -235,10 +235,10 @@ def get_column(
     return table.c[col_names.index(col)]  # type: ignore
 
 
-@table_params_to_type(Subquery)
+@table_params_to_type(Subquery)  # type: ignore[arg-type]
 def filter_columns(
     table: TableTypes,
-    cols: Union[str, List[str]],
+    cols: str | list[str],
 ) -> Subquery:
     """Filter a table, keeping only the specified columns.
 
@@ -263,14 +263,14 @@ def filter_columns(
             continue
         filtered.append(table.c[col_names.index(col)])  # type: ignore
 
-    return select(filtered).subquery()
+    return select(*filtered).subquery()
 
 
-@table_params_to_type(Subquery)
+@table_params_to_type(Subquery)  # type: ignore[arg-type]
 def get_columns(
     table: TableTypes,
-    cols: Union[str, List[str]],
-) -> List[Column]:
+    cols: str | list[str],
+) -> list[Column]:
     """Extract a number of columns from the table.
 
     Parameters
@@ -289,8 +289,8 @@ def get_columns(
     return [get_column(table, col) for col in to_list(cols)]
 
 
-@table_params_to_type(Subquery)
-def get_column_names(table: TableTypes) -> List[str]:
+@table_params_to_type(Subquery)  # type: ignore[arg-type]
+def get_column_names(table: TableTypes) -> list[str]:
     """Extract column names from a table.
 
     Parameters
@@ -307,10 +307,10 @@ def get_column_names(table: TableTypes) -> List[str]:
     return [c.name for c in table.columns]  # type: ignore
 
 
-@table_params_to_type(Subquery)
+@table_params_to_type(Subquery)  # type: ignore[arg-type]
 def has_columns(
     table: TableTypes,
-    cols: Union[str, List[str]],
+    cols: str | list[str],
     raise_error: bool = False,
 ) -> bool:
     """Check whether a table has all of the specified columns.
@@ -342,7 +342,7 @@ def has_columns(
     return present
 
 
-@table_params_to_type(Subquery)
+@table_params_to_type(Subquery)  # type: ignore[arg-type]
 def assert_table_has_columns(
     *args: Any,
     **kwargs: Any,
@@ -404,10 +404,10 @@ def assert_table_has_columns(
     return decorator  # type: ignore
 
 
-@table_params_to_type(Subquery)
+@table_params_to_type(Subquery)  # type: ignore[arg-type]
 def drop_columns(
     table: TableTypes,
-    drop_cols: Union[str, List[str]],
+    drop_cols: str | list[str],
 ) -> Subquery:
     """Drop, or remove, some columns from a table.
 
@@ -415,8 +415,6 @@ def drop_columns(
     ----------
     table: cycquery.util.TableTypes
         The table.
-    col : str or list of str
-        Names of columns to drop.
     drop_cols: str or list of str
         Names of columns to drop.
 
@@ -431,8 +429,8 @@ def drop_columns(
     return select(*[c for c in table.c if c not in drop_cols]).subquery()  # type: ignore
 
 
-@table_params_to_type(Subquery)
-def rename_columns(table: TableTypes, rename_map: Dict[str, str]) -> Subquery:
+@table_params_to_type(Subquery)  # type: ignore[arg-type]
+def rename_columns(table: TableTypes, rename_map: dict[str, str]) -> Subquery:
     """Rename a table's columns.
 
     Rename the table's columns according to a dictionary of strings,
@@ -459,8 +457,8 @@ def rename_columns(table: TableTypes, rename_map: Dict[str, str]) -> Subquery:
     ).subquery()
 
 
-@table_params_to_type(Subquery)
-def reorder_columns(table: TableTypes, cols: List[str]) -> Subquery:
+@table_params_to_type(Subquery)  # type: ignore[arg-type]
+def reorder_columns(table: TableTypes, cols: list[str]) -> Subquery:
     """Reorder a table's columns.
 
     Parameters
@@ -497,15 +495,13 @@ def reorder_columns(table: TableTypes, cols: List[str]) -> Subquery:
     return select(*new_cols).subquery()
 
 
-@table_params_to_type(Subquery)
+@table_params_to_type(Subquery)  # type: ignore[arg-type]
 def apply_to_columns(
     table: TableTypes,
-    col_names: Union[str, List[str]],
-    funcs: Union[
-        Callable[[sqlalchemy.sql.schema.Column], sqlalchemy.sql.schema.Column],
-        List[Callable[[sqlalchemy.sql.schema.Column], sqlalchemy.sql.schema.Column]],
-    ],
-    new_col_labels: Optional[Union[str, List[str]]] = None,
+    col_names: str | list[str],
+    funcs: Callable[[sqlalchemy.sql.schema.Column], sqlalchemy.sql.schema.Column]
+    | list[Callable[[sqlalchemy.sql.schema.Column], sqlalchemy.sql.schema.Column]],
+    new_col_labels: str | list[str] | None = None,
 ) -> Subquery:
     """Apply a function to some columns.
 
@@ -544,7 +540,7 @@ def apply_to_columns(
     if new_col_labels is None:
         # Apply to existing columns
         prev_order = get_column_names(table)
-        table = select(table).add_columns(
+        table = select(table).add_columns(  # type: ignore[arg-type]
             *[
                 funcs[i](col).label("__" + col_names[i] + "__")
                 for i, col in enumerate(cols)
@@ -559,15 +555,15 @@ def apply_to_columns(
         new_cols = [
             funcs[i](col).label(new_col_labels[i]) for i, col in enumerate(cols)
         ]
-        table = select(table).add_columns(*new_cols)
+        table = select(table).add_columns(*new_cols)  # type: ignore[arg-type]
 
     return _to_subquery(table)
 
 
 def trim_columns(
     table: TableTypes,
-    cols: Union[str, List[str]],
-    new_col_labels: Optional[Union[str, List[str]]] = None,
+    cols: str | list[str],
+    new_col_labels: str | list[str] | None = None,
 ) -> Subquery:
     """Trim, or strip, specified columns.
 
@@ -645,7 +641,7 @@ def process_elem(elem: Any, **kwargs: bool) -> Any:
     return elem
 
 
-def process_list(lst: Union[Any, List[Any]], **kwargs: bool) -> List[Any]:
+def process_list(lst: Any | list[Any], **kwargs: bool) -> list[Any]:
     """Preprocess a list of elements.
 
     Parameters
@@ -696,32 +692,32 @@ def process_column(col: Column, **kwargs: bool) -> Column:
 
     # Convert to string.
     if to_str:
-        col = cast(col, String)
+        col = cast(col, String)  # type: ignore[assignment]
 
-    # If a string column.
-    if "VARCHAR" in str(col.type):
+    # If a string column (covers VARCHAR, TEXT, and other String subtypes).
+    if isinstance(col.type, String) or "VARCHAR" in str(col.type).upper():
         # Lower column.
         if lower:
-            col = func.lower(col)
+            col = func.lower(col)  # type: ignore[assignment]
 
         # Trim whitespace.
         if trim:
-            col = func.trim(col)
+            col = func.trim(col)  # type: ignore[assignment]
 
     if to_int:
-        col = cast(col, Integer)
+        col = cast(col, Integer)  # type: ignore[assignment]
 
     if to_float:
-        col = cast(col, Float)
+        col = cast(col, Float)  # type: ignore[assignment]
 
     if to_bool:
-        col = cast(col, Boolean)
+        col = cast(col, Boolean)  # type: ignore[assignment]
 
     if to_date:
-        col = cast(col, Date)
+        col = cast(col, Date)  # type: ignore[assignment]
 
     if to_timestamp:
-        col = cast(col, DateTime)
+        col = cast(col, DateTime)  # type: ignore[assignment]
 
     return col
 
@@ -1054,7 +1050,7 @@ def ends_with(
 
 def in_(
     col: Column,
-    lst: List[Any],
+    lst: list[Any],
     lower: bool = True,
     trim: bool = True,
     **kwargs: bool,
@@ -1092,8 +1088,8 @@ def in_(
 
 def _check_column_type(
     table: TableTypes,
-    cols: Union[str, List[str]],
-    types: Union[Any, List[Any]],
+    cols: str | list[str],
+    types: Any | list[Any],
     raise_error: bool = False,
 ) -> bool:
     """Check whether some columns are each one of a number of types.
@@ -1137,7 +1133,7 @@ def _check_column_type(
 
 def check_timestamp_columns(
     table: TableTypes,
-    cols: Union[str, List[str]],
+    cols: str | list[str],
     raise_error: bool = False,
 ) -> bool:
     """Check whether some columns are Date or DateTime columns.
@@ -1160,13 +1156,13 @@ def check_timestamp_columns(
     return _check_column_type(table, cols, [Date, DateTime], raise_error=raise_error)
 
 
-@table_params_to_type(Subquery)
+@table_params_to_type(Subquery)  # type: ignore[arg-type]
 def get_delta_column(
     table: TableTypes,
-    years: Optional[str] = None,
-    months: Optional[str] = None,
-    days: Optional[str] = None,
-    hours: Optional[str] = None,
+    years: str | None = None,
+    months: str | None = None,
+    days: str | None = None,
+    hours: str | None = None,
 ) -> Column:
     """Create a time delta column.
 
@@ -1195,14 +1191,14 @@ def get_delta_column(
 
     """
 
-    def get_col_or_none(col: Optional[str] = None) -> Optional[Column]:
+    def get_col_or_none(col: str | None = None) -> Column | None:
         """If col is not None, get interval column from names."""
         return None if col is None else get_column(table, col)
 
-    years = get_col_or_none(years)
-    months = get_col_or_none(months)
-    days = get_col_or_none(days)
-    hours = get_col_or_none(hours)
+    years = get_col_or_none(years)  # type: ignore[assignment]
+    months = get_col_or_none(months)  # type: ignore[assignment]
+    days = get_col_or_none(days)  # type: ignore[assignment]
+    hours = get_col_or_none(hours)  # type: ignore[assignment]
 
     time_cols = [years, months, days, hours]
     names = ["YEARS", "MONTHS", "DAYS", "HOURS"]
@@ -1224,6 +1220,6 @@ def get_delta_column(
     # Create combined interval column.
     combined_interval_col = interval_cols[0]
     for i in range(1, len(interval_cols)):
-        combined_interval_col = combined_interval_col + interval_cols[i]
+        combined_interval_col = combined_interval_col + interval_cols[i]  # type: ignore[assignment]
 
-    return combined_interval_col
+    return combined_interval_col  # type: ignore[return-value]

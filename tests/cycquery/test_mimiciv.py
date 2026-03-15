@@ -6,15 +6,13 @@ from cycquery import MIMICIVQuerier
 
 
 @pytest.mark.integration_test()
-def test_mimiciv_querier():
+def test_mimiciv_querier(mimiciv_sqlite_db):
     """Test MIMICQuerier on MIMICIV-2.0."""
     querier = MIMICIVQuerier(
-        dbms="postgresql",
-        host="localhost",
-        port=5432,
-        database="mimiciv-2.0",
-        user="postgres",
-        password="pwd",
+        dbms="sqlite",
+        database=mimiciv_sqlite_db,
+        user="",
+        password="",
         schemas=["mimiciv_hosp", "mimiciv_icu"],
     )
 

@@ -1,7 +1,9 @@
-"""A query interface class to wrap database objects and queries."""
+"""A query interface to wrap database objects and queries."""
+
+from __future__ import annotations
 
 import logging
-from typing import Generator, List, Literal, Optional, Tuple, Union
+from typing import Generator, Literal, Tuple
 
 import pandas as pd
 from sqlalchemy.sql.elements import BinaryExpression
@@ -34,7 +36,7 @@ class QueryInterface:
     def __init__(
         self,
         database: Database,
-        query: Union[TableTypes, "QueryInterface"],
+        query: TableTypes | "QueryInterface",
     ) -> None:
         """Initialize the QueryInterface object, join and chain operations."""
         self.database = database
@@ -45,26 +47,19 @@ class QueryInterface:
         self._data = None
 
     @property
-    def data(self) -> Union[pd.DataFrame, None]:
+    def data(self) -> pd.DataFrame | None:
         """Get data."""
         return self._data
 
     def join(
         self,
-        join_table: Union[TableTypes, "QueryInterface"],
-        on: Optional[
-            Union[
-                str,
-                List[str],
-                Tuple[str],
-                List[Tuple[str, str]],
-            ]
-        ] = None,
-        on_to_type: Optional[Union[type, List[type]]] = None,
-        cond: Optional[BinaryExpression] = None,
-        table_cols: Optional[Union[str, List[str]]] = None,
-        join_table_cols: Optional[Union[str, List[str]]] = None,
-        isouter: Optional[bool] = False,
+        join_table: TableTypes | "QueryInterface",
+        on: str | list[str] | Tuple[str] | list[Tuple[str, str]] | None = None,
+        on_to_type: type | list[type] | None = None,
+        cond: BinaryExpression | None = None,
+        table_cols: str | list[str] | None = None,
+        join_table_cols: str | list[str] | None = None,
+        isouter: bool | None = False,
     ) -> "QueryInterface":
         """Join the query with another table.
 
@@ -111,7 +106,7 @@ class QueryInterface:
 
     def ops(
         self,
-        ops: Union[qo.QueryOp, qo.Sequential],
+        ops: qo.QueryOp | qo.Sequential,
     ) -> "QueryInterface":
         """Chain operations with the query.
 
@@ -174,20 +169,18 @@ class QueryInterface:
 
     def run(
         self,
-        limit: Optional[int] = None,
-        index_col: Optional[str] = None,
+        limit: int | None = None,
+        index_col: str | None = None,
         batch_mode: bool = False,
         batch_size: int = 1000000,
         dtype_backend: str = "pyarrow",
-    ) -> Union[pd.DataFrame, Generator[pd.DataFrame, None, None]]:
+    ) -> pd.DataFrame | Generator[pd.DataFrame, None, None]:
         """Run the query, and fetch data.
 
         Parameters
         ----------
         limit
             No. of rows to limit the query return.
-        backend
-            Backend computing framework to use, pandas or dask or datasets.
         index_col
             Column which becomes the index, and defines the partitioning.
             Should be a indexed column in the SQL server, and any orderable type.
@@ -254,7 +247,9 @@ class QueryInterface:
         elif file_format == "parquet":
             path = self.database.save_query_to_parquet(self.query, path)
         else:
-            raise ValueError("Invalid file format specified.")
+            raise ValueError(
+                f"Invalid file format '{file_format}'. Use 'parquet' or 'csv'."
+            )
 
         return path
 

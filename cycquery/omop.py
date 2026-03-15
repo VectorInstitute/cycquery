@@ -124,7 +124,7 @@ class OMOPQuerier(DatasetQuerier):
                 isouter=True,
             )(src_table)
             dst_col_name = dst_cols[i] if dst_cols else col.replace(ID, NAME)
-            src_table = qo.Rename({CONCEPT_NAME: dst_col_name})(src_table)
+            src_table = qo.Rename({CONCEPT_NAME: dst_col_name})(src_table)  # type: ignore[arg-type]
 
         return QueryInterface(self.db, src_table)
 
@@ -169,14 +169,14 @@ class OMOPQuerier(DatasetQuerier):
 
         """
         table = self.get_table(self.schema_name, "visit_occurrence")
-        table = self.map_concept_ids_to_name(
+        table = self.map_concept_ids_to_name(  # type: ignore[assignment]
             table,
             [
                 "visit_concept_id",
                 "visit_type_concept_id",
             ],
         )
-        table = self._map_care_site_id(table)
+        table = self._map_care_site_id(table)  # type: ignore[assignment]
 
         return QueryInterface(self.db, table)
 
@@ -192,7 +192,7 @@ class OMOPQuerier(DatasetQuerier):
 
         """
         table = self.get_table(self.schema_name, "visit_detail")
-        table = self.map_concept_ids_to_name(
+        table = self.map_concept_ids_to_name(  # type: ignore[assignment]
             table,
             ["visit_detail_concept_id", "visit_detail_type_concept_id"],
         )
@@ -211,7 +211,7 @@ class OMOPQuerier(DatasetQuerier):
 
         """
         table = self.get_table(self.schema_name, "person")
-        table = self.map_concept_ids_to_name(
+        table = self.map_concept_ids_to_name(  # type: ignore[assignment]
             table,
             ["gender_concept_id", "race_concept_id", "ethnicity_concept_id"],
         )
@@ -230,7 +230,7 @@ class OMOPQuerier(DatasetQuerier):
 
         """
         table = self.get_table(self.schema_name, "observation")
-        table = self.map_concept_ids_to_name(
+        table = self.map_concept_ids_to_name(  # type: ignore[assignment]
             table,
             [OBSERVATION_CONCEPT_ID, OBSERVATION_TYPE_CONCEPT_ID],
         )
@@ -251,7 +251,7 @@ class OMOPQuerier(DatasetQuerier):
         table = self.get_table(self.schema_name, "measurement")
         # Cast value_as_concept_id to int.
         table = qo.Cast([VALUE_AS_CONCEPT_ID], "int")(table)
-        table = self.map_concept_ids_to_name(
+        table = self.map_concept_ids_to_name(  # type: ignore[assignment]
             table,
             [MEASUREMENT_CONCEPT_ID, MEASUREMENT_TYPE_CONCEPT_ID, UNIT_CONCEPT_ID],
         )

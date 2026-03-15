@@ -33,8 +33,6 @@ def process_gemini_care_unit_changepoints(data: pd.DataFrame) -> pd.DataFrame:
     data: pandas.DataFrame
         The admit, discharge, and care unit information for a single encounter.
         Expects columns "admit", "discharge", and CARE_UNIT.
-    care_unit_hierarchy: list
-        Ordered list of care units from most relevant to to least.
 
     Returns
     -------

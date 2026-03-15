@@ -6,15 +6,13 @@ from cycquery import MIMICIIIQuerier
 
 
 @pytest.mark.integration_test()
-def test_mimiciii_querier():
+def test_mimiciii_querier(mimiciii_sqlite_db):
     """Test MIMICIIIQuerier."""
     querier = MIMICIIIQuerier(
-        dbms="postgresql",
-        port=5432,
-        host="localhost",
-        database="mimiciii",
-        user="postgres",
-        password="pwd",
+        dbms="sqlite",
+        database=mimiciii_sqlite_db,
+        user="",
+        password="",
     )
     custom_tables = querier.list_custom_tables()
     assert "diagnoses" in custom_tables

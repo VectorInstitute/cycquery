@@ -6,15 +6,13 @@ from cycquery import EICUQuerier
 
 
 @pytest.mark.integration_test()
-def test_eicu_querier():
+def test_eicu_querier(eicu_sqlite_db):
     """Test EICUQuerier on eICU-CRD."""
     querier = EICUQuerier(
-        dbms="postgresql",
-        database="eicu",
-        user="postgres",
-        password="pwd",
-        host="localhost",
-        port=5432,
+        dbms="sqlite",
+        database=eicu_sqlite_db,
+        user="",
+        password="",
     )
 
     patients = querier.eicu_crd.patient().run(limit=10)

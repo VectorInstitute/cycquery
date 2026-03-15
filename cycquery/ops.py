@@ -490,7 +490,7 @@ class Sequential(QueryOp):
         v = self[key]
         del self[key]
 
-        return v  # type: ignore
+        return v
 
     def insert(self, index: int, op_: QueryOp) -> "Sequential":
         """Insert a given query op at the given index.
@@ -540,7 +540,7 @@ class Sequential(QueryOp):
 
         return self
 
-    @table_params_to_type(Subquery)
+    @table_params_to_type(Subquery)  # type: ignore[arg-type]
     def __call__(self, table: TableTypes) -> Subquery:
         """Execute the query operations on the table.
 
@@ -555,7 +555,7 @@ class Sequential(QueryOp):
             Query result after chaining the query operations.
 
         """
-        return _chain_ops(table, self._get_ops())
+        return _chain_ops(table, self._get_ops())  # type: ignore[arg-type]
 
 
 def _append_if_missing(
@@ -576,7 +576,7 @@ def _append_if_missing(
 
     """
     if keep_cols is None:
-        return table
+        return table  # type: ignore[return-value]
     keep_cols = to_list(keep_cols)
     force_include_cols = to_list(force_include_cols)
     extend_cols = [col for col in force_include_cols if col not in keep_cols]
@@ -647,7 +647,7 @@ def _process_checks(
         has_columns(table, timestamp_cols, raise_error=True)
         check_timestamp_columns(table, timestamp_cols, raise_error=True)
 
-    return table
+    return table  # type: ignore[return-value]
 
 
 class FillNull(QueryOp):
@@ -707,20 +707,27 @@ class FillNull(QueryOp):
         table = _process_checks(table, cols=self.cols)
         if len(fill_values) == 1:
             fill_values = fill_values * len(cols)
-        for col, fill in zip(cols, fill_values):
-            coalesced_col = func.coalesce(table.c[col], fill).label(
-                f"coalesced_col_{col}",
-            )
-            table = select([table, coalesced_col]).subquery()
-        if new_col_names:
-            for col, new_col in zip(cols, new_col_names):
-                table = Rename({f"coalesced_col_{col}": new_col})(table)
-        else:
-            for col in cols:
-                table = drop_columns(table, col)
-                table = Rename({f"coalesced_col_{col}": col})(table)
 
-        return table
+        # Build coalesced expressions map for all columns at once (avoids N nested subqueries)
+        coalesce_map = {
+            col: func.coalesce(table.c[col], fill)
+            for col, fill in zip(cols, fill_values)
+        }
+
+        if new_col_names:
+            # Keep all original columns and add new coalesced columns
+            new_col_map = dict(zip(cols, new_col_names))
+            result_cols = list(table.columns) + [
+                coalesce_map[col].label(new_col_map[col]) for col in cols
+            ]
+        else:
+            # Replace original columns with coalesced versions (same names)
+            result_cols = [
+                coalesce_map[c.name].label(c.name) if c.name in coalesce_map else c
+                for c in table.columns
+            ]
+
+        return select(*result_cols).subquery()
 
 
 class Drop(QueryOp):
@@ -816,7 +823,7 @@ class Substring(QueryOp):
         Start index of substring.
     stop_index
         Stop index of substring.
-    new_col_name
+    new_col_label
         Name of the new column with extracted substring.
 
     Examples
@@ -1175,7 +1182,7 @@ class AddNumeric(QueryOp):
         add: typing.Union[int, float],
     ) -> typing.Callable[[sqlalchemy.sql.schema.Column], sqlalchemy.sql.schema.Column]:
         """Generate the lambda function."""
-        return lambda x: x + add
+        return lambda x: x + add  # type: ignore[return-value]
 
     def __call__(self, table: TableTypes) -> Subquery:
         """Process the table.
@@ -1593,7 +1600,7 @@ class Join(QueryOp):
 
     """
 
-    @table_params_to_type(Subquery)
+    @table_params_to_type(Subquery)  # type: ignore[arg-type]
     def __init__(
         self,
         join_table: TableTypes,
@@ -1624,7 +1631,7 @@ class Join(QueryOp):
         self.join_table_cols = to_list_optional(join_table_cols)
         self.isouter = isouter
 
-    @table_params_to_type(Subquery)
+    @table_params_to_type(Subquery)  # type: ignore[arg-type]
     def __call__(self, table: TableTypes) -> Subquery:
         """Process the table.
 
@@ -1679,7 +1686,7 @@ class Join(QueryOp):
                     for i in range(len(on_table_cols))
                 ],
             )
-            table = select(table.join(self.join_table, cond, isouter=self.isouter))
+            table = select(table.join(self.join_table, cond, isouter=self.isouter))  # type: ignore[arg-type]
         else:
             # Filter columns
             if self.table_cols is not None:
@@ -1691,15 +1698,15 @@ class Join(QueryOp):
             if self.cond is not None:
                 table = select(
                     table.join(  # type: ignore
-                        self.join_table,
+                        self.join_table,  # type: ignore[arg-type]
                         self.cond,
-                        isouter=self.isouter,
+                        isouter=self.isouter,  # type: ignore[arg-type]
                     ),
                 )
             # Join on no condition, i.e., a Cartesian product
             else:
                 LOGGER.warning("A Cartesian product has been queried.")
-                table = select(table, self.join_table)
+                table = select(table, self.join_table)  # type: ignore[arg-type]
 
         # Filter to include no duplicate columns
         return select(
@@ -1775,9 +1782,9 @@ class ConditionEquals(QueryOp):
             **self.cond_kwargs,
         )
         if self.not_:
-            cond = cond._negate()
+            cond = cond._negate()  # type: ignore[no-untyped-call]
         if return_cond:
-            return cond
+            return cond  # type: ignore[return-value]
         if self.binarize_col is not None:
             return select(
                 table,
@@ -1860,9 +1867,9 @@ class ConditionGreaterThan(QueryOp):
             **self.cond_kwargs,
         )
         if self.not_:
-            cond = cond._negate()
+            cond = cond._negate()  # type: ignore[no-untyped-call]
         if return_cond:
-            return cond
+            return cond  # type: ignore[return-value]
         if self.binarize_col is not None:
             return select(
                 table,
@@ -1945,9 +1952,9 @@ class ConditionLessThan(QueryOp):
             **self.cond_kwargs,
         )
         if self.not_:
-            cond = cond._negate()
+            cond = cond._negate()  # type: ignore[no-untyped-call]
         if return_cond:
-            return cond
+            return cond  # type: ignore[return-value]
         if self.binarize_col is not None:
             return select(
                 table,
@@ -2095,9 +2102,9 @@ class ConditionIn(QueryOp):
             **self.cond_kwargs,
         )
         if self.not_:
-            cond = cond._negate()
+            cond = cond._negate()  # type: ignore[no-untyped-call]
         if return_cond:
-            return cond
+            return cond  # type: ignore[return-value]
         if self.binarize_col is not None:
             return select(
                 table,
@@ -2184,7 +2191,7 @@ class ConditionSubstring(QueryOp):
         if self.not_:
             cond = cond._negate()
         if return_cond:
-            return cond
+            return cond  # type: ignore[return-value]
         if self.binarize_col is not None:
             return select(
                 table,
@@ -2262,9 +2269,9 @@ class ConditionStartsWith(QueryOp):
             **self.cond_kwargs,
         )
         if self.not_:
-            cond = cond._negate()
+            cond = cond._negate()  # type: ignore[no-untyped-call]
         if return_cond:
-            return cond
+            return cond  # type: ignore[return-value]
         if self.binarize_col is not None:
             return select(
                 table,
@@ -2342,9 +2349,9 @@ class ConditionEndsWith(QueryOp):
             **self.cond_kwargs,
         )
         if self.not_:
-            cond = cond._negate()
+            cond = cond._negate()  # type: ignore[no-untyped-call]
         if return_cond:
-            return cond
+            return cond  # type: ignore[return-value]
         if self.binarize_col is not None:
             return select(
                 table,
@@ -2416,13 +2423,13 @@ class ConditionInYears(QueryOp):
             cols_not_in=self.binarize_col,
         )
         cond = in_(
-            extract("year", get_column(table, self.timestamp_col)),
+            extract("year", get_column(table, self.timestamp_col)),  # type: ignore[arg-type]
             to_list(self.years),
         )
         if self.not_:
-            cond = cond._negate()
+            cond = cond._negate()  # type: ignore[no-untyped-call]
         if return_cond:
-            return cond
+            return cond  # type: ignore[return-value]
         if self.binarize_col is not None:
             return select(
                 table,
@@ -2494,13 +2501,13 @@ class ConditionInMonths(QueryOp):
             cols_not_in=self.binarize_col,
         )
         cond = in_(
-            extract("month", get_column(table, self.timestamp_col)),
+            extract("month", get_column(table, self.timestamp_col)),  # type: ignore[arg-type]
             to_list(self.months),
         )
         if self.not_:
-            cond = cond._negate()
+            cond = cond._negate()  # type: ignore[no-untyped-call]
         if return_cond:
-            return cond
+            return cond  # type: ignore[return-value]
         if self.binarize_col is not None:
             return select(
                 table,
@@ -2777,11 +2784,11 @@ class Or(QueryOp):
                 if len(self.cond_ops) == 1:
                     return cond_op(table, return_cond=return_cond)
                 ops.append(cond_op(table, return_cond=True))
-        cond = or_(*ops)
+        cond = or_(*ops)  # type: ignore[arg-type]
         if return_cond:
-            return cond
+            return cond  # type: ignore[return-value]
 
-        return select(table).where(cond).subquery()
+        return select(table).where(cond).subquery()  # type: ignore[arg-type]
 
 
 class And(QueryOp):
@@ -2789,7 +2796,7 @@ class And(QueryOp):
 
     Parameters
     ----------
-    ops
+    *cond_ops
         Query ops to combine.
 
     Examples
@@ -2830,11 +2837,11 @@ class And(QueryOp):
                 if len(self.cond_ops) == 1:
                     return cond_op(table, return_cond=return_cond)
                 ops.append(cond_op(table, return_cond=True))
-        cond = and_(*ops)
+        cond = and_(*ops)  # type: ignore[arg-type]
         if return_cond:
-            return cond
+            return cond  # type: ignore[return-value]
 
-        return select(table).where(cond).subquery()
+        return select(table).where(cond).subquery()  # type: ignore[arg-type]
 
 
 class Limit(QueryOp):
@@ -2856,7 +2863,7 @@ class Limit(QueryOp):
         super().__init__()
         self.number = number
 
-    @table_params_to_type(Select)
+    @table_params_to_type(Select)  # type: ignore[arg-type]
     def __call__(self, table: TableTypes) -> Subquery:
         """Process the table.
 
@@ -2890,7 +2897,7 @@ class RandomizeOrder(QueryOp):
 
     """
 
-    @table_params_to_type(Subquery)
+    @table_params_to_type(Subquery)  # type: ignore[arg-type]
     def __call__(self, table: TableTypes) -> Subquery:
         """Process the table.
 
@@ -2905,7 +2912,7 @@ class RandomizeOrder(QueryOp):
             Processed table.
 
         """
-        return select(table).order_by(func.random()).subquery()
+        return select(table).order_by(func.random()).subquery()  # type: ignore[arg-type]
 
 
 class DropNulls(QueryOp):
@@ -3075,7 +3082,7 @@ class Apply(QueryOp):
                 self.funcs(*cols).label(new_col) for new_col in self.new_cols
             ]  # noqa: E501
 
-            return select(table).add_columns(*result_cols).subquery()
+            return select(table).add_columns(*result_cols).subquery()  # type: ignore[arg-type]
 
         return apply_to_columns(table, self.cols, self.funcs, self.new_cols)
 
@@ -3256,12 +3263,12 @@ class GroupByAggregate(QueryOp):
         agg_cols = []
         for i, to_agg_col in enumerate(to_agg_cols):
             if aggfunc_strs[i] == "string_agg":
-                agg_col = str_to_aggfunc[aggfunc_strs[i]](
+                agg_col = str_to_aggfunc[aggfunc_strs[i]](  # type: ignore[operator]
                     to_agg_col,
                     literal_column(f"'{self.aggseps[aggfunc_cols[i]]}'"),
                 )
             else:
-                agg_col = str_to_aggfunc[aggfunc_strs[i]](to_agg_col)
+                agg_col = str_to_aggfunc[aggfunc_strs[i]](to_agg_col)  # type: ignore[operator]
             agg_cols.append(agg_col.label(aggfunc_names[i]))
 
         return select(*groupby_cols, *agg_cols).group_by(*groupby_cols).subquery()
@@ -3333,8 +3340,6 @@ class Count(QueryOp):
         ----------
         table
             Table on which to perform the operation.
-        col
-            Column to count.
 
         Returns
         -------
