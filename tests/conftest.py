@@ -24,7 +24,7 @@ def _setup_sqlite_schema_attachments(db_path: str, schema_files: dict[str, str])
         Dictionary mapping schema names to their database file paths.
 
     """
-    from cycquery.orm import Database
+    from cycquery.orm import Database  # noqa: PLC0415 - Lazy import for monkeypatching
 
     # Store the attachment information globally
     _SCHEMA_ATTACHMENTS[db_path] = schema_files

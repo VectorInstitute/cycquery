@@ -2891,7 +2891,7 @@ class RandomizeOrder(QueryOp):
     --------
     >>> RandomizeOrder()(table)
 
-    Warnings:
+    Warnings
     --------
     Becomes quite slow on large tables.
 
