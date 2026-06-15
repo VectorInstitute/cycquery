@@ -356,9 +356,9 @@ class Database:
         # Save to CSV, load with pyarrow, save to Parquet
         csv_path = exchange_extension(path, "csv")
         self.save_query_to_csv(query, csv_path)
-        table = pv.read_csv(csv_path)
+        table = pv.read_csv(csv_path)  # type: ignore[attr-defined]
         os.remove(csv_path)
-        pq.write_table(table, path)
+        pq.write_table(table, path)  # type: ignore[no-untyped-call]
 
         return path
 
