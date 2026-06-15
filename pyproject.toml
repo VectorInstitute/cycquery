@@ -46,6 +46,7 @@ docs = [
     "ipykernel>=6.29.5",
     "ipython>=8.31.0",
     "pymdown-extensions>=10.21.3",
+    "tornado>=6.5.6",
 ]
 
 [tool.mypy]
