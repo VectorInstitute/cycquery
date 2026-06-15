@@ -474,7 +474,7 @@ dev = [
     { name = "mypy", specifier = ">=1.0.0" },
     { name = "nbqa", extras = ["toolchain"], specifier = ">=1.7.0" },
     { name = "nbstripout", specifier = ">=0.6.1" },
-    { name = "pip", specifier = ">=26.1" },
+    { name = "pip", specifier = ">=26.1.2" },
     { name = "pip-audit", specifier = ">=2.7.1" },
     { name = "pre-commit", specifier = ">=4.0.0" },
     { name = "pygments", specifier = ">=2.20.0" },
