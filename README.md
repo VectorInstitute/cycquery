@@ -5,7 +5,7 @@ cycquery
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/cycquery)
 [![code checks](https://github.com/VectorInstitute/cycquery/actions/workflows/code_checks.yml/badge.svg)](https://github.com/VectorInstitute/cycquery/actions/workflows/code_checks.yml)
 [![integration tests](https://github.com/VectorInstitute/cycquery/actions/workflows/integration_tests.yml/badge.svg)](https://github.com/VectorInstitute/cycquery/actions/workflows/integration_tests.yml)
-[![docs](https://github.com/VectorInstitute/cycquery/actions/workflows/docs_deploy.yml/badge.svg)](https://github.com/VectorInstitute/cycquery/actions/workflows/docs_deploy.yml)
+[![docs](https://github.com/VectorInstitute/cycquery/actions/workflows/docs.yml/badge.svg)](https://github.com/VectorInstitute/cycquery/actions/workflows/docs.yml)
 [![codecov](https://codecov.io/gh/VectorInstitute/cycquery/branch/main/graph/badge.svg)](https://codecov.io/gh/VectorInstitute/cycquery)
 
 ``cycquery`` is a tool for querying relational databases using a simple Python API. It is specifically developed to query
